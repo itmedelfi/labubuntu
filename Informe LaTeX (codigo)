@@ -1,0 +1,108 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- Paquetes Básicos ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.5cm]{geometry} % Márgenes prolijos
+\usepackage{helvet} % Fuente similar a Arial
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{float}
+
+% --- Configuración de Títulos ---
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\numberwithin{equation}{section}\large\bfseries}{\thesubsection}{1em}{}
+
+% --- Inicio del Documento ---
+\begin{document}
+
+% --- CARÁTULA --- [cite: 153]
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\huge \textbf{Universidad de Buenos Aires}} \\[0.5cm]
+    {\Large Facultad de Ciencias Exactas y Naturales} \\[0.5cm]
+    {\large Departamento de Computación} \\[1.5cm]
+    
+    {\Large \textbf{Laboratorio de Datos}} \\[0.4cm]
+    {\large \textbf{Trabajo Práctico 01 - Curso de Verano 2026}} \\[2cm]
+    
+    {\huge \textbf{Título del Informe}} \\[0.8cm]
+    {\Large Nombre del Grupo: [Nombre del Grupo]} \\[2cm]
+    
+    \begin{tabular}{ll}
+        \textbf{Integrante} & \textbf{LU} \\ \midrule
+        Apellido, Nombre 1 & XXX/XX \\
+        Apellido, Nombre 2 & XXX/XX \\
+        Apellido, Nombre 3 & XXX/XX \\
+    \end{tabular}
+    
+    \vfill
+    {\large Febrero 2026}
+\end{titlepage}
+
+% --- RESUMEN --- [cite: 154]
+\section*{Resumen}
+Breve resumen de la problemática analizada (salud y demografía en Argentina), el trabajo de procesamiento realizado y las conclusiones principales.
+
+\newpage
+\tableofcontents
+\newpage
+
+% --- INTRODUCCIÓN --- [cite: 155]
+\section{Introducción}
+Introducción al problema de las enfermedades, variables demográficas y acceso a la salud[cite: 11]. Definición del objetivo general y hoja de ruta del documento.
+
+% --- PROCESAMIENTO DE DATOS --- [cite: 156]
+\section{Procesamiento de Datos}
+\subsection{Análisis de Calidad (GQM)}
+Descripción de los problemas de calidad detectados en los datasets de Establecimientos y Defunciones[cite: 60, 61].
+% Ejemplo de tabla para métricas GQM [cite: 62, 65]
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \textbf{Meta (Goal)} & Mejorar la integridad de los datos de establecimientos. \\ \hline
+        \textbf{Pregunta} & ¿Cuántos registros carecen de departamento asignado? \\ \hline
+        \textbf{Métrica} & (Cant. registros nulos / Total registros) * 100 \\ \hline
+    \end{tabular}
+    \caption{Aplicación de métrica GQM.}
+\end{table}
+
+\subsection{Modelo Relacional (DER)}
+Explicación del diagrama entidad-relación y normalización a 3FN[cite: 47, 54].
+% Aquí puedes insertar la imagen de tu DER
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{tu_der.png}
+%     \caption{Diagrama Entidad-Relación.}
+% \end{figure}
+
+\subsection{Importación de Datos}
+Fuentes utilizadas (Censo 2010, 2022, Defunciones, REFES) y proceso de limpieza[cite: 15, 18, 21, 30].
+
+% --- DECISIONES TOMADAS --- [cite: 157]
+\section{Decisiones Tomadas}
+Justificación de limpieza de datos, imputación de valores faltantes o exclusión de registros[cite: 158].
+
+% --- ANÁLISIS DE DATOS --- [cite: 159, 160]
+\section{Análisis de Datos}
+\subsection{Reportes SQL}
+Resultados de las consultas sobre cobertura de salud, terapias intensivas y tasas de mortalidad[cite: 78, 92, 97].
+
+\subsection{Visualizaciones}
+Inclusión de gráficos y su respectivo análisis explicativo[cite: 101, 135].
+\begin{itemize}
+    \item Cantidad de habitantes por provincia (2010 vs 2022).
+    \item Defunciones por categoría en el tiempo.
+    \item Tasa de mortalidad y boxplots de establecimientos[cite: 110, 126].
+\end{itemize}
+
+% --- CONCLUSIONES --- [cite: 162]
+\section{Conclusiones}
+Análisis final sobre la relación entre enfermedades, demografía y salud. Reflexión sobre cambios entre 2010 y 2022 y limitaciones encontradas.
+
+\end{document}
