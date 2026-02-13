@@ -19,8 +19,6 @@ departamentos                    = pd.read_csv(carpeta + "/departamentos.csv")
 habitantes                      = pd.read_csv(carpeta + "/habitantes.csv")
 defunciones                     = pd.read_csv(carpeta + "/defunciones.csv")
 establecimientos_medicos        = pd.read_csv(carpeta + "/establecimientos_medicos.csv")
-id_provincias_departamentos     = pd.read_csv(carpeta + "/tiene.csv")
-descripcion_defunciones         = pd.read_csv(carpeta + "/descripcion_defunciones.csv")
 
 #%%
 # TABLAS ÚTILES
@@ -116,5 +114,6 @@ consulta_v = """
  """
 
 reporte_v = dd.query (consulta_v).df()
+
 
 
