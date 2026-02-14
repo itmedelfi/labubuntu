@@ -39,6 +39,7 @@ consultaSQL = """
 defunciones = dd.sql(consultaSQL).df()
 defunciones.to_csv("defunciones.csv", index = False)
 #hay sexos como None
+#tambien hay grupo_etarios como None
 
 #%% Tabla de provincias
 
