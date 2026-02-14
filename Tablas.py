@@ -18,6 +18,7 @@ consultaSQL = """
                 SELECT 
                     c.categorias AS descripcion,
                     d.anio AS año,
+                    d.jurisdiccion_de_residencia_id AS provincia_id,
                     CASE
                         WHEN d.grupo_edad LIKE '01.%' THEN '0-14'
                         WHEN d.grupo_edad LIKE '02.%' THEN '15-34'
@@ -33,7 +34,7 @@ consultaSQL = """
                     FROM defunc AS d
                     INNER JOIN categoria_defun AS c
                     ON c.codigo_def = d.cie10_causa_id
-                    GROUP BY c.categorias, d.grupo_edad, d.Sexo, d.anio;
+                    GROUP BY c.categorias, d.grupo_edad, d.Sexo, d.anio, d.jurisdiccion_de_residencia_id;
             """
 
 defunciones = dd.sql(consultaSQL).df()
