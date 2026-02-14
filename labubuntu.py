@@ -326,17 +326,30 @@ reporte_i = dd.sql(consulta_i).df()
 
 # ii)
 consulta_ii = """
-    SELECT d.provincia_id, e.financiamiento,
+    SELECT p.nombre, 
+    CASE
+        WHEN e.financiamiento LIKE 'Privad%' THEN 'Privado'
+        ELSE 'Estatal'
+        END AS financiamiento,
     SUM(CASE WHEN e.terapia_intensiva = 'si' THEN 1 ELSE 0 END) AS cantidad_establecimientos
     FROM df_establecimientos_medicos AS e
-    
     JOIN df_departamentos AS d 
-        ON e.departamento_id = d.departamento_id
-    GROUP BY d.provincia_id, e.financiamiento
-    ORDER BY d.provincia_id, e.financiamiento
+        ON e.departamento_id = d.departamento_id   
+    JOIN df_provincias AS p
+        ON d.provincia_id = p.id
+    GROUP BY p.nombre,
+    CASE 
+        WHEN e.financiamiento LIKE 'Privad%' THEN 'Privado'
+        ELSE 'Estatal'
+        END
+    ORDER BY p.nombre, financiamiento
 """
 
 reporte_ii = dd.sql(consulta_ii).df()
+#aca puse TODO lo que no decia privado/privada en estatal pero hay formas de financiamiento como 'Obra social' o 'FFAA' que ni idea
+#donde van
+#este cambio se podria hacer directamente al hacer el df de establecimientos_medicos pero siento que si lo hacemos de una
+#ahi, perdemos informacion solo para este ejercicio
 
 #%% REPORTE iii
 # iii)
@@ -393,3 +406,4 @@ consulta_v = """
 
 
 reporte_v = dd.query(consulta_v).df()
+
