@@ -8,7 +8,7 @@ carpeta = r'C:\Users\Delfina\Desktop\EXACTAS\LABO_DATOS\tps\tp1'
 
 censo2010               = pd.read_excel(carpeta + "/censo2010.xlsX", skiprows=14) #salto hasta la fila que interesa
 censo2022               = pd.read_excel(carpeta + "/censo2022.xlsX", skiprows=14)
-archivo_defunciones         = pd.read_csv(carpeta + "/defunciones.csv")
+archivo_defunciones     = pd.read_csv(carpeta + "/defunciones.csv")
 instituciones_de_salud  = pd.read_excel(carpeta + "/instituciones_de_salud.xlsx")
 categoriasDefunciones   = pd.read_csv(carpeta + "/categoriasDefunciones.csv")
 
@@ -28,7 +28,11 @@ for _, fila in censo2010.iterrows():
     
     if "AREA" in val_cobertura:
         provincia_actual = str(fila['col_edad'])
+        if str(fila['col_edad']) == 'Tierra del Fuego':
+            provincia_actual = 'tierra del fuego, antártida e islas del atlántico sur'
     #detecta el cambio de jurisdiccion y se actualiza el estado
+    #y, en caso de encotrar la jurisdiccion 'Tierra del Fuego' le cambia el nombre
+    #para que coincida en la tabla de provincias
     
     elif "RESUMEN" in val_cobertura:
         break
@@ -89,6 +93,10 @@ for _, fila in censo2022.iterrows():
     
     if "AREA" in val_cobertura:
         provincia_actual = str(fila['col_edad'])
+        if str(fila['col_edad']) == 'Caba':
+            provincia_actual = 'ciudad autónoma de buenos aires'
+        elif str(fila['col_edad']) == 'Tierra del Fuego':
+            provincia_actual = 'tierra del fuego, antártida e islas del atlántico sur'
         
     elif "RESUMEN" in val_cobertura:
         break
@@ -382,5 +390,6 @@ consulta_v = """
     GROUP BY descripcion
     ORDER BY diferencia_defunciones DESC
  """
+
 
 reporte_v = dd.query(consulta_v).df()
