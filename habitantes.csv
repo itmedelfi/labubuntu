@@ -1,0 +1,1921 @@
+año,provincia_id,Cobertura_Social,rango_etario,sexo,cantidad
+2010,2,Privada,0-14,F,86113.0
+2010,2,Privada,15-34,F,171363.0
+2010,2,Privada,35-54,F,159700.0
+2010,2,Privada,55-74,F,183383.0
+2010,2,Privada,75+,F,122230.0
+2010,2,Privada,0-14,F,55432.0
+2010,2,Privada,15-34,F,110787.0
+2010,2,Privada,35-54,F,100515.0
+2010,2,Privada,55-74,F,49225.0
+2010,2,Privada,75+,F,15118.0
+2010,2,Privada,0-14,F,30388.0
+2010,2,Privada,15-34,F,60852.0
+2010,2,Privada,35-54,F,59157.0
+2010,2,Privada,55-74,F,55993.0
+2010,2,Privada,75+,F,22342.0
+2010,2,Pública,0-14,F,4823.0
+2010,2,Pública,15-34,F,7082.0
+2010,2,Pública,35-54,F,6599.0
+2010,2,Pública,55-74,F,3672.0
+2010,2,Pública,75+,F,1464.0
+2010,2,No tiene cobertura social,0-14,F,55023.0
+2010,2,No tiene cobertura social,15-34,F,106316.0
+2010,2,No tiene cobertura social,35-54,F,66679.0
+2010,2,No tiene cobertura social,55-74,F,24659.0
+2010,2,No tiene cobertura social,75+,F,2727.0
+2010,6,Privada,0-14,F,777899.0
+2010,6,Privada,15-34,F,993836.0
+2010,6,Privada,35-54,F,866403.0
+2010,6,Privada,55-74,F,905769.0
+2010,6,Privada,75+,F,425838.0
+2010,6,Privada,0-14,F,211562.0
+2010,6,Privada,15-34,F,283505.0
+2010,6,Privada,35-54,F,242923.0
+2010,6,Privada,55-74,F,85065.0
+2010,6,Privada,75+,F,14313.0
+2010,6,Privada,0-14,F,72342.0
+2010,6,Privada,15-34,F,111413.0
+2010,6,Privada,35-54,F,113802.0
+2010,6,Privada,55-74,F,66332.0
+2010,6,Privada,75+,F,12694.0
+2010,6,Pública,0-14,F,31889.0
+2010,6,Pública,15-34,F,32130.0
+2010,6,Pública,35-54,F,29242.0
+2010,6,Pública,55-74,F,14522.0
+2010,6,Pública,75+,F,3442.0
+2010,6,No tiene cobertura social,0-14,F,810585.0
+2010,6,No tiene cobertura social,15-34,F,1079869.0
+2010,6,No tiene cobertura social,35-54,F,628219.0
+2010,6,No tiene cobertura social,55-74,F,191422.0
+2010,6,No tiene cobertura social,75+,F,12443.0
+2010,10,Privada,0-14,F,24539.0
+2010,10,Privada,15-34,F,25676.0
+2010,10,Privada,35-54,F,23098.0
+2010,10,Privada,55-74,F,17883.0
+2010,10,Privada,75+,F,6781.0
+2010,10,Privada,0-14,F,2990.0
+2010,10,Privada,15-34,F,3287.0
+2010,10,Privada,35-54,F,2457.0
+2010,10,Privada,55-74,F,941.0
+2010,10,Privada,75+,F,250.0
+2010,10,Privada,0-14,F,854.0
+2010,10,Privada,15-34,F,1410.0
+2010,10,Privada,35-54,F,911.0
+2010,10,Privada,55-74,F,340.0
+2010,10,Privada,75+,F,51.0
+2010,10,Pública,0-14,F,1311.0
+2010,10,Pública,15-34,F,881.0
+2010,10,Pública,35-54,F,889.0
+2010,10,Pública,55-74,F,601.0
+2010,10,Pública,75+,F,126.0
+2010,10,No tiene cobertura social,0-14,F,23828.0
+2010,10,No tiene cobertura social,15-34,F,29721.0
+2010,10,No tiene cobertura social,35-54,F,12600.0
+2010,10,No tiene cobertura social,55-74,F,3548.0
+2010,10,No tiene cobertura social,75+,F,436.0
+2010,14,Privada,0-14,F,155914.0
+2010,14,Privada,15-34,F,211963.0
+2010,14,Privada,35-54,F,176324.0
+2010,14,Privada,55-74,F,207509.0
+2010,14,Privada,75+,F,95373.0
+2010,14,Privada,0-14,F,49764.0
+2010,14,Privada,15-34,F,72018.0
+2010,14,Privada,35-54,F,52502.0
+2010,14,Privada,55-74,F,18138.0
+2010,14,Privada,75+,F,2611.0
+2010,14,Privada,0-14,F,20998.0
+2010,14,Privada,15-34,F,36420.0
+2010,14,Privada,35-54,F,29796.0
+2010,14,Privada,55-74,F,13197.0
+2010,14,Privada,75+,F,1655.0
+2010,14,Pública,0-14,F,10447.0
+2010,14,Pública,15-34,F,8567.0
+2010,14,Pública,35-54,F,7050.0
+2010,14,Pública,55-74,F,3991.0
+2010,14,Pública,75+,F,1129.0
+2010,14,No tiene cobertura social,0-14,F,159609.0
+2010,14,No tiene cobertura social,15-34,F,208858.0
+2010,14,No tiene cobertura social,35-54,F,122152.0
+2010,14,No tiene cobertura social,55-74,F,34088.0
+2010,14,No tiene cobertura social,75+,F,2925.0
+2010,18,Privada,0-14,F,45117.0
+2010,18,Privada,15-34,F,54425.0
+2010,18,Privada,35-54,F,48123.0
+2010,18,Privada,55-74,F,45346.0
+2010,18,Privada,75+,F,17328.0
+2010,18,Privada,0-14,F,9695.0
+2010,18,Privada,15-34,F,11453.0
+2010,18,Privada,35-54,F,8760.0
+2010,18,Privada,55-74,F,2873.0
+2010,18,Privada,75+,F,504.0
+2010,18,Privada,0-14,F,1853.0
+2010,18,Privada,15-34,F,3014.0
+2010,18,Privada,35-54,F,2467.0
+2010,18,Privada,55-74,F,849.0
+2010,18,Privada,75+,F,59.0
+2010,18,Pública,0-14,F,8631.0
+2010,18,Pública,15-34,F,4460.0
+2010,18,Pública,35-54,F,4767.0
+2010,18,Pública,55-74,F,2211.0
+2010,18,Pública,75+,F,351.0
+2010,18,No tiene cobertura social,0-14,F,77967.0
+2010,18,No tiene cobertura social,15-34,F,97010.0
+2010,18,No tiene cobertura social,35-54,F,46632.0
+2010,18,No tiene cobertura social,55-74,F,12697.0
+2010,18,No tiene cobertura social,75+,F,1124.0
+2010,22,Privada,0-14,F,37341.0
+2010,22,Privada,15-34,F,48110.0
+2010,22,Privada,35-54,F,45218.0
+2010,22,Privada,55-74,F,41997.0
+2010,22,Privada,75+,F,15933.0
+2010,22,Privada,0-14,F,7329.0
+2010,22,Privada,15-34,F,8843.0
+2010,22,Privada,35-54,F,6882.0
+2010,22,Privada,55-74,F,2544.0
+2010,22,Privada,75+,F,321.0
+2010,22,Privada,0-14,F,2054.0
+2010,22,Privada,15-34,F,3307.0
+2010,22,Privada,35-54,F,2681.0
+2010,22,Privada,55-74,F,687.0
+2010,22,Privada,75+,F,73.0
+2010,22,Pública,0-14,F,3519.0
+2010,22,Pública,15-34,F,3473.0
+2010,22,Pública,35-54,F,4045.0
+2010,22,Pública,55-74,F,2220.0
+2010,22,Pública,75+,F,311.0
+2010,22,No tiene cobertura social,0-14,F,107527.0
+2010,22,No tiene cobertura social,15-34,F,120542.0
+2010,22,No tiene cobertura social,35-54,F,54636.0
+2010,22,No tiene cobertura social,55-74,F,14375.0
+2010,22,No tiene cobertura social,75+,F,1266.0
+2010,26,Privada,0-14,F,37106.0
+2010,26,Privada,15-34,F,44765.0
+2010,26,Privada,35-54,F,36097.0
+2010,26,Privada,55-74,F,22932.0
+2010,26,Privada,75+,F,7870.0
+2010,26,Privada,0-14,F,7668.0
+2010,26,Privada,15-34,F,9597.0
+2010,26,Privada,35-54,F,6932.0
+2010,26,Privada,55-74,F,2428.0
+2010,26,Privada,75+,F,267.0
+2010,26,Privada,0-14,F,2051.0
+2010,26,Privada,15-34,F,2793.0
+2010,26,Privada,35-54,F,2384.0
+2010,26,Privada,55-74,F,1153.0
+2010,26,Privada,75+,F,152.0
+2010,26,Pública,0-14,F,1658.0
+2010,26,Pública,15-34,F,1484.0
+2010,26,Pública,35-54,F,1179.0
+2010,26,Pública,55-74,F,572.0
+2010,26,Pública,75+,F,180.0
+2010,26,No tiene cobertura social,0-14,F,18708.0
+2010,26,No tiene cobertura social,15-34,F,27566.0
+2010,26,No tiene cobertura social,35-54,F,13877.0
+2010,26,No tiene cobertura social,55-74,F,4545.0
+2010,26,No tiene cobertura social,75+,F,676.0
+2010,30,Privada,0-14,F,72566.0
+2010,30,Privada,15-34,F,88747.0
+2010,30,Privada,35-54,F,79536.0
+2010,30,Privada,55-74,F,76502.0
+2010,30,Privada,75+,F,32790.0
+2010,30,Privada,0-14,F,9741.0
+2010,30,Privada,15-34,F,12182.0
+2010,30,Privada,35-54,F,10404.0
+2010,30,Privada,55-74,F,3643.0
+2010,30,Privada,75+,F,505.0
+2010,30,Privada,0-14,F,5087.0
+2010,30,Privada,15-34,F,7585.0
+2010,30,Privada,35-54,F,7131.0
+2010,30,Privada,55-74,F,2988.0
+2010,30,Privada,75+,F,263.0
+2010,30,Pública,0-14,F,3572.0
+2010,30,Pública,15-34,F,2711.0
+2010,30,Pública,35-54,F,2541.0
+2010,30,Pública,55-74,F,1198.0
+2010,30,Pública,75+,F,206.0
+2010,30,No tiene cobertura social,0-14,F,69642.0
+2010,30,No tiene cobertura social,15-34,F,84889.0
+2010,30,No tiene cobertura social,35-54,F,43855.0
+2010,30,No tiene cobertura social,55-74,F,12498.0
+2010,30,No tiene cobertura social,75+,F,1159.0
+2010,34,Privada,0-14,F,20754.0
+2010,34,Privada,15-34,F,25056.0
+2010,34,Privada,35-54,F,24928.0
+2010,34,Privada,55-74,F,19844.0
+2010,34,Privada,75+,F,6628.0
+2010,34,Privada,0-14,F,2820.0
+2010,34,Privada,15-34,F,3368.0
+2010,34,Privada,35-54,F,2747.0
+2010,34,Privada,55-74,F,943.0
+2010,34,Privada,75+,F,98.0
+2010,34,Privada,0-14,F,610.0
+2010,34,Privada,15-34,F,996.0
+2010,34,Privada,35-54,F,763.0
+2010,34,Privada,55-74,F,215.0
+2010,34,Privada,75+,F,23.0
+2010,34,Pública,0-14,F,2700.0
+2010,34,Pública,15-34,F,2658.0
+2010,34,Pública,35-54,F,2907.0
+2010,34,Pública,55-74,F,1445.0
+2010,34,Pública,75+,F,194.0
+2010,34,No tiene cobertura social,0-14,F,55246.0
+2010,34,No tiene cobertura social,15-34,F,57378.0
+2010,34,No tiene cobertura social,35-54,F,26945.0
+2010,34,No tiene cobertura social,55-74,F,7977.0
+2010,34,No tiene cobertura social,75+,F,938.0
+2010,38,Privada,0-14,F,35856.0
+2010,38,Privada,15-34,F,38156.0
+2010,38,Privada,35-54,F,35257.0
+2010,38,Privada,55-74,F,28802.0
+2010,38,Privada,75+,F,8836.0
+2010,38,Privada,0-14,F,7976.0
+2010,38,Privada,15-34,F,8092.0
+2010,38,Privada,35-54,F,6210.0
+2010,38,Privada,55-74,F,2638.0
+2010,38,Privada,75+,F,371.0
+2010,38,Privada,0-14,F,2514.0
+2010,38,Privada,15-34,F,3370.0
+2010,38,Privada,35-54,F,2089.0
+2010,38,Privada,55-74,F,658.0
+2010,38,Privada,75+,F,83.0
+2010,38,Pública,0-14,F,4149.0
+2010,38,Pública,15-34,F,2251.0
+2010,38,Pública,35-54,F,2313.0
+2010,38,Pública,55-74,F,1274.0
+2010,38,Pública,75+,F,349.0
+2010,38,No tiene cobertura social,0-14,F,46838.0
+2010,38,No tiene cobertura social,15-34,F,65803.0
+2010,38,No tiene cobertura social,35-54,F,29995.0
+2010,38,No tiene cobertura social,55-74,F,8852.0
+2010,38,No tiene cobertura social,75+,F,1317.0
+2010,42,Privada,0-14,F,17216.0
+2010,42,Privada,15-34,F,21392.0
+2010,42,Privada,35-54,F,20825.0
+2010,42,Privada,55-74,F,20204.0
+2010,42,Privada,75+,F,8875.0
+2010,42,Privada,0-14,F,3187.0
+2010,42,Privada,15-34,F,4014.0
+2010,42,Privada,35-54,F,3516.0
+2010,42,Privada,55-74,F,1190.0
+2010,42,Privada,75+,F,184.0
+2010,42,Privada,0-14,F,1273.0
+2010,42,Privada,15-34,F,1912.0
+2010,42,Privada,35-54,F,1746.0
+2010,42,Privada,55-74,F,1003.0
+2010,42,Privada,75+,F,77.0
+2010,42,Pública,0-14,F,2032.0
+2010,42,Pública,15-34,F,2190.0
+2010,42,Pública,35-54,F,1440.0
+2010,42,Pública,55-74,F,675.0
+2010,42,Pública,75+,F,131.0
+2010,42,No tiene cobertura social,0-14,F,15193.0
+2010,42,No tiene cobertura social,15-34,F,19588.0
+2010,42,No tiene cobertura social,35-54,F,10499.0
+2010,42,No tiene cobertura social,55-74,F,2854.0
+2010,42,No tiene cobertura social,75+,F,173.0
+2010,46,Privada,0-14,F,19675.0
+2010,46,Privada,15-34,F,24607.0
+2010,46,Privada,35-54,F,20365.0
+2010,46,Privada,55-74,F,14233.0
+2010,46,Privada,75+,F,5204.0
+2010,46,Privada,0-14,F,4015.0
+2010,46,Privada,15-34,F,5691.0
+2010,46,Privada,35-54,F,3986.0
+2010,46,Privada,55-74,F,1516.0
+2010,46,Privada,75+,F,334.0
+2010,46,Privada,0-14,F,985.0
+2010,46,Privada,15-34,F,1501.0
+2010,46,Privada,35-54,F,925.0
+2010,46,Privada,55-74,F,327.0
+2010,46,Privada,75+,F,9.0
+2010,46,Pública,0-14,F,698.0
+2010,46,Pública,15-34,F,950.0
+2010,46,Pública,35-54,F,1072.0
+2010,46,Pública,55-74,F,672.0
+2010,46,Pública,75+,F,173.0
+2010,46,No tiene cobertura social,0-14,F,20602.0
+2010,46,No tiene cobertura social,15-34,F,27584.0
+2010,46,No tiene cobertura social,35-54,F,10606.0
+2010,46,No tiene cobertura social,55-74,F,2817.0
+2010,46,No tiene cobertura social,75+,F,323.0
+2010,50,Privada,0-14,F,94672.0
+2010,50,Privada,15-34,F,122555.0
+2010,50,Privada,35-54,F,101183.0
+2010,50,Privada,55-74,F,104274.0
+2010,50,Privada,75+,F,44142.0
+2010,50,Privada,0-14,F,18728.0
+2010,50,Privada,15-34,F,24311.0
+2010,50,Privada,35-54,F,18236.0
+2010,50,Privada,55-74,F,6587.0
+2010,50,Privada,75+,F,1005.0
+2010,50,Privada,0-14,F,6408.0
+2010,50,Privada,15-34,F,10714.0
+2010,50,Privada,35-54,F,8487.0
+2010,50,Privada,55-74,F,4208.0
+2010,50,Privada,75+,F,549.0
+2010,50,Pública,0-14,F,3979.0
+2010,50,Pública,15-34,F,3243.0
+2010,50,Pública,35-54,F,3300.0
+2010,50,Pública,55-74,F,1741.0
+2010,50,Pública,75+,F,420.0
+2010,50,No tiene cobertura social,0-14,F,95317.0
+2010,50,No tiene cobertura social,15-34,F,126133.0
+2010,50,No tiene cobertura social,35-54,F,68811.0
+2010,50,No tiene cobertura social,55-74,F,21446.0
+2010,50,No tiene cobertura social,75+,F,1272.0
+2010,54,Privada,0-14,F,63476.0
+2010,54,Privada,15-34,F,72552.0
+2010,54,Privada,35-54,F,56195.0
+2010,54,Privada,55-74,F,40685.0
+2010,54,Privada,75+,F,13064.0
+2010,54,Privada,0-14,F,12152.0
+2010,54,Privada,15-34,F,13500.0
+2010,54,Privada,35-54,F,9077.0
+2010,54,Privada,55-74,F,2303.0
+2010,54,Privada,75+,F,236.0
+2010,54,Privada,0-14,F,3039.0
+2010,54,Privada,15-34,F,4207.0
+2010,54,Privada,35-54,F,2842.0
+2010,54,Privada,55-74,F,854.0
+2010,54,Privada,75+,F,67.0
+2010,54,Pública,0-14,F,10819.0
+2010,54,Pública,15-34,F,7346.0
+2010,54,Pública,35-54,F,6368.0
+2010,54,Pública,55-74,F,2936.0
+2010,54,Pública,75+,F,368.0
+2010,54,No tiene cobertura social,0-14,F,86791.0
+2010,54,No tiene cobertura social,15-34,F,89967.0
+2010,54,No tiene cobertura social,35-54,F,42185.0
+2010,54,No tiene cobertura social,55-74,F,11646.0
+2010,54,No tiene cobertura social,75+,F,1405.0
+2010,58,Privada,0-14,F,34171.0
+2010,58,Privada,15-34,F,43650.0
+2010,58,Privada,35-54,F,38363.0
+2010,58,Privada,55-74,F,23113.0
+2010,58,Privada,75+,F,7472.0
+2010,58,Privada,0-14,F,7765.0
+2010,58,Privada,15-34,F,10029.0
+2010,58,Privada,35-54,F,7731.0
+2010,58,Privada,55-74,F,2200.0
+2010,58,Privada,75+,F,298.0
+2010,58,Privada,0-14,F,1070.0
+2010,58,Privada,15-34,F,2120.0
+2010,58,Privada,35-54,F,1843.0
+2010,58,Privada,55-74,F,697.0
+2010,58,Privada,75+,F,56.0
+2010,58,Pública,0-14,F,1368.0
+2010,58,Pública,15-34,F,1650.0
+2010,58,Pública,35-54,F,1537.0
+2010,58,Pública,55-74,F,773.0
+2010,58,Pública,75+,F,125.0
+2010,58,No tiene cobertura social,0-14,F,26333.0
+2010,58,No tiene cobertura social,15-34,F,38066.0
+2010,58,No tiene cobertura social,35-54,F,20066.0
+2010,58,No tiene cobertura social,55-74,F,6336.0
+2010,58,No tiene cobertura social,75+,F,629.0
+2010,62,Privada,0-14,F,39281.0
+2010,62,Privada,15-34,F,47164.0
+2010,62,Privada,35-54,F,41257.0
+2010,62,Privada,55-74,F,32710.0
+2010,62,Privada,75+,F,11779.0
+2010,62,Privada,0-14,F,7982.0
+2010,62,Privada,15-34,F,10005.0
+2010,62,Privada,35-54,F,7963.0
+2010,62,Privada,55-74,F,2224.0
+2010,62,Privada,75+,F,138.0
+2010,62,Privada,0-14,F,2482.0
+2010,62,Privada,15-34,F,3650.0
+2010,62,Privada,35-54,F,3821.0
+2010,62,Privada,55-74,F,1502.0
+2010,62,Privada,75+,F,159.0
+2010,62,Pública,0-14,F,1506.0
+2010,62,Pública,15-34,F,1531.0
+2010,62,Pública,35-54,F,1502.0
+2010,62,Pública,55-74,F,728.0
+2010,62,Pública,75+,F,181.0
+2010,62,No tiene cobertura social,0-14,F,30021.0
+2010,62,No tiene cobertura social,15-34,F,43412.0
+2010,62,No tiene cobertura social,35-54,F,23211.0
+2010,62,No tiene cobertura social,55-74,F,7148.0
+2010,62,No tiene cobertura social,75+,F,813.0
+2010,66,Privada,0-14,F,61756.0
+2010,66,Privada,15-34,F,70838.0
+2010,66,Privada,35-54,F,57726.0
+2010,66,Privada,55-74,F,49624.0
+2010,66,Privada,75+,F,17360.0
+2010,66,Privada,0-14,F,14555.0
+2010,66,Privada,15-34,F,15373.0
+2010,66,Privada,35-54,F,11687.0
+2010,66,Privada,55-74,F,3519.0
+2010,66,Privada,75+,F,462.0
+2010,66,Privada,0-14,F,3359.0
+2010,66,Privada,15-34,F,4194.0
+2010,66,Privada,35-54,F,3640.0
+2010,66,Privada,55-74,F,1209.0
+2010,66,Privada,75+,F,70.0
+2010,66,Pública,0-14,F,6469.0
+2010,66,Pública,15-34,F,4621.0
+2010,66,Pública,35-54,F,3887.0
+2010,66,Pública,55-74,F,1702.0
+2010,66,Pública,75+,F,393.0
+2010,66,No tiene cobertura social,0-14,F,98567.0
+2010,66,No tiene cobertura social,15-34,F,115912.0
+2010,66,No tiene cobertura social,35-54,F,53761.0
+2010,66,No tiene cobertura social,55-74,F,14576.0
+2010,66,No tiene cobertura social,75+,F,1435.0
+2010,70,Privada,0-14,F,33655.0
+2010,70,Privada,15-34,F,37958.0
+2010,70,Privada,35-54,F,35542.0
+2010,70,Privada,55-74,F,35738.0
+2010,70,Privada,75+,F,12843.0
+2010,70,Privada,0-14,F,8881.0
+2010,70,Privada,15-34,F,9502.0
+2010,70,Privada,35-54,F,7010.0
+2010,70,Privada,55-74,F,2774.0
+2010,70,Privada,75+,F,350.0
+2010,70,Privada,0-14,F,2159.0
+2010,70,Privada,15-34,F,3408.0
+2010,70,Privada,35-54,F,2355.0
+2010,70,Privada,55-74,F,878.0
+2010,70,Privada,75+,F,137.0
+2010,70,Pública,0-14,F,2787.0
+2010,70,Pública,15-34,F,2094.0
+2010,70,Pública,35-54,F,2424.0
+2010,70,Pública,55-74,F,1636.0
+2010,70,Pública,75+,F,313.0
+2010,70,No tiene cobertura social,0-14,F,48699.0
+2010,70,No tiene cobertura social,15-34,F,57422.0
+2010,70,No tiene cobertura social,35-54,F,29149.0
+2010,70,No tiene cobertura social,55-74,F,9187.0
+2010,70,No tiene cobertura social,75+,F,662.0
+2010,74,Privada,0-14,F,24014.0
+2010,74,Privada,15-34,F,28781.0
+2010,74,Privada,35-54,F,25226.0
+2010,74,Privada,55-74,F,22850.0
+2010,74,Privada,75+,F,8053.0
+2010,74,Privada,0-14,F,5174.0
+2010,74,Privada,15-34,F,5567.0
+2010,74,Privada,35-54,F,4705.0
+2010,74,Privada,55-74,F,1517.0
+2010,74,Privada,75+,F,265.0
+2010,74,Privada,0-14,F,1090.0
+2010,74,Privada,15-34,F,1738.0
+2010,74,Privada,35-54,F,1594.0
+2010,74,Privada,55-74,F,711.0
+2010,74,Privada,75+,F,97.0
+2010,74,Pública,0-14,F,1033.0
+2010,74,Pública,15-34,F,1442.0
+2010,74,Pública,35-54,F,1682.0
+2010,74,Pública,55-74,F,1061.0
+2010,74,Pública,75+,F,292.0
+2010,74,No tiene cobertura social,0-14,F,28240.0
+2010,74,No tiene cobertura social,15-34,F,31922.0
+2010,74,No tiene cobertura social,35-54,F,16545.0
+2010,74,No tiene cobertura social,55-74,F,4570.0
+2010,74,No tiene cobertura social,75+,F,406.0
+2010,78,Privada,0-14,F,24749.0
+2010,78,Privada,15-34,F,26919.0
+2010,78,Privada,35-54,F,21411.0
+2010,78,Privada,55-74,F,9699.0
+2010,78,Privada,75+,F,2428.0
+2010,78,Privada,0-14,F,4647.0
+2010,78,Privada,15-34,F,5476.0
+2010,78,Privada,35-54,F,3895.0
+2010,78,Privada,55-74,F,1169.0
+2010,78,Privada,75+,F,151.0
+2010,78,Privada,0-14,F,694.0
+2010,78,Privada,15-34,F,1204.0
+2010,78,Privada,35-54,F,833.0
+2010,78,Privada,55-74,F,359.0
+2010,78,Privada,75+,F,24.0
+2010,78,Pública,0-14,F,2203.0
+2010,78,Pública,15-34,F,2799.0
+2010,78,Pública,35-54,F,1321.0
+2010,78,Pública,55-74,F,647.0
+2010,78,Pública,75+,F,101.0
+2010,78,No tiene cobertura social,0-14,F,5499.0
+2010,78,No tiene cobertura social,15-34,F,9775.0
+2010,78,No tiene cobertura social,35-54,F,3939.0
+2010,78,No tiene cobertura social,55-74,F,1225.0
+2010,78,No tiene cobertura social,75+,F,109.0
+2010,82,Privada,0-14,F,139778.0
+2010,82,Privada,15-34,F,200338.0
+2010,82,Privada,35-54,F,171871.0
+2010,82,Privada,55-74,F,195846.0
+2010,82,Privada,75+,F,99930.0
+2010,82,Privada,0-14,F,48401.0
+2010,82,Privada,15-34,F,72146.0
+2010,82,Privada,35-54,F,55716.0
+2010,82,Privada,55-74,F,21025.0
+2010,82,Privada,75+,F,3527.0
+2010,82,Privada,0-14,F,21447.0
+2010,82,Privada,15-34,F,42222.0
+2010,82,Privada,35-54,F,32948.0
+2010,82,Privada,55-74,F,17011.0
+2010,82,Privada,75+,F,2498.0
+2010,82,Pública,0-14,F,7630.0
+2010,82,Pública,15-34,F,8465.0
+2010,82,Pública,35-54,F,6992.0
+2010,82,Pública,55-74,F,3276.0
+2010,82,Pública,75+,F,778.0
+2010,82,No tiene cobertura social,0-14,F,155776.0
+2010,82,No tiene cobertura social,15-34,F,204793.0
+2010,82,No tiene cobertura social,35-54,F,105631.0
+2010,82,No tiene cobertura social,55-74,F,27722.0
+2010,82,No tiene cobertura social,75+,F,1820.0
+2010,86,Privada,0-14,F,34443.0
+2010,86,Privada,15-34,F,37240.0
+2010,86,Privada,35-54,F,34720.0
+2010,86,Privada,55-74,F,37344.0
+2010,86,Privada,75+,F,14433.0
+2010,86,Privada,0-14,F,7513.0
+2010,86,Privada,15-34,F,7856.0
+2010,86,Privada,35-54,F,6297.0
+2010,86,Privada,55-74,F,2602.0
+2010,86,Privada,75+,F,493.0
+2010,86,Privada,0-14,F,2785.0
+2010,86,Privada,15-34,F,4066.0
+2010,86,Privada,35-54,F,2673.0
+2010,86,Privada,55-74,F,820.0
+2010,86,Privada,75+,F,72.0
+2010,86,Pública,0-14,F,4385.0
+2010,86,Pública,15-34,F,2308.0
+2010,86,Pública,35-54,F,3283.0
+2010,86,Pública,55-74,F,1973.0
+2010,86,Pública,75+,F,431.0
+2010,86,No tiene cobertura social,0-14,F,87536.0
+2010,86,No tiene cobertura social,15-34,F,94769.0
+2010,86,No tiene cobertura social,35-54,F,41846.0
+2010,86,No tiene cobertura social,55-74,F,10261.0
+2010,86,No tiene cobertura social,75+,F,1067.0
+2010,90,Privada,0-14,F,77509.0
+2010,90,Privada,15-34,F,95221.0
+2010,90,Privada,35-54,F,75095.0
+2010,90,Privada,55-74,F,70796.0
+2010,90,Privada,75+,F,27274.0
+2010,90,Privada,0-14,F,15863.0
+2010,90,Privada,15-34,F,20980.0
+2010,90,Privada,35-54,F,14359.0
+2010,90,Privada,55-74,F,4966.0
+2010,90,Privada,75+,F,629.0
+2010,90,Privada,0-14,F,15466.0
+2010,90,Privada,15-34,F,24143.0
+2010,90,Privada,35-54,F,15697.0
+2010,90,Privada,55-74,F,5416.0
+2010,90,Privada,75+,F,491.0
+2010,90,Pública,0-14,F,6044.0
+2010,90,Pública,15-34,F,5253.0
+2010,90,Pública,35-54,F,5292.0
+2010,90,Pública,55-74,F,3647.0
+2010,90,Pública,75+,F,767.0
+2010,90,No tiene cobertura social,0-14,F,86206.0
+2010,90,No tiene cobertura social,15-34,F,105386.0
+2010,90,No tiene cobertura social,35-54,F,49637.0
+2010,90,No tiene cobertura social,55-74,F,13467.0
+2010,90,No tiene cobertura social,75+,F,1293.0
+2010,94,Privada,0-14,F,9725.0
+2010,94,Privada,15-34,F,11508.0
+2010,94,Privada,35-54,F,9549.0
+2010,94,Privada,55-74,F,3681.0
+2010,94,Privada,75+,F,950.0
+2010,94,Privada,0-14,F,2495.0
+2010,94,Privada,15-34,F,3149.0
+2010,94,Privada,35-54,F,2321.0
+2010,94,Privada,55-74,F,466.0
+2010,94,Privada,75+,F,46.0
+2010,94,Privada,0-14,F,339.0
+2010,94,Privada,15-34,F,436.0
+2010,94,Privada,35-54,F,494.0
+2010,94,Privada,55-74,F,146.0
+2010,94,Privada,75+,F,13.0
+2010,94,Pública,0-14,F,1506.0
+2010,94,Pública,15-34,F,1117.0
+2010,94,Pública,35-54,F,709.0
+2010,94,Pública,55-74,F,275.0
+2010,94,Pública,75+,F,11.0
+2010,94,No tiene cobertura social,0-14,F,3353.0
+2010,94,No tiene cobertura social,15-34,F,5704.0
+2010,94,No tiene cobertura social,35-54,F,2829.0
+2010,94,No tiene cobertura social,55-74,F,643.0
+2010,94,No tiene cobertura social,75+,F,35.0
+2010,2,Privada,0-14,M,88550.0
+2010,2,Privada,15-34,M,169834.0
+2010,2,Privada,35-54,M,139320.0
+2010,2,Privada,55-74,M,118337.0
+2010,2,Privada,75+,M,55923.0
+2010,2,Privada,0-14,M,58158.0
+2010,2,Privada,15-34,M,98953.0
+2010,2,Privada,35-54,M,88243.0
+2010,2,Privada,55-74,M,41176.0
+2010,2,Privada,75+,M,7764.0
+2010,2,Privada,0-14,M,30846.0
+2010,2,Privada,15-34,M,53679.0
+2010,2,Privada,35-54,M,51385.0
+2010,2,Privada,55-74,M,43127.0
+2010,2,Privada,75+,M,11737.0
+2010,2,Pública,0-14,M,5128.0
+2010,2,Pública,15-34,M,5993.0
+2010,2,Pública,35-54,M,4277.0
+2010,2,Pública,55-74,M,2996.0
+2010,2,Pública,75+,M,600.0
+2010,2,No tiene cobertura social,0-14,M,57678.0
+2010,2,No tiene cobertura social,15-34,M,107182.0
+2010,2,No tiene cobertura social,35-54,M,62598.0
+2010,2,No tiene cobertura social,55-74,M,25759.0
+2010,2,No tiene cobertura social,75+,M,1196.0
+2010,6,Privada,0-14,M,806806.0
+2010,6,Privada,15-34,M,1011627.0
+2010,6,Privada,35-54,M,799855.0
+2010,6,Privada,55-74,M,642837.0
+2010,6,Privada,75+,M,233220.0
+2010,6,Privada,0-14,M,219294.0
+2010,6,Privada,15-34,M,284565.0
+2010,6,Privada,35-54,M,241445.0
+2010,6,Privada,55-74,M,93885.0
+2010,6,Privada,75+,M,9420.0
+2010,6,Privada,0-14,M,77285.0
+2010,6,Privada,15-34,M,100628.0
+2010,6,Privada,35-54,M,108109.0
+2010,6,Privada,55-74,M,69344.0
+2010,6,Privada,75+,M,8664.0
+2010,6,Pública,0-14,M,33430.0
+2010,6,Pública,15-34,M,32344.0
+2010,6,Pública,35-54,M,21651.0
+2010,6,Pública,55-74,M,12184.0
+2010,6,Pública,75+,M,1576.0
+2010,6,No tiene cobertura social,0-14,M,832483.0
+2010,6,No tiene cobertura social,15-34,M,1066117.0
+2010,6,No tiene cobertura social,35-54,M,626962.0
+2010,6,No tiene cobertura social,55-74,M,260646.0
+2010,6,No tiene cobertura social,75+,M,7635.0
+2010,10,Privada,0-14,M,24386.0
+2010,10,Privada,15-34,M,25883.0
+2010,10,Privada,35-54,M,22303.0
+2010,10,Privada,55-74,M,14826.0
+2010,10,Privada,75+,M,4113.0
+2010,10,Privada,0-14,M,3180.0
+2010,10,Privada,15-34,M,3824.0
+2010,10,Privada,35-54,M,2823.0
+2010,10,Privada,55-74,M,1135.0
+2010,10,Privada,75+,M,123.0
+2010,10,Privada,0-14,M,682.0
+2010,10,Privada,15-34,M,1375.0
+2010,10,Privada,35-54,M,978.0
+2010,10,Privada,55-74,M,340.0
+2010,10,Privada,75+,M,20.0
+2010,10,Pública,0-14,M,1349.0
+2010,10,Pública,15-34,M,709.0
+2010,10,Pública,35-54,M,516.0
+2010,10,Pública,55-74,M,408.0
+2010,10,Pública,75+,M,97.0
+2010,10,No tiene cobertura social,0-14,M,24257.0
+2010,10,No tiene cobertura social,15-34,M,30398.0
+2010,10,No tiene cobertura social,35-54,M,13408.0
+2010,10,No tiene cobertura social,55-74,M,4780.0
+2010,10,No tiene cobertura social,75+,M,378.0
+2010,14,Privada,0-14,M,162658.0
+2010,14,Privada,15-34,M,207544.0
+2010,14,Privada,35-54,M,156920.0
+2010,14,Privada,55-74,M,142841.0
+2010,14,Privada,75+,M,51636.0
+2010,14,Privada,0-14,M,51577.0
+2010,14,Privada,15-34,M,71134.0
+2010,14,Privada,35-54,M,51412.0
+2010,14,Privada,55-74,M,20726.0
+2010,14,Privada,75+,M,1899.0
+2010,14,Privada,0-14,M,21801.0
+2010,14,Privada,15-34,M,33239.0
+2010,14,Privada,35-54,M,28250.0
+2010,14,Privada,55-74,M,15835.0
+2010,14,Privada,75+,M,1185.0
+2010,14,Pública,0-14,M,10256.0
+2010,14,Pública,15-34,M,7930.0
+2010,14,Pública,35-54,M,4681.0
+2010,14,Pública,55-74,M,3446.0
+2010,14,Pública,75+,M,708.0
+2010,14,No tiene cobertura social,0-14,M,160818.0
+2010,14,No tiene cobertura social,15-34,M,215232.0
+2010,14,No tiene cobertura social,35-54,M,128082.0
+2010,14,No tiene cobertura social,55-74,M,51885.0
+2010,14,No tiene cobertura social,75+,M,1992.0
+2010,18,Privada,0-14,M,46580.0
+2010,18,Privada,15-34,M,51423.0
+2010,18,Privada,35-54,M,39537.0
+2010,18,Privada,55-74,M,33274.0
+2010,18,Privada,75+,M,10478.0
+2010,18,Privada,0-14,M,10153.0
+2010,18,Privada,15-34,M,11097.0
+2010,18,Privada,35-54,M,8952.0
+2010,18,Privada,55-74,M,3574.0
+2010,18,Privada,75+,M,346.0
+2010,18,Privada,0-14,M,1786.0
+2010,18,Privada,15-34,M,2970.0
+2010,18,Privada,35-54,M,2844.0
+2010,18,Privada,55-74,M,1284.0
+2010,18,Privada,75+,M,95.0
+2010,18,Pública,0-14,M,9515.0
+2010,18,Pública,15-34,M,3328.0
+2010,18,Pública,35-54,M,2220.0
+2010,18,Pública,55-74,M,1499.0
+2010,18,Pública,75+,M,229.0
+2010,18,No tiene cobertura social,0-14,M,80381.0
+2010,18,No tiene cobertura social,15-34,M,93891.0
+2010,18,No tiene cobertura social,35-54,M,49278.0
+2010,18,No tiene cobertura social,55-74,M,20007.0
+2010,18,No tiene cobertura social,75+,M,800.0
+2010,22,Privada,0-14,M,39246.0
+2010,22,Privada,15-34,M,44257.0
+2010,22,Privada,35-54,M,38359.0
+2010,22,Privada,55-74,M,30747.0
+2010,22,Privada,75+,M,9353.0
+2010,22,Privada,0-14,M,7051.0
+2010,22,Privada,15-34,M,8770.0
+2010,22,Privada,35-54,M,6973.0
+2010,22,Privada,55-74,M,2832.0
+2010,22,Privada,75+,M,235.0
+2010,22,Privada,0-14,M,2122.0
+2010,22,Privada,15-34,M,2947.0
+2010,22,Privada,35-54,M,2489.0
+2010,22,Privada,55-74,M,960.0
+2010,22,Privada,75+,M,33.0
+2010,22,Pública,0-14,M,3937.0
+2010,22,Pública,15-34,M,3119.0
+2010,22,Pública,35-54,M,2680.0
+2010,22,Pública,55-74,M,1600.0
+2010,22,Pública,75+,M,212.0
+2010,22,No tiene cobertura social,0-14,M,110297.0
+2010,22,No tiene cobertura social,15-34,M,119871.0
+2010,22,No tiene cobertura social,35-54,M,59218.0
+2010,22,No tiene cobertura social,55-74,M,21489.0
+2010,22,No tiene cobertura social,75+,M,1224.0
+2010,26,Privada,0-14,M,38106.0
+2010,26,Privada,15-34,M,44435.0
+2010,26,Privada,35-54,M,32780.0
+2010,26,Privada,55-74,M,19160.0
+2010,26,Privada,75+,M,5030.0
+2010,26,Privada,0-14,M,7654.0
+2010,26,Privada,15-34,M,10208.0
+2010,26,Privada,35-54,M,7811.0
+2010,26,Privada,55-74,M,2698.0
+2010,26,Privada,75+,M,194.0
+2010,26,Privada,0-14,M,2023.0
+2010,26,Privada,15-34,M,2915.0
+2010,26,Privada,35-54,M,2870.0
+2010,26,Privada,55-74,M,1359.0
+2010,26,Privada,75+,M,69.0
+2010,26,Pública,0-14,M,1733.0
+2010,26,Pública,15-34,M,1517.0
+2010,26,Pública,35-54,M,933.0
+2010,26,Pública,55-74,M,431.0
+2010,26,Pública,75+,M,105.0
+2010,26,No tiene cobertura social,0-14,M,18925.0
+2010,26,No tiene cobertura social,15-34,M,30419.0
+2010,26,No tiene cobertura social,35-54,M,16198.0
+2010,26,No tiene cobertura social,55-74,M,6944.0
+2010,26,No tiene cobertura social,75+,M,481.0
+2010,30,Privada,0-14,M,74087.0
+2010,30,Privada,15-34,M,87338.0
+2010,30,Privada,35-54,M,70373.0
+2010,30,Privada,55-74,M,56935.0
+2010,30,Privada,75+,M,17195.0
+2010,30,Privada,0-14,M,9815.0
+2010,30,Privada,15-34,M,12130.0
+2010,30,Privada,35-54,M,10739.0
+2010,30,Privada,55-74,M,4490.0
+2010,30,Privada,75+,M,341.0
+2010,30,Privada,0-14,M,5643.0
+2010,30,Privada,15-34,M,7196.0
+2010,30,Privada,35-54,M,7263.0
+2010,30,Privada,55-74,M,3876.0
+2010,30,Privada,75+,M,233.0
+2010,30,Pública,0-14,M,3561.0
+2010,30,Pública,15-34,M,2000.0
+2010,30,Pública,35-54,M,1462.0
+2010,30,Pública,55-74,M,1103.0
+2010,30,Pública,75+,M,108.0
+2010,30,No tiene cobertura social,0-14,M,71611.0
+2010,30,No tiene cobertura social,15-34,M,88877.0
+2010,30,No tiene cobertura social,35-54,M,49031.0
+2010,30,No tiene cobertura social,55-74,M,19164.0
+2010,30,No tiene cobertura social,75+,M,638.0
+2010,34,Privada,0-14,M,21764.0
+2010,34,Privada,15-34,M,22971.0
+2010,34,Privada,35-54,M,21080.0
+2010,34,Privada,55-74,M,16499.0
+2010,34,Privada,75+,M,4808.0
+2010,34,Privada,0-14,M,2978.0
+2010,34,Privada,15-34,M,3334.0
+2010,34,Privada,35-54,M,2981.0
+2010,34,Privada,55-74,M,1306.0
+2010,34,Privada,75+,M,133.0
+2010,34,Privada,0-14,M,782.0
+2010,34,Privada,15-34,M,1039.0
+2010,34,Privada,35-54,M,823.0
+2010,34,Privada,55-74,M,346.0
+2010,34,Privada,75+,M,16.0
+2010,34,Pública,0-14,M,2970.0
+2010,34,Pública,15-34,M,2179.0
+2010,34,Pública,35-54,M,1866.0
+2010,34,Pública,55-74,M,1214.0
+2010,34,Pública,75+,M,118.0
+2010,34,No tiene cobertura social,0-14,M,56675.0
+2010,34,No tiene cobertura social,15-34,M,56765.0
+2010,34,No tiene cobertura social,35-54,M,28353.0
+2010,34,No tiene cobertura social,55-74,M,10790.0
+2010,34,No tiene cobertura social,75+,M,952.0
+2010,38,Privada,0-14,M,36018.0
+2010,38,Privada,15-34,M,39286.0
+2010,38,Privada,35-54,M,30276.0
+2010,38,Privada,55-74,M,22745.0
+2010,38,Privada,75+,M,6523.0
+2010,38,Privada,0-14,M,8030.0
+2010,38,Privada,15-34,M,8730.0
+2010,38,Privada,35-54,M,6743.0
+2010,38,Privada,55-74,M,2769.0
+2010,38,Privada,75+,M,174.0
+2010,38,Privada,0-14,M,2506.0
+2010,38,Privada,15-34,M,3217.0
+2010,38,Privada,35-54,M,2128.0
+2010,38,Privada,55-74,M,774.0
+2010,38,Privada,75+,M,82.0
+2010,38,Pública,0-14,M,4385.0
+2010,38,Pública,15-34,M,1855.0
+2010,38,Pública,35-54,M,1156.0
+2010,38,Pública,55-74,M,740.0
+2010,38,Pública,75+,M,143.0
+2010,38,No tiene cobertura social,0-14,M,48082.0
+2010,38,No tiene cobertura social,15-34,M,63057.0
+2010,38,No tiene cobertura social,35-54,M,29598.0
+2010,38,No tiene cobertura social,55-74,M,10628.0
+2010,38,No tiene cobertura social,75+,M,656.0
+2010,42,Privada,0-14,M,18242.0
+2010,42,Privada,15-34,M,20882.0
+2010,42,Privada,35-54,M,18149.0
+2010,42,Privada,55-74,M,15563.0
+2010,42,Privada,75+,M,5299.0
+2010,42,Privada,0-14,M,3080.0
+2010,42,Privada,15-34,M,4146.0
+2010,42,Privada,35-54,M,3503.0
+2010,42,Privada,55-74,M,1563.0
+2010,42,Privada,75+,M,142.0
+2010,42,Privada,0-14,M,1124.0
+2010,42,Privada,15-34,M,1891.0
+2010,42,Privada,35-54,M,2051.0
+2010,42,Privada,55-74,M,1212.0
+2010,42,Privada,75+,M,100.0
+2010,42,Pública,0-14,M,2080.0
+2010,42,Pública,15-34,M,2201.0
+2010,42,Pública,35-54,M,1360.0
+2010,42,Pública,55-74,M,787.0
+2010,42,Pública,75+,M,74.0
+2010,42,No tiene cobertura social,0-14,M,15847.0
+2010,42,No tiene cobertura social,15-34,M,20554.0
+2010,42,No tiene cobertura social,35-54,M,12504.0
+2010,42,No tiene cobertura social,55-74,M,5417.0
+2010,42,No tiene cobertura social,75+,M,166.0
+2010,46,Privada,0-14,M,20170.0
+2010,46,Privada,15-34,M,22645.0
+2010,46,Privada,35-54,M,18695.0
+2010,46,Privada,55-74,M,12146.0
+2010,46,Privada,75+,M,3277.0
+2010,46,Privada,0-14,M,4620.0
+2010,46,Privada,15-34,M,5812.0
+2010,46,Privada,35-54,M,3890.0
+2010,46,Privada,55-74,M,1636.0
+2010,46,Privada,75+,M,201.0
+2010,46,Privada,0-14,M,1201.0
+2010,46,Privada,15-34,M,1354.0
+2010,46,Privada,35-54,M,1055.0
+2010,46,Privada,55-74,M,326.0
+2010,46,Privada,75+,M,36.0
+2010,46,Pública,0-14,M,776.0
+2010,46,Pública,15-34,M,863.0
+2010,46,Pública,35-54,M,685.0
+2010,46,Pública,55-74,M,573.0
+2010,46,Pública,75+,M,140.0
+2010,46,No tiene cobertura social,0-14,M,20676.0
+2010,46,No tiene cobertura social,15-34,M,28295.0
+2010,46,No tiene cobertura social,35-54,M,12234.0
+2010,46,No tiene cobertura social,55-74,M,3850.0
+2010,46,No tiene cobertura social,75+,M,303.0
+2010,50,Privada,0-14,M,99690.0
+2010,50,Privada,15-34,M,117473.0
+2010,50,Privada,35-54,M,89147.0
+2010,50,Privada,55-74,M,75343.0
+2010,50,Privada,75+,M,26974.0
+2010,50,Privada,0-14,M,18661.0
+2010,50,Privada,15-34,M,24499.0
+2010,50,Privada,35-54,M,18133.0
+2010,50,Privada,55-74,M,7666.0
+2010,50,Privada,75+,M,585.0
+2010,50,Privada,0-14,M,6424.0
+2010,50,Privada,15-34,M,9193.0
+2010,50,Privada,35-54,M,7899.0
+2010,50,Privada,55-74,M,4760.0
+2010,50,Privada,75+,M,353.0
+2010,50,Pública,0-14,M,4332.0
+2010,50,Pública,15-34,M,3102.0
+2010,50,Pública,35-54,M,2028.0
+2010,50,Pública,55-74,M,1381.0
+2010,50,Pública,75+,M,331.0
+2010,50,No tiene cobertura social,0-14,M,97872.0
+2010,50,No tiene cobertura social,15-34,M,132673.0
+2010,50,No tiene cobertura social,35-54,M,66783.0
+2010,50,No tiene cobertura social,55-74,M,30396.0
+2010,50,No tiene cobertura social,75+,M,951.0
+2010,54,Privada,0-14,M,66514.0
+2010,54,Privada,15-34,M,67534.0
+2010,54,Privada,35-54,M,50016.0
+2010,54,Privada,55-74,M,32740.0
+2010,54,Privada,75+,M,9844.0
+2010,54,Privada,0-14,M,12121.0
+2010,54,Privada,15-34,M,12665.0
+2010,54,Privada,35-54,M,9662.0
+2010,54,Privada,55-74,M,3259.0
+2010,54,Privada,75+,M,191.0
+2010,54,Privada,0-14,M,2977.0
+2010,54,Privada,15-34,M,3920.0
+2010,54,Privada,35-54,M,3379.0
+2010,54,Privada,55-74,M,1411.0
+2010,54,Privada,75+,M,55.0
+2010,54,Pública,0-14,M,11135.0
+2010,54,Pública,15-34,M,5400.0
+2010,54,Pública,35-54,M,4382.0
+2010,54,Pública,55-74,M,2460.0
+2010,54,Pública,75+,M,179.0
+2010,54,No tiene cobertura social,0-14,M,89599.0
+2010,54,No tiene cobertura social,15-34,M,93164.0
+2010,54,No tiene cobertura social,35-54,M,45882.0
+2010,54,No tiene cobertura social,55-74,M,17675.0
+2010,54,No tiene cobertura social,75+,M,1065.0
+2010,58,Privada,0-14,M,36938.0
+2010,58,Privada,15-34,M,41717.0
+2010,58,Privada,35-54,M,33207.0
+2010,58,Privada,55-74,M,18703.0
+2010,58,Privada,75+,M,4379.0
+2010,58,Privada,0-14,M,7863.0
+2010,58,Privada,15-34,M,10322.0
+2010,58,Privada,35-54,M,8093.0
+2010,58,Privada,55-74,M,2444.0
+2010,58,Privada,75+,M,179.0
+2010,58,Privada,0-14,M,1360.0
+2010,58,Privada,15-34,M,1979.0
+2010,58,Privada,35-54,M,1883.0
+2010,58,Privada,55-74,M,858.0
+2010,58,Privada,75+,M,59.0
+2010,58,Pública,0-14,M,1480.0
+2010,58,Pública,15-34,M,1254.0
+2010,58,Pública,35-54,M,1059.0
+2010,58,Pública,55-74,M,599.0
+2010,58,Pública,75+,M,97.0
+2010,58,No tiene cobertura social,0-14,M,27720.0
+2010,58,No tiene cobertura social,15-34,M,39804.0
+2010,58,No tiene cobertura social,35-54,M,21677.0
+2010,58,No tiene cobertura social,55-74,M,9069.0
+2010,58,No tiene cobertura social,75+,M,487.0
+2010,62,Privada,0-14,M,40724.0
+2010,62,Privada,15-34,M,45536.0
+2010,62,Privada,35-54,M,35806.0
+2010,62,Privada,55-74,M,25577.0
+2010,62,Privada,75+,M,7480.0
+2010,62,Privada,0-14,M,8476.0
+2010,62,Privada,15-34,M,9818.0
+2010,62,Privada,35-54,M,8134.0
+2010,62,Privada,55-74,M,3113.0
+2010,62,Privada,75+,M,134.0
+2010,62,Privada,0-14,M,2529.0
+2010,62,Privada,15-34,M,3471.0
+2010,62,Privada,35-54,M,4094.0
+2010,62,Privada,55-74,M,2214.0
+2010,62,Privada,75+,M,135.0
+2010,62,Pública,0-14,M,1653.0
+2010,62,Pública,15-34,M,1612.0
+2010,62,Pública,35-54,M,1237.0
+2010,62,Pública,55-74,M,596.0
+2010,62,Pública,75+,M,91.0
+2010,62,No tiene cobertura social,0-14,M,31324.0
+2010,62,No tiene cobertura social,15-34,M,45862.0
+2010,62,No tiene cobertura social,35-54,M,26040.0
+2010,62,No tiene cobertura social,55-74,M,11055.0
+2010,62,No tiene cobertura social,75+,M,655.0
+2010,66,Privada,0-14,M,64542.0
+2010,66,Privada,15-34,M,66546.0
+2010,66,Privada,35-54,M,50013.0
+2010,66,Privada,55-74,M,38266.0
+2010,66,Privada,75+,M,12348.0
+2010,66,Privada,0-14,M,14834.0
+2010,66,Privada,15-34,M,15250.0
+2010,66,Privada,35-54,M,11430.0
+2010,66,Privada,55-74,M,4015.0
+2010,66,Privada,75+,M,340.0
+2010,66,Privada,0-14,M,3509.0
+2010,66,Privada,15-34,M,3722.0
+2010,66,Privada,35-54,M,3169.0
+2010,66,Privada,55-74,M,1207.0
+2010,66,Privada,75+,M,57.0
+2010,66,Pública,0-14,M,6747.0
+2010,66,Pública,15-34,M,3914.0
+2010,66,Pública,35-54,M,2276.0
+2010,66,Pública,55-74,M,1251.0
+2010,66,Pública,75+,M,230.0
+2010,66,No tiene cobertura social,0-14,M,103087.0
+2010,66,No tiene cobertura social,15-34,M,113878.0
+2010,66,No tiene cobertura social,35-54,M,54914.0
+2010,66,No tiene cobertura social,55-74,M,19934.0
+2010,66,No tiene cobertura social,75+,M,1116.0
+2010,70,Privada,0-14,M,35205.0
+2010,70,Privada,15-34,M,35782.0
+2010,70,Privada,35-54,M,30102.0
+2010,70,Privada,55-74,M,25848.0
+2010,70,Privada,75+,M,7703.0
+2010,70,Privada,0-14,M,8773.0
+2010,70,Privada,15-34,M,10003.0
+2010,70,Privada,35-54,M,7459.0
+2010,70,Privada,55-74,M,2897.0
+2010,70,Privada,75+,M,290.0
+2010,70,Privada,0-14,M,2210.0
+2010,70,Privada,15-34,M,3299.0
+2010,70,Privada,35-54,M,2432.0
+2010,70,Privada,55-74,M,1047.0
+2010,70,Privada,75+,M,112.0
+2010,70,Pública,0-14,M,2989.0
+2010,70,Pública,15-34,M,1575.0
+2010,70,Pública,35-54,M,1274.0
+2010,70,Pública,55-74,M,980.0
+2010,70,Pública,75+,M,213.0
+2010,70,No tiene cobertura social,0-14,M,50014.0
+2010,70,No tiene cobertura social,15-34,M,59863.0
+2010,70,No tiene cobertura social,35-54,M,29793.0
+2010,70,No tiene cobertura social,55-74,M,12238.0
+2010,70,No tiene cobertura social,75+,M,592.0
+2010,74,Privada,0-14,M,24560.0
+2010,74,Privada,15-34,M,27021.0
+2010,74,Privada,35-54,M,21679.0
+2010,74,Privada,55-74,M,16792.0
+2010,74,Privada,75+,M,4992.0
+2010,74,Privada,0-14,M,5397.0
+2010,74,Privada,15-34,M,6309.0
+2010,74,Privada,35-54,M,5014.0
+2010,74,Privada,55-74,M,1854.0
+2010,74,Privada,75+,M,192.0
+2010,74,Privada,0-14,M,1499.0
+2010,74,Privada,15-34,M,1643.0
+2010,74,Privada,35-54,M,1803.0
+2010,74,Privada,55-74,M,975.0
+2010,74,Privada,75+,M,67.0
+2010,74,Pública,0-14,M,1142.0
+2010,74,Pública,15-34,M,1038.0
+2010,74,Pública,35-54,M,1108.0
+2010,74,Pública,55-74,M,853.0
+2010,74,Pública,75+,M,148.0
+2010,74,No tiene cobertura social,0-14,M,28559.0
+2010,74,No tiene cobertura social,15-34,M,33335.0
+2010,74,No tiene cobertura social,35-54,M,19579.0
+2010,74,No tiene cobertura social,55-74,M,7323.0
+2010,74,No tiene cobertura social,75+,M,268.0
+2010,78,Privada,0-14,M,25408.0
+2010,78,Privada,15-34,M,29274.0
+2010,78,Privada,35-54,M,21371.0
+2010,78,Privada,55-74,M,9153.0
+2010,78,Privada,75+,M,1779.0
+2010,78,Privada,0-14,M,4913.0
+2010,78,Privada,15-34,M,6812.0
+2010,78,Privada,35-54,M,5167.0
+2010,78,Privada,55-74,M,1483.0
+2010,78,Privada,75+,M,109.0
+2010,78,Privada,0-14,M,687.0
+2010,78,Privada,15-34,M,1122.0
+2010,78,Privada,35-54,M,1051.0
+2010,78,Privada,55-74,M,406.0
+2010,78,Privada,75+,M,45.0
+2010,78,Pública,0-14,M,2233.0
+2010,78,Pública,15-34,M,2020.0
+2010,78,Pública,35-54,M,1155.0
+2010,78,Pública,55-74,M,600.0
+2010,78,Pública,75+,M,68.0
+2010,78,No tiene cobertura social,0-14,M,5402.0
+2010,78,No tiene cobertura social,15-34,M,11796.0
+2010,78,No tiene cobertura social,35-54,M,5383.0
+2010,78,No tiene cobertura social,55-74,M,1998.0
+2010,78,No tiene cobertura social,75+,M,137.0
+2010,82,Privada,0-14,M,143735.0
+2010,82,Privada,15-34,M,200430.0
+2010,82,Privada,35-54,M,155887.0
+2010,82,Privada,55-74,M,139013.0
+2010,82,Privada,75+,M,51310.0
+2010,82,Privada,0-14,M,49188.0
+2010,82,Privada,15-34,M,73778.0
+2010,82,Privada,35-54,M,56027.0
+2010,82,Privada,55-74,M,23550.0
+2010,82,Privada,75+,M,2219.0
+2010,82,Privada,0-14,M,22755.0
+2010,82,Privada,15-34,M,36622.0
+2010,82,Privada,35-54,M,31188.0
+2010,82,Privada,55-74,M,18492.0
+2010,82,Privada,75+,M,1666.0
+2010,82,Pública,0-14,M,8087.0
+2010,82,Pública,15-34,M,9802.0
+2010,82,Pública,35-54,M,5994.0
+2010,82,Pública,55-74,M,3083.0
+2010,82,Pública,75+,M,466.0
+2010,82,No tiene cobertura social,0-14,M,162062.0
+2010,82,No tiene cobertura social,15-34,M,202677.0
+2010,82,No tiene cobertura social,35-54,M,107931.0
+2010,82,No tiene cobertura social,55-74,M,42597.0
+2010,82,No tiene cobertura social,75+,M,1229.0
+2010,86,Privada,0-14,M,34532.0
+2010,86,Privada,15-34,M,35044.0
+2010,86,Privada,35-54,M,29251.0
+2010,86,Privada,55-74,M,27520.0
+2010,86,Privada,75+,M,9215.0
+2010,86,Privada,0-14,M,7224.0
+2010,86,Privada,15-34,M,8275.0
+2010,86,Privada,35-54,M,6291.0
+2010,86,Privada,55-74,M,2938.0
+2010,86,Privada,75+,M,269.0
+2010,86,Privada,0-14,M,2947.0
+2010,86,Privada,15-34,M,3582.0
+2010,86,Privada,35-54,M,2527.0
+2010,86,Privada,55-74,M,858.0
+2010,86,Privada,75+,M,34.0
+2010,86,Pública,0-14,M,4478.0
+2010,86,Pública,15-34,M,1868.0
+2010,86,Pública,35-54,M,1585.0
+2010,86,Pública,55-74,M,1285.0
+2010,86,Pública,75+,M,217.0
+2010,86,No tiene cobertura social,0-14,M,90720.0
+2010,86,No tiene cobertura social,15-34,M,95184.0
+2010,86,No tiene cobertura social,35-54,M,47901.0
+2010,86,No tiene cobertura social,55-74,M,17740.0
+2010,86,No tiene cobertura social,75+,M,953.0
+2010,90,Privada,0-14,M,77408.0
+2010,90,Privada,15-34,M,89798.0
+2010,90,Privada,35-54,M,65909.0
+2010,90,Privada,55-74,M,53028.0
+2010,90,Privada,75+,M,16044.0
+2010,90,Privada,0-14,M,17271.0
+2010,90,Privada,15-34,M,20610.0
+2010,90,Privada,35-54,M,13675.0
+2010,90,Privada,55-74,M,5726.0
+2010,90,Privada,75+,M,522.0
+2010,90,Privada,0-14,M,16560.0
+2010,90,Privada,15-34,M,21180.0
+2010,90,Privada,35-54,M,13309.0
+2010,90,Privada,55-74,M,6353.0
+2010,90,Privada,75+,M,352.0
+2010,90,Pública,0-14,M,6328.0
+2010,90,Pública,15-34,M,4716.0
+2010,90,Pública,35-54,M,3350.0
+2010,90,Pública,55-74,M,2595.0
+2010,90,Pública,75+,M,467.0
+2010,90,No tiene cobertura social,0-14,M,89212.0
+2010,90,No tiene cobertura social,15-34,M,109050.0
+2010,90,No tiene cobertura social,35-54,M,53149.0
+2010,90,No tiene cobertura social,55-74,M,20129.0
+2010,90,No tiene cobertura social,75+,M,996.0
+2010,94,Privada,0-14,M,9748.0
+2010,94,Privada,15-34,M,11940.0
+2010,94,Privada,35-54,M,9715.0
+2010,94,Privada,55-74,M,3924.0
+2010,94,Privada,75+,M,491.0
+2010,94,Privada,0-14,M,2585.0
+2010,94,Privada,15-34,M,3718.0
+2010,94,Privada,35-54,M,2836.0
+2010,94,Privada,55-74,M,691.0
+2010,94,Privada,75+,M,36.0
+2010,94,Privada,0-14,M,265.0
+2010,94,Privada,15-34,M,397.0
+2010,94,Privada,35-54,M,696.0
+2010,94,Privada,55-74,M,241.0
+2010,94,Privada,75+,M,20.0
+2010,94,Pública,0-14,M,1652.0
+2010,94,Pública,15-34,M,779.0
+2010,94,Pública,35-54,M,690.0
+2010,94,Pública,55-74,M,308.0
+2010,94,Pública,75+,M,14.0
+2010,94,No tiene cobertura social,0-14,M,3139.0
+2010,94,No tiene cobertura social,15-34,M,6234.0
+2010,94,No tiene cobertura social,35-54,M,3484.0
+2010,94,No tiene cobertura social,55-74,M,1203.0
+2010,94,No tiene cobertura social,75+,M,14.0
+2022,2,Privada,0-14,F,180800.0
+2022,2,Privada,15-34,F,311224.0
+2022,2,Privada,35-54,F,334578.0
+2022,2,Privada,55-74,F,231237.0
+2022,2,Privada,75+,F,86678.0
+2022,2,Pública,0-14,F,6632.0
+2022,2,Pública,15-34,F,9333.0
+2022,2,Pública,35-54,F,8803.0
+2022,2,Pública,55-74,F,5162.0
+2022,2,Pública,75+,F,797.0
+2022,2,No tiene cobertura social,0-14,F,46115.0
+2022,2,No tiene cobertura social,15-34,F,103680.0
+2022,2,No tiene cobertura social,35-54,F,72927.0
+2022,2,No tiene cobertura social,55-74,F,29057.0
+2022,2,No tiene cobertura social,75+,F,1758.0
+2022,6,Privada,0-14,F,1056380.0
+2022,6,Privada,15-34,F,1340083.0
+2022,6,Privada,35-54,F,1390423.0
+2022,6,Privada,55-74,F,999536.0
+2022,6,Privada,75+,F,317440.0
+2022,6,Pública,0-14,F,55823.0
+2022,6,Pública,15-34,F,65427.0
+2022,6,Pública,35-54,F,58278.0
+2022,6,Pública,55-74,F,27918.0
+2022,6,Pública,75+,F,3050.0
+2022,6,No tiene cobertura social,0-14,F,831420.0
+2022,6,No tiene cobertura social,15-34,F,1188914.0
+2022,6,No tiene cobertura social,35-54,F,770304.0
+2022,6,No tiene cobertura social,55-74,F,277938.0
+2022,6,No tiene cobertura social,75+,F,10485.0
+2022,10,Privada,0-14,F,24503.0
+2022,10,Privada,15-34,F,29039.0
+2022,10,Privada,35-54,F,32916.0
+2022,10,Privada,55-74,F,23680.0
+2022,10,Privada,75+,F,6114.0
+2022,10,Pública,0-14,F,1347.0
+2022,10,Pública,15-34,F,1553.0
+2022,10,Pública,35-54,F,1800.0
+2022,10,Pública,55-74,F,928.0
+2022,10,Pública,75+,F,120.0
+2022,10,No tiene cobertura social,0-14,F,22166.0
+2022,10,No tiene cobertura social,15-34,F,39600.0
+2022,10,No tiene cobertura social,35-54,F,19430.0
+2022,10,No tiene cobertura social,55-74,F,5633.0
+2022,10,No tiene cobertura social,75+,F,259.0
+2022,14,Privada,0-14,F,225293.0
+2022,14,Privada,15-34,F,311030.0
+2022,14,Privada,35-54,F,298300.0
+2022,14,Privada,55-74,F,224612.0
+2022,14,Privada,75+,F,71372.0
+2022,14,Pública,0-14,F,11945.0
+2022,14,Pública,15-34,F,12950.0
+2022,14,Pública,35-54,F,11972.0
+2022,14,Pública,55-74,F,6601.0
+2022,14,Pública,75+,F,701.0
+2022,14,No tiene cobertura social,0-14,F,171827.0
+2022,14,No tiene cobertura social,15-34,F,258933.0
+2022,14,No tiene cobertura social,35-54,F,171530.0
+2022,14,No tiene cobertura social,55-74,F,59762.0
+2022,14,No tiene cobertura social,75+,F,1987.0
+2022,18,Privada,0-14,F,57008.0
+2022,18,Privada,15-34,F,66869.0
+2022,18,Privada,35-54,F,66965.0
+2022,18,Privada,55-74,F,58722.0
+2022,18,Privada,75+,F,16367.0
+2022,18,Pública,0-14,F,20469.0
+2022,18,Pública,15-34,F,13095.0
+2022,18,Pública,35-54,F,10088.0
+2022,18,Pública,55-74,F,5730.0
+2022,18,Pública,75+,F,460.0
+2022,18,No tiene cobertura social,0-14,F,70874.0
+2022,18,No tiene cobertura social,15-34,F,115936.0
+2022,18,No tiene cobertura social,35-54,F,62357.0
+2022,18,No tiene cobertura social,55-74,F,20814.0
+2022,18,No tiene cobertura social,75+,F,1034.0
+2022,22,Privada,0-14,F,46655.0
+2022,22,Privada,15-34,F,56658.0
+2022,22,Privada,35-54,F,59846.0
+2022,22,Privada,55-74,F,48484.0
+2022,22,Privada,75+,F,12336.0
+2022,22,Pública,0-14,F,5229.0
+2022,22,Pública,15-34,F,6983.0
+2022,22,Pública,35-54,F,7452.0
+2022,22,Pública,55-74,F,4116.0
+2022,22,Pública,75+,F,299.0
+2022,22,No tiene cobertura social,0-14,F,86131.0
+2022,22,No tiene cobertura social,15-34,F,121551.0
+2022,22,No tiene cobertura social,35-54,F,65781.0
+2022,22,No tiene cobertura social,55-74,F,21591.0
+2022,22,No tiene cobertura social,75+,F,800.0
+2022,26,Privada,0-14,F,45425.0
+2022,26,Privada,15-34,F,51168.0
+2022,26,Privada,35-54,F,56748.0
+2022,26,Privada,55-74,F,33951.0
+2022,26,Privada,75+,F,8582.0
+2022,26,Pública,0-14,F,2015.0
+2022,26,Pública,15-34,F,2404.0
+2022,26,Pública,35-54,F,2449.0
+2022,26,Pública,55-74,F,1093.0
+2022,26,Pública,75+,F,161.0
+2022,26,No tiene cobertura social,0-14,F,19536.0
+2022,26,No tiene cobertura social,15-34,F,36485.0
+2022,26,No tiene cobertura social,35-54,F,21838.0
+2022,26,No tiene cobertura social,55-74,F,7054.0
+2022,26,No tiene cobertura social,75+,F,383.0
+2022,30,Privada,0-14,F,86709.0
+2022,30,Privada,15-34,F,104671.0
+2022,30,Privada,35-54,F,110882.0
+2022,30,Privada,55-74,F,85303.0
+2022,30,Privada,75+,F,24320.0
+2022,30,Pública,0-14,F,5131.0
+2022,30,Pública,15-34,F,4602.0
+2022,30,Pública,35-54,F,4558.0
+2022,30,Pública,55-74,F,2592.0
+2022,30,Pública,75+,F,193.0
+2022,30,No tiene cobertura social,0-14,F,68560.0
+2022,30,No tiene cobertura social,15-34,F,106421.0
+2022,30,No tiene cobertura social,35-54,F,61968.0
+2022,30,No tiene cobertura social,55-74,F,20856.0
+2022,30,No tiene cobertura social,75+,F,570.0
+2022,34,Privada,0-14,F,23446.0
+2022,34,Privada,15-34,F,27094.0
+2022,34,Privada,35-54,F,28285.0
+2022,34,Privada,55-74,F,25631.0
+2022,34,Privada,75+,F,7624.0
+2022,34,Pública,0-14,F,2831.0
+2022,34,Pública,15-34,F,3614.0
+2022,34,Pública,35-54,F,3654.0
+2022,34,Pública,55-74,F,2704.0
+2022,34,Pública,75+,F,238.0
+2022,34,No tiene cobertura social,0-14,F,51197.0
+2022,34,No tiene cobertura social,15-34,F,66901.0
+2022,34,No tiene cobertura social,35-54,F,37588.0
+2022,34,No tiene cobertura social,55-74,F,13747.0
+2022,34,No tiene cobertura social,75+,F,737.0
+2022,38,Privada,0-14,F,43805.0
+2022,38,Privada,15-34,F,47188.0
+2022,38,Privada,35-54,F,52168.0
+2022,38,Privada,55-74,F,37123.0
+2022,38,Privada,75+,F,11665.0
+2022,38,Pública,0-14,F,4247.0
+2022,38,Pública,15-34,F,3931.0
+2022,38,Pública,35-54,F,4087.0
+2022,38,Pública,55-74,F,1901.0
+2022,38,Pública,75+,F,235.0
+2022,38,No tiene cobertura social,0-14,F,47590.0
+2022,38,No tiene cobertura social,15-34,F,76824.0
+2022,38,No tiene cobertura social,35-54,F,46051.0
+2022,38,No tiene cobertura social,55-74,F,14238.0
+2022,38,No tiene cobertura social,75+,F,692.0
+2022,42,Privada,0-14,F,21132.0
+2022,42,Privada,15-34,F,26714.0
+2022,42,Privada,35-54,F,29036.0
+2022,42,Privada,55-74,F,22838.0
+2022,42,Privada,75+,F,7414.0
+2022,42,Pública,0-14,F,2827.0
+2022,42,Pública,15-34,F,3020.0
+2022,42,Pública,35-54,F,2475.0
+2022,42,Pública,55-74,F,1322.0
+2022,42,Pública,75+,F,100.0
+2022,42,No tiene cobertura social,0-14,F,15657.0
+2022,42,No tiene cobertura social,15-34,F,23367.0
+2022,42,No tiene cobertura social,35-54,F,14822.0
+2022,42,No tiene cobertura social,55-74,F,5485.0
+2022,42,No tiene cobertura social,75+,F,82.0
+2022,46,Privada,0-14,F,20667.0
+2022,46,Privada,15-34,F,27075.0
+2022,46,Privada,35-54,F,26984.0
+2022,46,Privada,55-74,F,19499.0
+2022,46,Privada,75+,F,4741.0
+2022,46,Pública,0-14,F,1442.0
+2022,46,Pública,15-34,F,2048.0
+2022,46,Pública,35-54,F,2065.0
+2022,46,Pública,55-74,F,1265.0
+2022,46,Pública,75+,F,162.0
+2022,46,No tiene cobertura social,0-14,F,20898.0
+2022,46,No tiene cobertura social,15-34,F,35548.0
+2022,46,No tiene cobertura social,35-54,F,18603.0
+2022,46,No tiene cobertura social,55-74,F,5037.0
+2022,46,No tiene cobertura social,75+,F,232.0
+2022,50,Privada,0-14,F,120990.0
+2022,50,Privada,15-34,F,144022.0
+2022,50,Privada,35-54,F,147456.0
+2022,50,Privada,55-74,F,114152.0
+2022,50,Privada,75+,F,37991.0
+2022,50,Pública,0-14,F,7241.0
+2022,50,Pública,15-34,F,7636.0
+2022,50,Pública,35-54,F,7130.0
+2022,50,Pública,55-74,F,3631.0
+2022,50,Pública,75+,F,418.0
+2022,50,No tiene cobertura social,0-14,F,109930.0
+2022,50,No tiene cobertura social,15-34,F,153524.0
+2022,50,No tiene cobertura social,35-54,F,92940.0
+2022,50,No tiene cobertura social,55-74,F,32511.0
+2022,50,No tiene cobertura social,75+,F,1148.0
+2022,54,Privada,0-14,F,67774.0
+2022,54,Privada,15-34,F,77050.0
+2022,54,Privada,35-54,F,73706.0
+2022,54,Privada,55-74,F,54724.0
+2022,54,Privada,75+,F,14590.0
+2022,54,Pública,0-14,F,11056.0
+2022,54,Pública,15-34,F,10166.0
+2022,54,Pública,35-54,F,8434.0
+2022,54,Pública,55-74,F,4577.0
+2022,54,Pública,75+,F,226.0
+2022,54,No tiene cobertura social,0-14,F,94517.0
+2022,54,No tiene cobertura social,15-34,F,117755.0
+2022,54,No tiene cobertura social,35-54,F,63621.0
+2022,54,No tiene cobertura social,55-74,F,23207.0
+2022,54,No tiene cobertura social,75+,F,808.0
+2022,58,Privada,0-14,F,50682.0
+2022,58,Privada,15-34,F,61979.0
+2022,58,Privada,35-54,F,63695.0
+2022,58,Privada,55-74,F,36964.0
+2022,58,Privada,75+,F,9311.0
+2022,58,Pública,0-14,F,2551.0
+2022,58,Pública,15-34,F,3138.0
+2022,58,Pública,35-54,F,3259.0
+2022,58,Pública,55-74,F,1643.0
+2022,58,Pública,75+,F,201.0
+2022,58,No tiene cobertura social,0-14,F,27387.0
+2022,58,No tiene cobertura social,15-34,F,46281.0
+2022,58,No tiene cobertura social,35-54,F,29412.0
+2022,58,No tiene cobertura social,55-74,F,10655.0
+2022,58,No tiene cobertura social,75+,F,394.0
+2022,62,Privada,0-14,F,49073.0
+2022,62,Privada,15-34,F,56229.0
+2022,62,Privada,35-54,F,60587.0
+2022,62,Privada,55-74,F,42250.0
+2022,62,Privada,75+,F,12628.0
+2022,62,Pública,0-14,F,2871.0
+2022,62,Pública,15-34,F,3327.0
+2022,62,Pública,35-54,F,3351.0
+2022,62,Pública,55-74,F,1650.0
+2022,62,Pública,75+,F,155.0
+2022,62,No tiene cobertura social,0-14,F,31832.0
+2022,62,No tiene cobertura social,15-34,F,53482.0
+2022,62,No tiene cobertura social,35-54,F,34573.0
+2022,62,No tiene cobertura social,55-74,F,12330.0
+2022,62,No tiene cobertura social,75+,F,548.0
+2022,66,Privada,0-14,F,74238.0
+2022,66,Privada,15-34,F,86370.0
+2022,66,Privada,35-54,F,84799.0
+2022,66,Privada,55-74,F,60005.0
+2022,66,Privada,75+,F,18479.0
+2022,66,Pública,0-14,F,8542.0
+2022,66,Pública,15-34,F,8304.0
+2022,66,Pública,35-54,F,6893.0
+2022,66,Pública,55-74,F,3375.0
+2022,66,Pública,75+,F,323.0
+2022,66,No tiene cobertura social,0-14,F,100356.0
+2022,66,No tiene cobertura social,15-34,F,140223.0
+2022,66,No tiene cobertura social,35-54,F,76488.0
+2022,66,No tiene cobertura social,55-74,F,26948.0
+2022,66,No tiene cobertura social,75+,F,1499.0
+2022,70,Privada,0-14,F,46503.0
+2022,70,Privada,15-34,F,50835.0
+2022,70,Privada,35-54,F,51837.0
+2022,70,Privada,55-74,F,39702.0
+2022,70,Privada,75+,F,12513.0
+2022,70,Pública,0-14,F,3267.0
+2022,70,Pública,15-34,F,3329.0
+2022,70,Pública,35-54,F,3192.0
+2022,70,Pública,55-74,F,1724.0
+2022,70,Pública,75+,F,228.0
+2022,70,No tiene cobertura social,0-14,F,53086.0
+2022,70,No tiene cobertura social,15-34,F,75330.0
+2022,70,No tiene cobertura social,35-54,F,42425.0
+2022,70,No tiene cobertura social,55-74,F,14133.0
+2022,70,No tiene cobertura social,75+,F,497.0
+2022,74,Privada,0-14,F,33089.0
+2022,74,Privada,15-34,F,37851.0
+2022,74,Privada,35-54,F,39869.0
+2022,74,Privada,55-74,F,28577.0
+2022,74,Privada,75+,F,8409.0
+2022,74,Pública,0-14,F,3057.0
+2022,74,Pública,15-34,F,3216.0
+2022,74,Pública,35-54,F,3880.0
+2022,74,Pública,55-74,F,1880.0
+2022,74,Pública,75+,F,146.0
+2022,74,No tiene cobertura social,0-14,F,25311.0
+2022,74,No tiene cobertura social,15-34,F,44951.0
+2022,74,No tiene cobertura social,35-54,F,24661.0
+2022,74,No tiene cobertura social,55-74,F,9181.0
+2022,74,No tiene cobertura social,75+,F,228.0
+2022,78,Privada,0-14,F,31221.0
+2022,78,Privada,15-34,F,33881.0
+2022,78,Privada,35-54,F,35857.0
+2022,78,Privada,55-74,F,17318.0
+2022,78,Privada,75+,F,3385.0
+2022,78,Pública,0-14,F,4627.0
+2022,78,Pública,15-34,F,4442.0
+2022,78,Pública,35-54,F,3018.0
+2022,78,Pública,55-74,F,1188.0
+2022,78,Pública,75+,F,100.0
+2022,78,No tiene cobertura social,0-14,F,5607.0
+2022,78,No tiene cobertura social,15-34,F,15465.0
+2022,78,No tiene cobertura social,35-54,F,7571.0
+2022,78,No tiene cobertura social,55-74,F,2079.0
+2022,78,No tiene cobertura social,75+,F,106.0
+2022,82,Privada,0-14,F,218373.0
+2022,82,Privada,15-34,F,293441.0
+2022,82,Privada,35-54,F,306188.0
+2022,82,Privada,55-74,F,221160.0
+2022,82,Privada,75+,F,67660.0
+2022,82,Pública,0-14,F,11459.0
+2022,82,Pública,15-34,F,14786.0
+2022,82,Pública,35-54,F,13865.0
+2022,82,Pública,55-74,F,6877.0
+2022,82,Pública,75+,F,787.0
+2022,82,No tiene cobertura social,0-14,F,148875.0
+2022,82,No tiene cobertura social,15-34,F,211027.0
+2022,82,No tiene cobertura social,35-54,F,132422.0
+2022,82,No tiene cobertura social,55-74,F,46908.0
+2022,82,No tiene cobertura social,75+,F,1446.0
+2022,86,Privada,0-14,F,41173.0
+2022,86,Privada,15-34,F,47150.0
+2022,86,Privada,35-54,F,52766.0
+2022,86,Privada,55-74,F,44313.0
+2022,86,Privada,75+,F,13415.0
+2022,86,Pública,0-14,F,3908.0
+2022,86,Pública,15-34,F,5627.0
+2022,86,Pública,35-54,F,6469.0
+2022,86,Pública,55-74,F,4007.0
+2022,86,Pública,75+,F,250.0
+2022,86,No tiene cobertura social,0-14,F,91080.0
+2022,86,No tiene cobertura social,15-34,F,122021.0
+2022,86,No tiene cobertura social,35-54,F,66388.0
+2022,86,No tiene cobertura social,55-74,F,19982.0
+2022,86,No tiene cobertura social,75+,F,609.0
+2022,90,Privada,0-14,F,110338.0
+2022,90,Privada,15-34,F,142540.0
+2022,90,Privada,35-54,F,125579.0
+2022,90,Privada,55-74,F,92809.0
+2022,90,Privada,75+,F,23496.0
+2022,90,Pública,0-14,F,9021.0
+2022,90,Pública,15-34,F,11879.0
+2022,90,Pública,35-54,F,10496.0
+2022,90,Pública,55-74,F,5861.0
+2022,90,Pública,75+,F,635.0
+2022,90,No tiene cobertura social,0-14,F,83629.0
+2022,90,No tiene cobertura social,15-34,F,123774.0
+2022,90,No tiene cobertura social,35-54,F,72474.0
+2022,90,No tiene cobertura social,55-74,F,23261.0
+2022,90,No tiene cobertura social,75+,F,908.0
+2022,94,Privada,0-14,F,15949.0
+2022,94,Privada,15-34,F,19641.0
+2022,94,Privada,35-54,F,19207.0
+2022,94,Privada,55-74,F,10273.0
+2022,94,Privada,75+,F,1409.0
+2022,94,Pública,0-14,F,3248.0
+2022,94,Pública,15-34,F,2972.0
+2022,94,Pública,35-54,F,2056.0
+2022,94,Pública,55-74,F,1028.0
+2022,94,Pública,75+,F,66.0
+2022,94,No tiene cobertura social,0-14,F,2239.0
+2022,94,No tiene cobertura social,15-34,F,8050.0
+2022,94,No tiene cobertura social,35-54,F,4241.0
+2022,94,No tiene cobertura social,55-74,F,1308.0
+2022,94,No tiene cobertura social,75+,F,55.0
+2022,2,Privada,0-14,M,174500.0
+2022,2,Privada,15-34,M,339254.0
+2022,2,Privada,35-54,M,386627.0
+2022,2,Privada,55-74,M,315718.0
+2022,2,Privada,75+,M,163217.0
+2022,2,Pública,0-14,M,6359.0
+2022,2,Pública,15-34,M,11073.0
+2022,2,Pública,35-54,M,10844.0
+2022,2,Pública,55-74,M,6171.0
+2022,2,Pública,75+,M,1529.0
+2022,2,No tiene cobertura social,0-14,M,45470.0
+2022,2,No tiene cobertura social,15-34,M,104103.0
+2022,2,No tiene cobertura social,35-54,M,70057.0
+2022,2,No tiene cobertura social,55-74,M,28784.0
+2022,2,No tiene cobertura social,75+,M,2967.0
+2022,6,Privada,0-14,M,1017951.0
+2022,6,Privada,15-34,M,1349677.0
+2022,6,Privada,35-54,M,1540794.0
+2022,6,Privada,55-74,M,1288953.0
+2022,6,Privada,75+,M,537973.0
+2022,6,Pública,0-14,M,53388.0
+2022,6,Pública,15-34,M,77195.0
+2022,6,Pública,35-54,M,79271.0
+2022,6,Pública,55-74,M,32970.0
+2022,6,Pública,75+,M,4983.0
+2022,6,No tiene cobertura social,0-14,M,813708.0
+2022,6,No tiene cobertura social,15-34,M,1229295.0
+2022,6,No tiene cobertura social,35-54,M,762799.0
+2022,6,No tiene cobertura social,55-74,M,212856.0
+2022,6,No tiene cobertura social,75+,M,13674.0
+2022,10,Privada,0-14,M,24097.0
+2022,10,Privada,15-34,M,29208.0
+2022,10,Privada,35-54,M,35034.0
+2022,10,Privada,55-74,M,27542.0
+2022,10,Privada,75+,M,9581.0
+2022,10,Pública,0-14,M,1322.0
+2022,10,Pública,15-34,M,1678.0
+2022,10,Pública,35-54,M,2110.0
+2022,10,Pública,55-74,M,1006.0
+2022,10,Pública,75+,M,132.0
+2022,10,No tiene cobertura social,0-14,M,22000.0
+2022,10,No tiene cobertura social,15-34,M,40385.0
+2022,10,No tiene cobertura social,35-54,M,19921.0
+2022,10,No tiene cobertura social,55-74,M,4235.0
+2022,10,No tiene cobertura social,75+,M,286.0
+2022,14,Privada,0-14,M,217765.0
+2022,14,Privada,15-34,M,322786.0
+2022,14,Privada,35-54,M,331226.0
+2022,14,Privada,55-74,M,291790.0
+2022,14,Privada,75+,M,120418.0
+2022,14,Pública,0-14,M,11537.0
+2022,14,Pública,15-34,M,15146.0
+2022,14,Pública,35-54,M,15096.0
+2022,14,Pública,55-74,M,7657.0
+2022,14,Pública,75+,M,1305.0
+2022,14,No tiene cobertura social,0-14,M,168243.0
+2022,14,No tiene cobertura social,15-34,M,260383.0
+2022,14,No tiene cobertura social,35-54,M,165982.0
+2022,14,No tiene cobertura social,55-74,M,41589.0
+2022,14,No tiene cobertura social,75+,M,2326.0
+2022,18,Privada,0-14,M,54418.0
+2022,18,Privada,15-34,M,69504.0
+2022,18,Privada,35-54,M,75650.0
+2022,18,Privada,55-74,M,73617.0
+2022,18,Privada,75+,M,26560.0
+2022,18,Pública,0-14,M,19954.0
+2022,18,Pública,15-34,M,20164.0
+2022,18,Pública,35-54,M,16757.0
+2022,18,Pública,55-74,M,7155.0
+2022,18,Pública,75+,M,720.0
+2022,18,No tiene cobertura social,0-14,M,68859.0
+2022,18,No tiene cobertura social,15-34,M,115937.0
+2022,18,No tiene cobertura social,35-54,M,58180.0
+2022,18,No tiene cobertura social,55-74,M,14298.0
+2022,18,No tiene cobertura social,75+,M,1110.0
+2022,22,Privada,0-14,M,46025.0
+2022,22,Privada,15-34,M,61905.0
+2022,22,Privada,35-54,M,70545.0
+2022,22,Privada,55-74,M,62908.0
+2022,22,Privada,75+,M,21147.0
+2022,22,Pública,0-14,M,4779.0
+2022,22,Pública,15-34,M,7415.0
+2022,22,Pública,35-54,M,9429.0
+2022,22,Pública,55-74,M,4707.0
+2022,22,Pública,75+,M,434.0
+2022,22,No tiene cobertura social,0-14,M,83988.0
+2022,22,No tiene cobertura social,15-34,M,125048.0
+2022,22,No tiene cobertura social,35-54,M,65305.0
+2022,22,No tiene cobertura social,55-74,M,16125.0
+2022,22,No tiene cobertura social,75+,M,931.0
+2022,26,Privada,0-14,M,44461.0
+2022,26,Privada,15-34,M,53136.0
+2022,26,Privada,35-54,M,61547.0
+2022,26,Privada,55-74,M,39918.0
+2022,26,Privada,75+,M,13057.0
+2022,26,Pública,0-14,M,2012.0
+2022,26,Pública,15-34,M,2671.0
+2022,26,Pública,35-54,M,2983.0
+2022,26,Pública,55-74,M,1394.0
+2022,26,Pública,75+,M,197.0
+2022,26,No tiene cobertura social,0-14,M,19030.0
+2022,26,No tiene cobertura social,15-34,M,34739.0
+2022,26,No tiene cobertura social,35-54,M,19558.0
+2022,26,No tiene cobertura social,55-74,M,5013.0
+2022,26,No tiene cobertura social,75+,M,446.0
+2022,30,Privada,0-14,M,82848.0
+2022,30,Privada,15-34,M,107051.0
+2022,30,Privada,35-54,M,122539.0
+2022,30,Privada,55-74,M,106824.0
+2022,30,Privada,75+,M,42474.0
+2022,30,Pública,0-14,M,4938.0
+2022,30,Pública,15-34,M,5685.0
+2022,30,Pública,35-54,M,6082.0
+2022,30,Pública,55-74,M,3029.0
+2022,30,Pública,75+,M,354.0
+2022,30,No tiene cobertura social,0-14,M,66519.0
+2022,30,No tiene cobertura social,15-34,M,106873.0
+2022,30,No tiene cobertura social,35-54,M,57555.0
+2022,30,No tiene cobertura social,55-74,M,14324.0
+2022,30,No tiene cobertura social,75+,M,666.0
+2022,34,Privada,0-14,M,22754.0
+2022,34,Privada,15-34,M,27852.0
+2022,34,Privada,35-54,M,33058.0
+2022,34,Privada,55-74,M,32360.0
+2022,34,Privada,75+,M,10800.0
+2022,34,Pública,0-14,M,2798.0
+2022,34,Pública,15-34,M,3723.0
+2022,34,Pública,35-54,M,5130.0
+2022,34,Pública,55-74,M,3274.0
+2022,34,Pública,75+,M,265.0
+2022,34,No tiene cobertura social,0-14,M,49899.0
+2022,34,No tiene cobertura social,15-34,M,70688.0
+2022,34,No tiene cobertura social,35-54,M,36618.0
+2022,34,No tiene cobertura social,55-74,M,10167.0
+2022,34,No tiene cobertura social,75+,M,830.0
+2022,38,Privada,0-14,M,42597.0
+2022,38,Privada,15-34,M,46718.0
+2022,38,Privada,35-54,M,57240.0
+2022,38,Privada,55-74,M,47895.0
+2022,38,Privada,75+,M,17022.0
+2022,38,Pública,0-14,M,4130.0
+2022,38,Pública,15-34,M,4800.0
+2022,38,Pública,35-54,M,5264.0
+2022,38,Pública,55-74,M,2715.0
+2022,38,Pública,75+,M,386.0
+2022,38,No tiene cobertura social,0-14,M,47131.0
+2022,38,No tiene cobertura social,15-34,M,80029.0
+2022,38,No tiene cobertura social,35-54,M,47824.0
+2022,38,No tiene cobertura social,55-74,M,12700.0
+2022,38,No tiene cobertura social,75+,M,1168.0
+2022,42,Privada,0-14,M,20018.0
+2022,42,Privada,15-34,M,25903.0
+2022,42,Privada,35-54,M,31743.0
+2022,42,Privada,55-74,M,27421.0
+2022,42,Privada,75+,M,11256.0
+2022,42,Pública,0-14,M,2690.0
+2022,42,Pública,15-34,M,3371.0
+2022,42,Pública,35-54,M,3238.0
+2022,42,Pública,55-74,M,1384.0
+2022,42,Pública,75+,M,155.0
+2022,42,No tiene cobertura social,0-14,M,15528.0
+2022,42,No tiene cobertura social,15-34,M,23231.0
+2022,42,No tiene cobertura social,35-54,M,13733.0
+2022,42,No tiene cobertura social,55-74,M,3132.0
+2022,42,No tiene cobertura social,75+,M,99.0
+2022,46,Privada,0-14,M,20140.0
+2022,46,Privada,15-34,M,28649.0
+2022,46,Privada,35-54,M,30754.0
+2022,46,Privada,55-74,M,23057.0
+2022,46,Privada,75+,M,7209.0
+2022,46,Pública,0-14,M,1374.0
+2022,46,Pública,15-34,M,2142.0
+2022,46,Pública,35-54,M,2615.0
+2022,46,Pública,55-74,M,1433.0
+2022,46,Pública,75+,M,268.0
+2022,46,No tiene cobertura social,0-14,M,20196.0
+2022,46,No tiene cobertura social,15-34,M,36674.0
+2022,46,No tiene cobertura social,35-54,M,17691.0
+2022,46,No tiene cobertura social,55-74,M,3731.0
+2022,46,No tiene cobertura social,75+,M,254.0
+2022,50,Privada,0-14,M,117342.0
+2022,50,Privada,15-34,M,148510.0
+2022,50,Privada,35-54,M,164987.0
+2022,50,Privada,55-74,M,147997.0
+2022,50,Privada,75+,M,60542.0
+2022,50,Pública,0-14,M,7010.0
+2022,50,Pública,15-34,M,8907.0
+2022,50,Pública,35-54,M,9179.0
+2022,50,Pública,55-74,M,4608.0
+2022,50,Pública,75+,M,656.0
+2022,50,No tiene cobertura social,0-14,M,106951.0
+2022,50,No tiene cobertura social,15-34,M,154756.0
+2022,50,No tiene cobertura social,35-54,M,92132.0
+2022,50,No tiene cobertura social,55-74,M,25031.0
+2022,50,No tiene cobertura social,75+,M,1445.0
+2022,54,Privada,0-14,M,65656.0
+2022,54,Privada,15-34,M,81575.0
+2022,54,Privada,35-54,M,81069.0
+2022,54,Privada,55-74,M,66725.0
+2022,54,Privada,75+,M,20808.0
+2022,54,Pública,0-14,M,10710.0
+2022,54,Pública,15-34,M,12093.0
+2022,54,Pública,35-54,M,12306.0
+2022,54,Pública,55-74,M,5833.0
+2022,54,Pública,75+,M,367.0
+2022,54,No tiene cobertura social,0-14,M,91248.0
+2022,54,No tiene cobertura social,15-34,M,122444.0
+2022,54,No tiene cobertura social,35-54,M,62562.0
+2022,54,No tiene cobertura social,55-74,M,16787.0
+2022,54,No tiene cobertura social,75+,M,953.0
+2022,58,Privada,0-14,M,49399.0
+2022,58,Privada,15-34,M,62394.0
+2022,58,Privada,35-54,M,69418.0
+2022,58,Privada,55-74,M,45020.0
+2022,58,Privada,75+,M,13512.0
+2022,58,Pública,0-14,M,2561.0
+2022,58,Pública,15-34,M,3352.0
+2022,58,Pública,35-54,M,3907.0
+2022,58,Pública,55-74,M,2104.0
+2022,58,Pública,75+,M,238.0
+2022,58,No tiene cobertura social,0-14,M,27054.0
+2022,58,No tiene cobertura social,15-34,M,45312.0
+2022,58,No tiene cobertura social,35-54,M,27780.0
+2022,58,No tiene cobertura social,55-74,M,8456.0
+2022,58,No tiene cobertura social,75+,M,519.0
+2022,62,Privada,0-14,M,47310.0
+2022,62,Privada,15-34,M,57153.0
+2022,62,Privada,35-54,M,68440.0
+2022,62,Privada,55-74,M,52456.0
+2022,62,Privada,75+,M,18626.0
+2022,62,Pública,0-14,M,2848.0
+2022,62,Pública,15-34,M,3467.0
+2022,62,Pública,35-54,M,4326.0
+2022,62,Pública,55-74,M,1930.0
+2022,62,Pública,75+,M,248.0
+2022,62,No tiene cobertura social,0-14,M,30868.0
+2022,62,No tiene cobertura social,15-34,M,53622.0
+2022,62,No tiene cobertura social,35-54,M,32231.0
+2022,62,No tiene cobertura social,55-74,M,8698.0
+2022,62,No tiene cobertura social,75+,M,588.0
+2022,66,Privada,0-14,M,72849.0
+2022,66,Privada,15-34,M,88660.0
+2022,66,Privada,35-54,M,96279.0
+2022,66,Privada,55-74,M,77630.0
+2022,66,Privada,75+,M,28078.0
+2022,66,Pública,0-14,M,8204.0
+2022,66,Pública,15-34,M,10025.0
+2022,66,Pública,35-54,M,9641.0
+2022,66,Pública,55-74,M,4417.0
+2022,66,Pública,75+,M,508.0
+2022,66,No tiene cobertura social,0-14,M,98674.0
+2022,66,No tiene cobertura social,15-34,M,142429.0
+2022,66,No tiene cobertura social,35-54,M,77101.0
+2022,66,No tiene cobertura social,55-74,M,21195.0
+2022,66,No tiene cobertura social,75+,M,1693.0
+2022,70,Privada,0-14,M,44480.0
+2022,70,Privada,15-34,M,52298.0
+2022,70,Privada,35-54,M,57143.0
+2022,70,Privada,55-74,M,52755.0
+2022,70,Privada,75+,M,20355.0
+2022,70,Pública,0-14,M,3015.0
+2022,70,Pública,15-34,M,3580.0
+2022,70,Pública,35-54,M,4311.0
+2022,70,Pública,55-74,M,2291.0
+2022,70,Pública,75+,M,295.0
+2022,70,No tiene cobertura social,0-14,M,52079.0
+2022,70,No tiene cobertura social,15-34,M,74375.0
+2022,70,No tiene cobertura social,35-54,M,42357.0
+2022,70,No tiene cobertura social,55-74,M,10927.0
+2022,70,No tiene cobertura social,75+,M,583.0
+2022,74,Privada,0-14,M,31817.0
+2022,74,Privada,15-34,M,40081.0
+2022,74,Privada,35-54,M,45570.0
+2022,74,Privada,55-74,M,35650.0
+2022,74,Privada,75+,M,12972.0
+2022,74,Pública,0-14,M,2831.0
+2022,74,Pública,15-34,M,4027.0
+2022,74,Pública,35-54,M,5405.0
+2022,74,Pública,55-74,M,2166.0
+2022,74,Pública,75+,M,235.0
+2022,74,No tiene cobertura social,0-14,M,24435.0
+2022,74,No tiene cobertura social,15-34,M,43728.0
+2022,74,No tiene cobertura social,35-54,M,21282.0
+2022,74,No tiene cobertura social,55-74,M,5809.0
+2022,74,No tiene cobertura social,75+,M,234.0
+2022,78,Privada,0-14,M,30450.0
+2022,78,Privada,15-34,M,34786.0
+2022,78,Privada,35-54,M,37383.0
+2022,78,Privada,55-74,M,19619.0
+2022,78,Privada,75+,M,5019.0
+2022,78,Pública,0-14,M,4386.0
+2022,78,Pública,15-34,M,6390.0
+2022,78,Pública,35-54,M,4184.0
+2022,78,Pública,55-74,M,1338.0
+2022,78,Pública,75+,M,160.0
+2022,78,No tiene cobertura social,0-14,M,5630.0
+2022,78,No tiene cobertura social,15-34,M,12911.0
+2022,78,No tiene cobertura social,35-54,M,6083.0
+2022,78,No tiene cobertura social,55-74,M,1358.0
+2022,78,No tiene cobertura social,75+,M,115.0
+2022,82,Privada,0-14,M,211428.0
+2022,82,Privada,15-34,M,296345.0
+2022,82,Privada,35-54,M,329014.0
+2022,82,Privada,55-74,M,278563.0
+2022,82,Privada,75+,M,116316.0
+2022,82,Pública,0-14,M,11327.0
+2022,82,Pública,15-34,M,15682.0
+2022,82,Pública,35-54,M,16085.0
+2022,82,Pública,55-74,M,7508.0
+2022,82,Pública,75+,M,1183.0
+2022,82,No tiene cobertura social,0-14,M,144484.0
+2022,82,No tiene cobertura social,15-34,M,225265.0
+2022,82,No tiene cobertura social,35-54,M,134469.0
+2022,82,No tiene cobertura social,55-74,M,34359.0
+2022,82,No tiene cobertura social,75+,M,1757.0
+2022,86,Privada,0-14,M,39678.0
+2022,86,Privada,15-34,M,47556.0
+2022,86,Privada,35-54,M,59975.0
+2022,86,Privada,55-74,M,54563.0
+2022,86,Privada,75+,M,21244.0
+2022,86,Pública,0-14,M,3718.0
+2022,86,Pública,15-34,M,5687.0
+2022,86,Pública,35-54,M,8783.0
+2022,86,Pública,55-74,M,4415.0
+2022,86,Pública,75+,M,291.0
+2022,86,No tiene cobertura social,0-14,M,89478.0
+2022,86,No tiene cobertura social,15-34,M,127316.0
+2022,86,No tiene cobertura social,35-54,M,62142.0
+2022,86,No tiene cobertura social,55-74,M,13039.0
+2022,86,No tiene cobertura social,75+,M,709.0
+2022,90,Privada,0-14,M,107657.0
+2022,90,Privada,15-34,M,148512.0
+2022,90,Privada,35-54,M,142745.0
+2022,90,Privada,55-74,M,117451.0
+2022,90,Privada,75+,M,39529.0
+2022,90,Pública,0-14,M,8874.0
+2022,90,Pública,15-34,M,13011.0
+2022,90,Pública,35-54,M,14210.0
+2022,90,Pública,55-74,M,6474.0
+2022,90,Pública,75+,M,823.0
+2022,90,No tiene cobertura social,0-14,M,82251.0
+2022,90,No tiene cobertura social,15-34,M,125135.0
+2022,90,No tiene cobertura social,35-54,M,66474.0
+2022,90,No tiene cobertura social,55-74,M,16442.0
+2022,90,No tiene cobertura social,75+,M,1049.0
+2022,94,Privada,0-14,M,15690.0
+2022,94,Privada,15-34,M,19402.0
+2022,94,Privada,35-54,M,20173.0
+2022,94,Privada,55-74,M,11217.0
+2022,94,Privada,75+,M,2055.0
+2022,94,Pública,0-14,M,3189.0
+2022,94,Pública,15-34,M,4710.0
+2022,94,Pública,35-54,M,3089.0
+2022,94,Pública,55-74,M,1119.0
+2022,94,Pública,75+,M,92.0
+2022,94,No tiene cobertura social,0-14,M,2234.0
+2022,94,No tiene cobertura social,15-34,M,6191.0
+2022,94,No tiene cobertura social,35-54,M,3199.0
+2022,94,No tiene cobertura social,55-74,M,802.0
+2022,94,No tiene cobertura social,75+,M,54.0
