@@ -53,6 +53,7 @@ provincias.to_csv("provincias.csv", index = False)
 #aca aun tenemos que ver que hacemos con los nan y los sin informacion
 #ademas, cambie a que todos los nombres de provincias y departamentos tuvieran el nombre en minuscula para que haya continuidad
 #en todas las tablas (tambien lo cambie cuando se hace el df)
+#esta bien que todo sea 'provincia o provincia_id' cuando son jurisdicciones?
 #%% Tabla de departamentos
 
 consultaSQL = """
