@@ -8,7 +8,7 @@ carpeta = r'C:\Users\Delfina\Desktop\EXACTAS\LABO_DATOS\tps\tp1'
 
 censo2010               = pd.read_excel(carpeta + "/censo2010.xlsX", skiprows=14) #salto hasta la fila que interesa
 censo2022               = pd.read_excel(carpeta + "/censo2022.xlsX", skiprows=14)
-defunciones             = pd.read_csv(carpeta + "/defunciones.csv")
+defunc                  = pd.read_csv(carpeta + "/defunciones.csv")
 instituciones_de_salud  = pd.read_excel(carpeta + "/instituciones_de_salud.xlsx")
 
 #%% CENSO 2010
@@ -26,8 +26,12 @@ for _, fila in censo2010.iterrows():
     val_edad = str(fila['col_edad'])
     
     if "AREA" in val_cobertura:
-        provincia_actual = str(fila['col_edad'])
-    #detecta el cambio de jurisdiccion y se actualiza el estado
+        provincia_actual = str(fila['col_edad']).lower()
+        if str(fila['col_edad']) == 'Tierra del Fuego':
+            provincia_actual = 'tierra del fuego, antártida e islas del atlántico sur'
+    #detecta el cambio de jurisdiccion y se actualiza el estado en minúsculas
+    #y, en caso de encotrar la jurisdiccion 'Tierra del Fuego' le cambia el nombre
+    #para que coincida en la tabla de provincias
     
     elif "RESUMEN" in val_cobertura:
         break
@@ -87,8 +91,12 @@ for _, fila in censo2022.iterrows():
     val_edad = str(fila['col_edad'])
     
     if "AREA" in val_cobertura:
-        provincia_actual = str(fila['col_edad'])
-        
+        provincia_actual = str(fila['col_edad']).lower()
+        if str(fila['col_edad']) == 'Caba':
+            provincia_actual = 'ciudad autónoma de buenos aires'
+        elif str(fila['col_edad']) == 'Tierra del Fuego':
+            provincia_actual = 'tierra del fuego, antártida e islas del atlántico sur'
+
     elif "RESUMEN" in val_cobertura:
         break
 
@@ -127,3 +135,4 @@ for clave, valor in suma_total.items():
     lista_final.append(fila)
 
 df_censo_2022 = pd.DataFrame(lista_final)
+
