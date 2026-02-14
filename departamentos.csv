@@ -1,0 +1,530 @@
+departamento_id,nombre,provincia_id
+63,san pedro,38
+14,bermejo,22
+749,san fernando,6
+35,general pedernera,74
+371,general san martín,6
+77,santa catalina,38
+42,empedrado,18
+49,general güemes,66
+14,formosa,34
+105,loreto,86
+126,25 de mayo,70
+14,angaco,70
+252,escobar,6
+77,nogoyá,30
+42,chimbas,70
+126,saladas,18
+49,iglesia,70
+49,gastre,26
+63,loncopué,58
+56,lavalle,50
+119,tunuyán,50
+210,chacabuco,6
+840,tres de febrero,6
+357,general pueyrredón,6
+133,pellegrini,86
+112,rosario vera peñaloza,46
+168,totoral,14
+28,chacabuco,74
+7,adolfo alsina,62
+8,comuna 8,2
+63,lules,90
+854,25 de mayo,6
+14,ushuaia,94
+875,villarino,6
+84,general ocampo,46
+770,san pedro,6
+14,cruz alta,90
+7,almirante brown,22
+14,añelo,58
+42,general roca,62
+91,simoca,90
+98,santa lucía,70
+70,la paz,10
+700,saavedra,6
+175,sauce,18
+455,las flores,6
+133,vera,82
+77,paclín,10
+126,san alberto,14
+833,tres arroyos,6
+126,rancul,42
+728,san andrés de giles,6
+42,la paz ,50
+287,general alvear,6
+56,chapaleufú,42
+56,general angel v. peñaloza,46
+161,carmen de areco,6
+462,leandro n. alem,6
+35,lago buenos aires,78
+798,tapalqué,6
+84,lihuel calel,42
+266,exaltación de la cruz,6
+119,brandsen,6
+63,pichi mahuida,62
+28,matacos,34
+70,independencia,22
+322,general la madrid,6
+133,zonda,70
+742,san cayetano,6
+77,hucal,42
+70,leandro n. alem,54
+63,fray mamerto esquiú,10
+56,guaraní,54
+1,comuna 1,2
+7,biedma,26
+658,quilmes,6
+63,guachipas,66
+14,belgrano,74
+665,ramallo,6
+98,mayor luis j. fontana,22
+260,esteban echeverría,6
+126,orán,66
+35,avellaneda,6
+270,ezeiza,6
+133,san cosme,18
+14,deseado,78
+7,anta,66
+7,calamuchita,14
+98,río cuarto,14
+35,ledesma,38
+791,tandil,6
+427,la matanza,6
+14,comuna 14,2
+224,chivilcoy,6
+568,morón,6
+98,uruguay,30
+147,río hondo,86
+49,famatina ,46
+28,humahuaca,38
+560,moreno,6
+112,puelén,42
+56,languiñeo,26
+119,yerba buena,90
+119,paso de los libres,18
+778,san vicente,6
+42,feliciano,30
+7,belgrano,82
+574,navarro,6
+651,puán,6
+784,suipacha,6
+35,garay,82
+105,san jerónimo,82
+819,tornquist,6
+655,punta indio,6
+245,ensenada,6
+364,general rodríguez,6
+35,patiño,34
+42,pilagás,34
+648,presidente perón,6
+98,tehuelches,26
+49,9 de julio,62
+735,san antonio de areco,6
+63,chical co,42
+672,rauch,6
+466,lezama,6
+0,comuna 1,2
+21,candelaria,54
+28,antofagasta de la sierra,10
+35,futaleufú,26
+112,san pedro,54
+70,baradero,6
+140,san fernando,22
+35,confluencia,58
+28,capital,66
+35,cerrillos ,66
+119,quemú quemú,42
+56,lácar,58
+861,vicente lópez,6
+91,berazategui,6
+105,sarmiento,70
+35,banda,86
+105,victoria,30
+49,capital,10
+21,calingasta,70
+14,capital,14
+147,rosario de lerma,66
+42,chos malal,58
+15,concordia,30
+49,las heras,50
+49,rinconada,38
+161,santa victoria,66
+84,paraná,30
+11,comuna 11,2
+7,corpen aike,78
+119,río segundo,14
+581,necochea,6
+112,mitre,86
+14,general alvear,50
+35,junín,50
+693,roque pérez,6
+707,saladillo,6
+35,chamical ,46
+175,tulumba,14
+4,comuna 4,2
+6,comuna 6,2
+7,atreucó,42
+7,aluminé,58
+28,collón curá,58
+84,pomán,10
+126,tupungato,50
+112,ullúm,70
+8,colón,30
+35,curuzú cuatiá,18
+35,federal,30
+91,santa maría,10
+189,coronel dorrego,6
+35,general roca,14
+49,ischilín,14
+868,villa gesell ,6
+49,azul,6
+84,ituzaingó,18
+154,rivadavia,86
+609,pehuajó,6
+616,pellegrini,6
+21,castro barros,46
+56,gualeguaychú,30
+505,magdalena,6
+21,castellanos,82
+147,trenel,42
+98,berisso,6
+343,general paz,6
+98,tumbaya,38
+91,limay mahuida,42
+98,loventué,42
+14,adolfo gonzales chaves,6
+351,general pinto,6
+133,quitilipi,22
+308,general guido,6
+133,san javier,14
+7,bermejo,34
+49,general manuel belgrano,54
+84,montecarlo,54
+63,iguazú,54
+35,concepción ,54
+14,cushamen,26
+56,grl. josé de san martín,66
+63,general güemes,22
+77,rawson,26
+760,san miguel,6
+2,comuna 2,2
+133,rivadavia,66
+21,dr. manuel belgrano,38
+21,comandante fernández,22
+140,quebrachos,86
+21,cafayate,66
+105,los andes,66
+434,lanús,6
+490,lomas de zamora,6
+77,minas,58
+98,tafí del valle,90
+70,maipú,50
+112,santa rosa,50
+413,junín,6
+469,lincoln,6
+9,comuna 9,2
+70,santa bárbara,38
+105,independencia,46
+70,general juan f. quiroga,46
+126,sanagasta,46
+42,chilecito ,46
+315,general juan madariaga,6
+168,25 de mayo,22
+91,jiménez,86
+91,san carlos,50
+763,san nicolás,6
+56,iriondo,82
+91,la poma,66
+203,coronel suárez,6
+56,el alto,10
+28,famaillá,90
+623,pergamino,6
+84,valcheta,62
+77,itatí,18
+119,san blas de los sauces,46
+112,trancas,90
+399,guaminí,6
+140,capitán sarmiento,6
+7,burruyacú,90
+301,general belgrano,6
+336,general lavalle,6
+553,monte hermoso,6
+77,general lamadrid,46
+154,carlos tejedor,6
+168,castelli,6
+28,conesa,62
+28,cruz del eje,14
+84,guasayán,86
+140,toay,42
+56,ñorquincó,62
+56,san antonio,38
+70,minas,14
+630,pila,6
+77,libertador grl. san martín,54
+91,oberá,54
+182,sarmiento,86
+84,rosario,82
+140,san justo,14
+14,capital,46
+91,pehuenches,58
+7,ayacucho,74
+28,capital,54
+49,gualeguay,30
+35,caucete,70
+42,general san martín,14
+5,comuna 5,2
+113,villaguay,30
+84,la candelaria,66
+105,tinogasta,10
+112,valle viejo,10
+168,salavina,86
+119,valle fértil,70
+70,pocito,70
+14,el carmen,38
+14,alberdi,86
+63,marcos juárez,14
+84,ñorquín,58
+77,san antonio,62
+28,almirante brown,6
+21,laishi,34
+98,san martín,50
+7,aguirre,86
+98,juan f. ibarra,86
+42,palpalá ,38
+21,godoy cruz,50
+140,rosario de la frontera,66
+182,unión,14
+154,sargento cabral,22
+161,tapenagá,22
+28,avellaneda,86
+35,conhelo,42
+7,cochinoca,38
+126,san martín,82
+28,guaymallén,50
+147,san martín,18
+679,rivadavia,6
+28,federación,30
+21,andalgalá,10
+98,santa rosa,10
+77,9 de julio,82
+14,ancasti,10
+448,laprida,6
+392,general villegas,6
+42,juan bautista alberdi,90
+56,leales,90
+84,río senguer,26
+77,río chico,90
+43,fray justo santa maría de oro,22
+56,pirané,34
+28,lago argentino,78
+812,tordillo,6
+7,adolfo alsina,6
+49,río chico,78
+714,salto,6
+49,chalileo,42
+63,ramón lista,34
+77,pocho,14
+77,la caldera,66
+105,san javier,54
+84,susques,38
+21,escalante,26
+105,maracó,42
+105,9 de julio,22
+28,chacabuco,22
+77,malargüe,50
+119,molinos,66
+91,punilla,14
+105,picunches,58
+77,general taboada,86
+49,junín,74
+441,la plata,6
+13,comuna 13,2
+63,9 de julio,70
+56,jáchal,70
+154,san carlos,66
+274,florencio varela,6
+84,rivadavia,50
+77,libertad,22
+84,rivadavia,70
+70,figueroa,86
+105,tafí viejo,90
+105,río primero,14
+189,silípica,86
+420,la costa,6
+532,mercedes,6
+15,comuna 15,2
+408,hurlingham,6
+28,coronel felipe varela,46
+21,coronel pringles,74
+21,colón,14
+63,luján de cuyo,50
+70,paso de indios,26
+105,bolívar,6
+56,bahía blanca,6
+112,bragado,6
+756,san isidro,6
+147,san lorenzo,22
+91,general san martín,46
+63,balcarce,6
+182,coronel de marina l. rosales,6
+161,san roque,18
+112,monte caseros,18
+14,avellaneda,62
+602,patagones,6
+98,san ignacio,54
+476,lobería,6
+35,graneros,90
+406,hipólito yrigoyen,6
+14,berón de astrada,18
+14,caseros,82
+49,general belgrano,22
+56,general donovan,22
+294,general arenales,6
+644,pinamar ,6
+84,benito juárez,6
+42,magallanes,78
+63,libertador general san martín,74
+105,valle grande,38
+35,el cuy,62
+49,esquina,18
+70,la paz,30
+91,sarmiento ,26
+511,maipú,6
+63,general belgrano,46
+21,catán lil,58
+14,cainguás,54
+105,telsen,26
+21,chicligasta,90
+36,12 de octubre,22
+126,1º de mayo,22
+70,iruya,66
+98,picún leufú,58
+113,zapala ,58
+112,zapala ,58
+21,capital,18
+42,gaiman,26
+147,santa maría,14
+91,san martín,70
+49,general obligado,82
+126,ojo de agua,86
+112,metán,66
+56,la capital,74
+175,san martín,86
+140,san luis del palmar,18
+112,san justo,82
+21,atamisqui,86
+161,robles,86
+84,presidente roque sáenz peña,14
+412,josé c. paz,6
+42,chicoana,66
+49,capital,86
+105,san rafael,50
+175,colón,6
+154,sobremonte,14
+14,cachi,66
+483,lobos,6
+539,merlo,6
+7,río grande,94
+21,güer aike,78
+28,florentino ameghino,26
+7,comuna 7,2
+63,mártires,26
+805,tigre,6
+12,comuna 12,2
+56,copo,86
+595,olavarría,6
+56,juárez celman,14
+42,belgrano,86
+70,las colonias,82
+525,marcos paz,6
+882,zárate ,6
+88,san salvador,30
+70,goya,18
+168,santo tomé,18
+133,realicó,42
+21,bariloche,62
+105,mercedes,18
+98,san javier,82
+98,mburucuyá,18
+7,ambato,10
+63,islas del ibicuy,30
+28,concepción,18
+91,san cristóbal,82
+21,alberti,6
+385,general viamonte,6
+63,general paz,18
+147,carlos casares,6
+28,catriló,42
+28,constitución,82
+77,arrecifes,6
+277,florentino ameghino,6
+231,daireaux,6
+238,dolores,6
+280,general alvarado,6
+112,o'higgins,22
+588,9 de julio,6
+721,salliqueló,6
+42,curacó,42
+112,río seco,14
+686,rojas,6
+42,eldorado,54
+3,comuna 3,2
+84,capital,90
+39,2 de abril,22
+119,san lorenzo,82
+42,gobernador dupuy,74
+98,vinchina,46
+21,capital,42
+112,yavi,38
+58,quilmes,6
+7,albardón,70
+126,campana,6
+77,rawson,70
+63,la capital,82
+28,capital,70
+638,pilar,6
+70,los lagos,58
+49,pilcomayo,34
+119,moreno,86
+7,bella vista,18
+497,luján,6
+329,general las heras,6
+7,capital,50
+21,diamante,30
+7,arauco,46
+161,tercero arriba,14
+410,ituzaingó,6
+49,huiliches,58
+84,libertador general san martín,22
+154,utracán,42
+94,tilcara,38
+56,general alvear,18
+515,malvinas argentinas,6
+91,lavalle,18
+196,coronel pringles,6
+42,general lópez,82
+63,choya,86
+70,monteros,90
+518,mar chiquita,6
+42,ayacucho,6
+70,guatraché,42
+70,pilcaniyeu,62
+826,trenque lauquen,6
+547,monte,6
+154,san miguel,18
+42,capayán,10
+35,belén,10
+134,cañuelas,6
+91,tala,30
+10,comuna 10,2
+98,la viña,66
+91,maipú,22
+119,presidencia de la plaza,22
+49,la cocha,90
+217,chascomús,6
+91,25 de mayo,62
+14,caleu caleu,42
+847,tres lomas ,6
+7,apóstoles,54
+119,25 de mayo,54
