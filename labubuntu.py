@@ -3,21 +3,20 @@ import duckdb as dd
 
 #%% DATASETS
 
-#directorio de los archivos de ambos censos, defunciones e instituciones de salud
+# Carga de archivos
 carpeta = r'C:\Users\Delfina\Desktop\EXACTAS\LABO_DATOS\tps\tp1'
 
-censo2010               = pd.read_excel(carpeta + "/censo2010.xlsX", skiprows=14) #salto hasta la fila que interesa
+censo2010               = pd.read_excel(carpeta + "/censo2010.xlsX", skiprows=14)
 censo2022               = pd.read_excel(carpeta + "/censo2022.xlsX", skiprows=14)
-archivo_defunciones     = pd.read_csv(carpeta + "/defunciones.csv")
+archivo_defunciones         = pd.read_csv(carpeta + "/defunciones.csv")
 instituciones_de_salud  = pd.read_excel(carpeta + "/instituciones_de_salud.xlsx")
 categoriasDefunciones   = pd.read_csv(carpeta + "/categoriasDefunciones.csv")
 
 #%% CENSO 2010
 
-#normalizacion de nombres de las columnas del censo 2010
 censo2010.columns = ['vacia', 'col_cobertura', 'col_edad', 'col_varon', 'col_mujer', 'col_total']
 
-#estructuras temporales para manejar datos de rango etario, provincia, cobertura y sexo
+# Estructuras temporales para manejar datos de rango etario, provincia, cobertura y sexo
 suma_total = {} 
 provincia_actual = ""
 cobertura_actual = ""
@@ -28,21 +27,17 @@ for _, fila in censo2010.iterrows():
     
     if "AREA" in val_cobertura:
         provincia_actual = str(fila['col_edad'])
-        if str(fila['col_edad']) == 'Tierra del Fuego':
-            provincia_actual = 'tierra del fuego, antártida e islas del atlántico sur'
-    #detecta el cambio de jurisdiccion y se actualiza el estado
-    #y, en caso de encotrar la jurisdiccion 'Tierra del Fuego' le cambia el nombre
-    #para que coincida en la tabla de provincias
+    # Detecta el cambio de jurisdiccion y se actualiza el estado
     
     elif "RESUMEN" in val_cobertura:
         break
-    #evita procesar datos demas, marca el fin de los datos utiles
+    # Evita procesar datos demas, marca el fin de los datos utiles
     
     if val_cobertura == "Total":
         cobertura_actual = "nan" 
     if val_cobertura != "nan" and val_cobertura != "Total":
         cobertura_actual = val_cobertura
-    #actualizaciones de estado de cobertura_actual
+    # Actualizaciones de estado de cobertura_actual
 
     if val_edad.isdigit() and cobertura_actual != "nan" :
         edad_nro = int(val_edad)
@@ -51,7 +46,7 @@ for _, fila in censo2010.iterrows():
         elif edad_nro <= 54: rango = '35-54'
         elif edad_nro <= 74: rango = '55-74'
         else: rango = '75+'
-    #agrupacion de los rangos etarios y limpieza de valores nulos
+    # Agrupacion de los rangos etarios y limpieza de valores nulos
         
         mujeres = float(fila['col_mujer']) if str(fila['col_mujer']) != "-" else 0
         varones = float(fila['col_varon']) if str(fila['col_varon']) != "-" else 0
@@ -63,23 +58,23 @@ for _, fila in censo2010.iterrows():
         
         suma_total[clave]['mujer'] += mujeres
         suma_total[clave]['varon'] += varones
-        #suma de habitantes separados por sexo al diccionario
+        # Suma de habitantes separados por sexo al diccionario
 
-#conversión del diccionario completo a un dataframe
+# Conversión del diccionario completo a un dataframe
 lista_final = []
 for clave, valor in suma_total.items():
-    fila = {'provincia': clave[0],
-            'cobertura': clave[1],
-            'rango_etario': clave[2],
-            'mujer': valor['mujer'],
-            'varon': valor['varon']}
+    fila = {'Provincia': clave[0],
+            'Cobertura': clave[1],
+            'Rango etario': clave[2],
+            'Mujer': valor['mujer'],
+            'Varón': valor['varon']}
     lista_final.append(fila)
 
 df_censo_2010 = pd.DataFrame(lista_final)
 
 #%% CENSO 2022
 
-#mismos procesos que con censo 2010
+# Mismos procesos que con censo 2010
 
 censo2022.columns = ['vacia', 'col_cobertura', 'col_edad', 'col_varon', 'col_mujer', 'col_total']
 
@@ -93,10 +88,6 @@ for _, fila in censo2022.iterrows():
     
     if "AREA" in val_cobertura:
         provincia_actual = str(fila['col_edad'])
-        if str(fila['col_edad']) == 'Caba':
-            provincia_actual = 'ciudad autónoma de buenos aires'
-        elif str(fila['col_edad']) == 'Tierra del Fuego':
-            provincia_actual = 'tierra del fuego, antártida e islas del atlántico sur'
         
     elif "RESUMEN" in val_cobertura:
         break
@@ -128,11 +119,11 @@ for _, fila in censo2022.iterrows():
 
 lista_final = []
 for clave, valor in suma_total.items():
-    fila = {'provincia': clave[0],
-            'cobertura': clave[1],
-            'rango_etario': clave[2],
-            'mujer': valor['mujer'],
-            'varon': valor['varon']}
+    fila = {'Provincia': clave[0],
+            'Cobertura': clave[1],
+            'Rango etario': clave[2],
+            'Mujer': valor['mujer'],
+            'Varón': valor['varon']}
     lista_final.append(fila)
 
 df_censo_2022 = pd.DataFrame(lista_final)
@@ -141,21 +132,21 @@ df_censo_2022 = pd.DataFrame(lista_final)
 
 consultaSQL = """
                 SELECT 
-                    c.categorias AS descripcion,
-                    d.anio AS año,
-                    d.jurisdiccion_de_residencia_id AS provincia_id,
+                    c.categorias AS Descripción,
+                    d.anio AS Año,
+                    d.jurisdiccion_de_residencia_id AS 'Provincia ID',
                     CASE
                         WHEN d.grupo_edad LIKE '01.%' THEN '0-14'
                         WHEN d.grupo_edad LIKE '02.%' THEN '15-34'
                         WHEN d.grupo_edad LIKE '03.%' THEN '35-54'
                         WHEN d.grupo_edad LIKE '04.%' THEN '55-74'
                         WHEN d.grupo_edad LIKE '05.%' THEN '75+'
-                        END AS grupo_etario,
+                        END AS 'Grupo etario',
                     CASE
                         WHEN d.Sexo = 'femenino' THEN 'F'
                         WHEN d.Sexo = 'masculino' THEN 'M'
-                        END AS sexo,
-                    SUM(cantidad) AS cantidad
+                        END AS Sexo,
+                    SUM(cantidad) AS Cantidad
                     FROM archivo_defunciones AS d
                     INNER JOIN categoriasDefunciones AS c
                     ON c.codigo_def = d.cie10_causa_id
@@ -170,10 +161,11 @@ df_defunciones.to_csv("df_defunciones.csv", index = False)
 #%% Tabla de provincias
 
 consultaSQL = """
-                SELECT DISTINCT jurisdiccion_de_residencia_id AS id, LOWER(jurisdicion_residencia_nombre) AS nombre
+                SELECT DISTINCT jurisdiccion_de_residencia_id AS ID, jurisdicion_residencia_nombre AS Nombre
                 FROM archivo_defunciones
                 ORDER BY id;
-            """
+              """
+            
 df_provincias = dd.sql(consultaSQL).df()
 df_provincias.to_csv("df_provincias.csv", index = False)
 
@@ -185,9 +177,9 @@ df_provincias.to_csv("df_provincias.csv", index = False)
 #%% Tabla de departamentos
 
 consultaSQL = """
-                SELECT DISTINCT departamento_id, LOWER(departamento_nombre) AS nombre, provincia_id
+                SELECT DISTINCT departamento_id AS "Departamento ID", departamento_nombre AS Nombre, provincia_id AS "Provincia ID"
                 FROM instituciones_de_salud;
-            """
+              """
             
 df_departamentos = dd.sql(consultaSQL).df()
 df_departamentos.to_csv("df_departamentos.csv", index = False)
@@ -197,16 +189,15 @@ df_departamentos.to_csv("df_departamentos.csv", index = False)
 
 consultaSQL = """
                 SELECT 
-                    2010 AS año_censo, 
-                    p.id AS provincia_id, 
+                    2010 AS "Año del censo", p.ID AS "Provincia ID", 
                     CASE 
-                        WHEN c.cobertura LIKE 'Obra%'  OR c.cobertura LIKE 'Prepaga%'THEN 'Privada'
-                        WHEN c.cobertura LIKE 'Programas%' THEN 'Pública'
-                        WHEN c.cobertura LIKE 'No%' THEN 'No tiene cobertura social'
-                        END AS cobertura, 
-                    c.rango_etario AS grupo_etario, 
-                    'F' AS sexo,
-                    c.mujer AS cantidad
+                        WHEN c.Cobertura LIKE 'Obra%'  OR c.Cobertura LIKE 'Prepaga%'THEN 'Privada'
+                        WHEN c.Cobertura LIKE 'Programas%' THEN 'Pública'
+                        WHEN c.Cobertura LIKE 'No%' THEN 'No tiene cobertura social'
+                        END AS Cobertura, 
+                    c."Rango etario" AS "Grupo etario", 
+                    'F' AS Sexo,
+                    c.Mujer AS Cantidad
                 FROM df_censo_2010 AS c
                 INNER JOIN df_provincias AS p
                 ON LOWER(TRIM(c.provincia)) = LOWER(TRIM(p.nombre))
@@ -214,16 +205,15 @@ consultaSQL = """
                 UNION ALL
                 
                 SELECT 
-                    2010 AS año_censo, 
-                    p.id AS provincia_id, 
+                    2010 AS "Año del censo", p.ID AS "Provincia ID", 
                     CASE 
-                        WHEN c.cobertura LIKE 'Obra%'  OR c.cobertura LIKE 'Prepaga%'THEN 'Privada'
-                        WHEN c.cobertura LIKE 'Programas%' THEN 'Pública'
-                        WHEN c.cobertura LIKE 'No%' THEN 'No tiene cobertura social'
-                        END AS Cobertura_Social, 
-                    c.rango_etario AS grupo_etario, 
-                    'M' AS sexo,
-                    c.varon AS cantidad
+                        WHEN c.Cobertura LIKE 'Obra%'  OR c.Cobertura LIKE 'Prepaga%'THEN 'Privada'
+                        WHEN c.Cobertura LIKE 'Programas%' THEN 'Pública'
+                        WHEN c.Cobertura LIKE 'No%' THEN 'No tiene cobertura social'
+                        END AS "Cobertura Social", 
+                    c."Rango etario" AS "Grupo etario", 
+                    'M' AS Sexo,
+                    c.Varón AS Cantidad
                 FROM df_censo_2010 AS c
                 INNER JOIN df_provincias AS p
                 ON LOWER(TRIM(c.provincia)) = LOWER(TRIM(p.nombre))
@@ -231,16 +221,15 @@ consultaSQL = """
                 UNION ALL
                 
                 SELECT 
-                    2022 AS año_censo, 
-                    p.id AS provincia_id, 
+                    2022 AS "Año del censo", p.ID AS "Provincia ID", 
                     CASE 
-                        WHEN c.cobertura LIKE 'Obra%' THEN 'Privada'
-                        WHEN c.cobertura LIKE 'Programas%' THEN 'Pública'
-                        WHEN c.cobertura LIKE 'No%' THEN 'No tiene cobertura social'
+                        WHEN c.Cobertura LIKE 'Obra%' THEN 'Privada'
+                        WHEN c.Cobertura LIKE 'Programas%' THEN 'Pública'
+                        WHEN c.Cobertura LIKE 'No%' THEN 'No tiene cobertura social'
                         END AS Cobertura_Social, 
-                    c.rango_etario AS grupo_etario, 
-                    'F' AS sexo,
-                    c.mujer AS cantidad
+                    c."Rango etario" AS "Grupo etario", 
+                    'F' AS Sexo,
+                    c.Mujer AS Cantidad
                 FROM df_censo_2022 AS c
                 INNER JOIN df_provincias AS p
                 ON LOWER(TRIM(c.provincia)) = LOWER(TRIM(p.nombre))
@@ -248,16 +237,15 @@ consultaSQL = """
                 UNION ALL
                 
                 SELECT 
-                    2022 AS año_censo, 
-                    p.id AS provincia_id, 
+                    2022 AS "Año del censo", p.ID AS "Provincia ID", 
                     CASE 
-                        WHEN c.cobertura LIKE 'Obra%' THEN 'Privada'
-                        WHEN c.cobertura LIKE 'Programas%' THEN 'Pública'
-                        WHEN c.cobertura LIKE 'No%' THEN 'No tiene cobertura social'
+                        WHEN c.Cobertura LIKE 'Obra%' THEN 'Privada'
+                        WHEN c.Cobertura LIKE 'Programas%' THEN 'Pública'
+                        WHEN c.Cobertura LIKE 'No%' THEN 'No tiene cobertura social'
                         END AS Cobertura_Social, 
-                    c.rango_etario AS grupo_etario, 
-                    'M' AS sexo,
-                    c.varon AS cantidad
+                    c."Rango etario" AS "Grupo etario", 
+                    'M' AS Sexo,
+                    c.Varón AS Cantidad
                 FROM df_censo_2022 AS c
                 INNER JOIN df_provincias AS p
                 ON LOWER(TRIM(c.provincia)) = LOWER(TRIM(p.nombre));
@@ -273,14 +261,12 @@ df_habitantes.to_csv("df_habitantes.csv", index = False)
 
 consultaSQL = """
                 SELECT DISTINCT 
-                    establecimiento_id AS id, 
-                    LOWER(establecimiento_nombre) AS nombre, 
-                    departamento_id,
-                    origen_financiamiento AS financiamiento,
+                    establecimiento_id AS ID, establecimiento_nombre AS Nombre, 
+                    departamento_id AS "Departamento ID", origen_financiamiento AS Financiamiento,
                     CASE 
-                        WHEN LOWER(tipologia_nombre) LIKE '%terapia intensiva%' THEN 'si'
-                        ELSE 'no'
-                        END AS terapia_intensiva
+                        WHEN LOWER(tipologia_nombre) LIKE '%terapia intensiva%' THEN 'Sí'
+                        ELSE 'No'
+                        END AS "Terapia intensiva"
                 FROM instituciones_de_salud;
             """
 
@@ -291,10 +277,11 @@ df_establecimientos_medicos.to_csv("df_establecimientos_medicos.csv", index = Fa
 
 #la tabla provincia_x_habitantes es igual a la tabla habitantes solo que en vez del id de la provincia tiene el nombre
 unir_provincias_habitantes = """
-                SELECT p.nombre AS nombre_prov, h.sexo, h.año_censo, h.cantidad, h.grupo_etario, h.cobertura
+                SELECT p.Nombre AS "Nombre de la provincia", h.Sexo, h."Año del censo", h.Cantidad,
+                h."Grupo etario", h.Cobertura
                 FROM df_provincias AS p
                 INNER JOIN df_habitantes AS h
-                ON p.id == h.provincia_id
+                ON p.ID == h."Provincia ID"
               """
 
 provincia_x_habitantes = dd.query(unir_provincias_habitantes).df()
@@ -303,22 +290,23 @@ provincia_x_habitantes = dd.query(unir_provincias_habitantes).df()
 
 # i)
 consulta_i = """ 
-    SELECT provincia_id AS Provincia, grupo_etario, 
+    SELECT "Provincia ID" AS Provincia, "Grupo etario", 
     
     -- Columnas para el año 2010
-    SUM(CASE WHEN año_censo = 2010 AND cobertura = 'Privada' THEN cantidad ELSE 0 END) 
-        AS Habitantes_con_cobertura_en_2010,
-    SUM(CASE WHEN año_censo = 2010 AND cobertura = 'Pública' THEN cantidad ELSE 0 END) 
-        AS Habitantes_sin_cobertura_en_2010,
+    SUM(CASE WHEN "Año del censo" = 2010 AND Cobertura = 'Privada' THEN cantidad ELSE 0 END) 
+        AS "Habitantes con cobertura en 2010",
+    SUM(CASE WHEN "Año del censo" = 2010 AND Cobertura = 'Pública' THEN cantidad ELSE 0 END) 
+        AS "Habitantes sin cobertura en 2010",
     
     -- Columnas para el año 2022
-    SUM(CASE WHEN año_censo = 2022 AND cobertura = 'Privada' THEN cantidad ELSE 0 END) 
-        AS Habitante_con_cobertura_en_2022,
-    SUM(CASE WHEN año_censo = 2022 AND cobertura = 'Pública' THEN cantidad ELSE 0 END) 
-        AS Habitantes_sin_cobertura_en_2022
+    SUM(CASE WHEN "Año del censo" = 2022 AND Cobertura = 'Privada' THEN cantidad ELSE 0 END) 
+        AS "Habitantes con cobertura en 2020",
+    SUM(CASE WHEN "Año del censo" = 2022 AND Cobertura = 'Pública' THEN cantidad ELSE 0 END) 
+        AS "Habitantes sin cobertura en 2020"
 FROM df_habitantes
-GROUP BY Provincia, grupo_etario
-ORDER BY Provincia, grupo_etario"""
+GROUP BY Provincia, "Grupo etario"
+ORDER BY Provincia, "Grupo etario"
+            """
 
 reporte_i = dd.sql(consulta_i).df()
 
@@ -326,47 +314,34 @@ reporte_i = dd.sql(consulta_i).df()
 
 # ii)
 consulta_ii = """
-    SELECT p.nombre, 
-    CASE
-        WHEN e.financiamiento LIKE 'Privad%' THEN 'Privado'
-        ELSE 'Estatal'
-        END AS financiamiento,
-    SUM(CASE WHEN e.terapia_intensiva = 'si' THEN 1 ELSE 0 END) AS cantidad_establecimientos
+    SELECT d."Provincia ID", e.Financiamiento,
+    SUM(CASE WHEN e."Terapia intensiva" = 'si' THEN 1 ELSE 0 END) AS "Cantidad de establecimientos"
     FROM df_establecimientos_medicos AS e
-    JOIN df_departamentos AS d 
-        ON e.departamento_id = d.departamento_id   
-    JOIN df_provincias AS p
-        ON d.provincia_id = p.id
-    GROUP BY p.nombre,
-    CASE 
-        WHEN e.financiamiento LIKE 'Privad%' THEN 'Privado'
-        ELSE 'Estatal'
-        END
-    ORDER BY p.nombre, financiamiento
+    
+    JOIN df_departamentos AS d
+        ON e."Departamento ID" = d."Departamento ID"
+    GROUP BY d."Provincia ID", e.Financiamiento
+    ORDER BY d."Provincia ID", e.Financiamiento
 """
 
 reporte_ii = dd.sql(consulta_ii).df()
-#aca puse TODO lo que no decia privado/privada en estatal pero hay formas de financiamiento como 'Obra social' o 'FFAA' que ni idea
-#donde van
-#este cambio se podria hacer directamente al hacer el df de establecimientos_medicos pero siento que si lo hacemos de una
-#ahi, perdemos informacion solo para este ejercicio
 
 #%% REPORTE iii
 
 # iii)
 consulta_iii = """
     WITH frecuencia_defunciones AS
-        (SELECT sexo, grupo_etario, descripcion, SUM(cantidad) as Total_muertes,
+        (SELECT "Sexo", "Grupo etario", "Descripción", SUM("Cantidad") as "Total de muertes",
             -- se numeran las mas frecuentes
-            ROW_NUMBER() OVER(PARTITION BY sexo, grupo_etario ORDER BY SUM(cantidad) DESC) as mas_frecuentes,
+            ROW_NUMBER() OVER(PARTITION BY "Sexo", "Grupo etario" ORDER BY SUM("Cantidad") DESC) as mas_frecuentes,
             -- y aca las menos frecuentes
-            ROW_NUMBER() OVER(PARTITION BY sexo, grupo_etario ORDER BY SUM(cantidad) ASC) as menos_frecuentes
+            ROW_NUMBER() OVER(PARTITION BY "Sexo", "Grupo etario" ORDER BY SUM("Cantidad") ASC) as menos_frecuentes
         FROM df_defunciones
-        WHERE sexo IS NOT NULL AND grupo_etario IS NOT NULL
-        GROUP BY sexo, grupo_etario, descripcion)
+        WHERE "Sexo" IS NOT NULL AND "Grupo etario" IS NOT NULL
+        GROUP BY "Sexo", "Grupo etario", "Descripción")
 
     SELECT 
-        sexo, grupo_etario, descripcion, total_muertes,
+        "Sexo", "Grupo etario", "Descripción", "Total de muertes",
         CASE 
             WHEN mas_frecuentes <= 5 THEN '5 más frecuentes'
             WHEN menos_frecuentes <= 5 THEN '5 menos frecuentes'
@@ -374,12 +349,12 @@ consulta_iii = """
     FROM frecuencia_defunciones
     WHERE mas_frecuentes <= 5 OR menos_frecuentes <= 5
     ORDER BY 
-        CASE WHEN grupo_etario = '0-14' THEN 1
-             WHEN grupo_etario = '15-34' THEN 2
-             WHEN grupo_etario = '35-54' THEN 3
-             WHEN grupo_etario = '55-74' THEN 4
+        CASE WHEN "Grupo etario" = '0-14' THEN 1
+             WHEN "Grupo etario" = '15-34' THEN 2
+             WHEN "Grupo etario" = '35-54' THEN 3
+             WHEN "Grupo etario" = '55-74' THEN 4
              ELSE 5 END, 
-        sexo ASC, total_muertes DESC;
+        "Sexo" ASC, "Total de muertes" DESC;
 """
 
 reporte_iii = dd.sql(consulta_iii).df()
@@ -390,26 +365,26 @@ reporte_iii = dd.sql(consulta_iii).df()
 consulta_iv = """
     -- aca hay q agrupar las defunciones para que no se dupliquen dsp del join
     WITH defunciones_agrupadas AS 
-       (SELECT provincia_id, grupo_etario, SUM(cantidad) AS total_muertes
+       (SELECT "Provincia ID", "Grupo etario", SUM(Cantidad) AS "Muertes totales"
         FROM df_defunciones
         WHERE año = 2022
-        GROUP BY provincia_id, grupo_etario),
+        GROUP BY "Provincia ID", "Grupo etario"),
        
     -- dsp se agrupan a todos los habitantes x prov y grupo etario sin discriminar sexo ni cobertura
     habitantes_agrupados AS
-       (SELECT provincia_id, grupo_etario, SUM(cantidad) AS total_poblacion
+       (SELECT "Provincia ID", "Grupo etario", SUM(Cantidad) AS "Población total"
         FROM df_habitantes
-        WHERE año_censo = 2022
-        GROUP BY provincia_id, grupo_etario)
+        WHERE "Año del censo" = 2022
+        GROUP BY "Provincia ID", "Grupo etario")
         
-    SELECT p.nombre AS Provincia, h.grupo_etario, (d.total_muertes * 1000.0 / h.total_poblacion) AS tasa_mortalidad_1000
+    SELECT p.Nombre AS Provincia, h."Grupo etario", (d."Muertes totales" * 1000.0 / h."Población total") AS "Tasa de mortalidad"
     FROM habitantes_agrupados h
     INNER JOIN defunciones_agrupadas d 
-        ON h.provincia_id = d.provincia_id 
-        AND h.grupo_etario = d.grupo_etario
+        ON h."Provincia ID" = d."Provincia ID" 
+        AND h."Grupo etario" = d."Grupo etario"
     INNER JOIN df_provincias p 
-        ON h.provincia_id = p.id
-    ORDER BY p.nombre, h.grupo_etario
+        ON h."Provincia ID" = p.ID
+    ORDER BY p.Nombre, h."Grupo etario"
             """
 
 reporte_iv = dd.sql(consulta_iv).df()
@@ -419,15 +394,12 @@ reporte_iv = dd.sql(consulta_iv).df()
 # v)
 consulta_v = """
     SELECT 
-        descripcion,
+        Descripción,
         SUM(CASE WHEN Año = 2022 THEN cantidad ELSE 0 END) - 
-        SUM(CASE WHEN Año = 2010 THEN cantidad ELSE 0 END) AS diferencia_defunciones
+        SUM(CASE WHEN Año = 2010 THEN cantidad ELSE 0 END) AS "Diferencia de defunciones"
     FROM df_defunciones
-    GROUP BY descripcion
-    ORDER BY diferencia_defunciones DESC
+    GROUP BY Descripción
+    ORDER BY "Diferencia de defunciones" DESC
  """
 
-
 reporte_v = dd.query(consulta_v).df()
-
-
