@@ -352,14 +352,37 @@ reporte_ii = dd.sql(consulta_ii).df()
 #ahi, perdemos informacion solo para este ejercicio
 
 #%% REPORTE iii
+
 # iii)
 consulta_iii = """
+    WITH frecuencia_defunciones AS
+        (SELECT sexo, grupo_etario, descripcion, SUM(cantidad) as Total_muertes,
+            -- se numeran las mas frecuentes
+            ROW_NUMBER() OVER(PARTITION BY sexo, grupo_etario ORDER BY SUM(cantidad) DESC) as mas_frecuentes,
+            -- y aca las menos frecuentes
+            ROW_NUMBER() OVER(PARTITION BY sexo, grupo_etario ORDER BY SUM(cantidad) ASC) as menos_frecuentes
+        FROM df_defunciones
+        WHERE sexo IS NOT NULL AND grupo_etario IS NOT NULL
+        GROUP BY sexo, grupo_etario, descripcion)
 
+    SELECT 
+        sexo, grupo_etario, descripcion, total_muertes,
+        CASE 
+            WHEN mas_frecuentes <= 5 THEN '5 más frecuentes'
+            WHEN menos_frecuentes <= 5 THEN '5 menos frecuentes'
+        END AS Frecuencia
+    FROM frecuencia_defunciones
+    WHERE mas_frecuentes <= 5 OR menos_frecuentes <= 5
+    ORDER BY 
+        CASE WHEN grupo_etario = '0-14' THEN 1
+             WHEN grupo_etario = '15-34' THEN 2
+             WHEN grupo_etario = '35-54' THEN 3
+             WHEN grupo_etario = '55-74' THEN 4
+             ELSE 5 END, 
+        sexo ASC, total_muertes DESC;
+"""
 
- """
-
-reporte_iii = dd.query(consulta_iii).df()
-
+reporte_iii = dd.sql(consulta_iii).df()
 
 #%% REPORTE iv
 
@@ -406,4 +429,5 @@ consulta_v = """
 
 
 reporte_v = dd.query(consulta_v).df()
+
 
