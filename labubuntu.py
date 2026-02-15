@@ -490,5 +490,39 @@ ax.legend()
 
 plt.show()
 
+#%% GRAFICO ii
 
+#%% GRAFICO iii
 
+tasa_mortalidad_2022 = """
+                SELECT
+                    CASE
+                        WHEN Provincia LIKE 'Tierra del Fuego%' THEN 'Tierra del Fuego'
+                        WHEN Provincia LIKE 'Ciudad Autónoma%' THEN 'CABA'
+                        WHEN Provincia = 'Caba' THEN 'CABA'
+                        ELSE Provincia
+                    END AS "Nombre de la provincia",
+                    SUM("Tasa de mortalidad") AS "Tasa total"
+                FROM reporte_iv
+                GROUP BY "Nombre de la provincia"
+                ORDER BY "Tasa total" ASC;
+            """
+
+tasas = dd.sql(tasa_mortalidad_2022).df()
+
+fig, ax = plt.subplots() 
+x_labels = tasas["Nombre de la provincia"]
+y_valores = tasas["Tasa total"] 
+x = np.arange(len(x_labels))
+
+ax.bar(x, y_valores, color='steelblue', label='Tasa 2022')
+
+ax.set_title('Tasa de mortalidad por provincia (Año 2022)')
+ax.set_xlabel('Provincias')
+ax.set_xticks(x)
+ax.set_xticklabels(x_labels, rotation=60, ha="right")
+ax.set_ylabel('Tasa de mortalidad') # Cada mil habitantes
+
+ax.legend()
+
+plt.show()
