@@ -332,9 +332,9 @@ reporte_ii = dd.sql(consulta_ii).df()
 consulta_iii = """
     WITH frecuencia_defunciones AS
         (SELECT "Sexo", "Grupo etario", "Descripción", SUM("Cantidad") as "Total de muertes",
-            -- se numeran las mas frecuentes
+            -- Se numeran las mas frecuentes
             ROW_NUMBER() OVER(PARTITION BY "Sexo", "Grupo etario" ORDER BY SUM("Cantidad") DESC) as mas_frecuentes,
-            -- y aca las menos frecuentes
+            -- Y acá las menos frecuentes
             ROW_NUMBER() OVER(PARTITION BY "Sexo", "Grupo etario" ORDER BY SUM("Cantidad") ASC) as menos_frecuentes
         FROM df_defunciones
         WHERE "Sexo" IS NOT NULL AND "Grupo etario" IS NOT NULL
@@ -355,7 +355,7 @@ consulta_iii = """
              WHEN "Grupo etario" = '55-74' THEN 4
              ELSE 5 END, 
         "Sexo" ASC, "Total de muertes" DESC;
-"""
+               """
 
 reporte_iii = dd.sql(consulta_iii).df()
 
@@ -363,14 +363,14 @@ reporte_iii = dd.sql(consulta_iii).df()
 
 # iv)
 consulta_iv = """
-    -- aca hay q agrupar las defunciones para que no se dupliquen dsp del join
+    -- Agrupación de las defunciones
     WITH defunciones_agrupadas AS 
        (SELECT "Provincia ID", "Grupo etario", SUM(Cantidad) AS "Muertes totales"
         FROM df_defunciones
         WHERE año = 2022
         GROUP BY "Provincia ID", "Grupo etario"),
        
-    -- dsp se agrupan a todos los habitantes x prov y grupo etario sin discriminar sexo ni cobertura
+    -- Agrupación de habitantes por provincia y grupo etario (sin tener en cuenta sexo y cobertura)
     habitantes_agrupados AS
        (SELECT "Provincia ID", "Grupo etario", SUM(Cantidad) AS "Población total"
         FROM df_habitantes
@@ -385,7 +385,7 @@ consulta_iv = """
     INNER JOIN df_provincias p 
         ON h."Provincia ID" = p.ID
     ORDER BY p.Nombre, h."Grupo etario"
-            """
+              """
 
 reporte_iv = dd.sql(consulta_iv).df()
 
@@ -403,3 +403,4 @@ consulta_v = """
  """
 
 reporte_v = dd.query(consulta_v).df()
+
