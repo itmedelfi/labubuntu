@@ -490,7 +490,136 @@ ax.legend()
 
 plt.show()
 
-#%% GRAFICO ii
+#%% GRAFICO ii version 1
+
+defunciones_por_anio = """
+                SELECT Descripción, Año, SUM(cantidad) AS Cantidad
+                FROM df_defunciones
+                GROUP BY Año, Descripción
+                ORDER BY Descripción, Año;
+            """
+
+dpa = dd.query(defunciones_por_anio).df()
+
+# Primero se identifican las 10 categorías con mayor cantidad de muertes totales
+agrupar = dpa.groupby('Descripción')['Cantidad'].sum()
+# agrupa por descripcion y suma las cantidades
+
+ordenado = agrupar.sort_values(ascending=False)
+# ordena de mayor a menor
+
+primeros_10 = ordenado.head(10)
+# toma los primeros 10
+
+diez_mayores_categorias = primeros_10.index.tolist()
+# se pasan los primeros 10 a una lista
+
+# Segundo se separa en dos: las 10 primeras y el resto
+df_10_primeras = dpa[dpa['Descripción'].isin(diez_mayores_categorias)]
+df_otras = dpa[~dpa['Descripción'].isin(diez_mayores_categorias)]
+
+# Tercero agrupamos "las otras causas" por año para tener solo una linea de "otras causas"
+otras_agrupadas = df_otras.groupby('Año')['Cantidad'].sum().reset_index()
+otras_agrupadas['Descripción'] = 'Otras causas'
+
+
+fig, ax = plt.subplots()
+
+# Graficamos cada una de las 10 principales
+for categoria in diez_mayores_categorias:
+    subset = df_10_primeras[df_10_primeras['Descripción'] == categoria]
+    ax.plot(subset['Año'], subset['Cantidad'], marker='o', label=categoria)
+
+# Graficamos la línea "otras" con diferente estlo para diferenciar
+ax.plot(otras_agrupadas['Año'], otras_agrupadas['Cantidad'], 
+        marker='s', linestyle='--', color='gray', label='Otras categorías')
+
+ax.set_title('Defunciones por categoría')
+ax.set_xlabel('Año')
+ax.set_ylabel('Cantidad de defunciones')
+
+# Como los años son muy largos y quedarian amontonados, se optó por tomar los ultimos dos dígitos
+
+anios_completos = list(range(2005, 2023))
+# lista de años del 2005 al 2022 inclusive
+
+anios_cortos = [str(anio)[2:] for anio in anios_completos]
+# nos salteamos los primeros dos digitos del año
+
+ax.set_xticks(anios_completos)
+ax.set_xticklabels(anios_cortos)
+
+ax.legend(title="Categorías", bbox_to_anchor=(1.05, 1), loc='upper left')
+
+plt.tight_layout()
+plt.show()
+
+#%% GRAFICO ii version 2
+
+defunciones_por_anio = """
+                SELECT Descripción, Año, SUM(cantidad) AS Cantidad
+                FROM df_defunciones
+                GROUP BY Año, Descripción
+                ORDER BY Descripción, Año;
+            """
+
+dpa = dd.query(defunciones_por_anio).df()
+
+# Primero se identifican las categorías con mayor cantidad de muertes totales
+agrupar = dpa.groupby('Descripción')['Cantidad'].sum()
+# agrupa por descripcion y suma las cantidades
+
+ordenar = agrupar.sort_values(ascending=False)
+# ordena de mayor a menor
+
+# Segundo se crea una lista del Top 5 sin contar covid todavia para no duplicarlo
+top_5_general = ordenar.head(5).index.tolist()
+
+# Tercero se arman los grupos finales para cada grafico
+# Se opto por usar un conjunto (set) para evitar que si COVID ya estaba en el top 5, aparezca dos veces
+grupo_principal = list(set(top_5_general + ['COVID-19']))
+
+resto_categorias = [c for c in ordenar.index if c not in grupo_principal]
+# el resto son todas las categorías que no estan en el grupo_principal
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(22, 9))
+
+# Como los años son muy largos y quedarian amontonados, se optó por tomar los ultimos dos dígitos
+
+anios_completos = list(range(2005, 2023))
+# lista de años del 2005 al 2022 inclusive
+
+anios_cortos = [str(anio)[2:] for anio in anios_completos]
+# nos salteamos los primeros dos digitos del año
+
+# subplot 1, categorias de mayor impacto + covid
+for categoria in grupo_principal:
+    subset = dpa[dpa['Descripción'] == categoria]
+    ax1.plot(subset['Año'], subset['Cantidad'], marker='o', linewidth=2.5, label=categoria)
+
+ax1.set_title('Defunciones por categoria principales', fontsize=14, fontweight='bold')
+ax1.set_ylabel('Cantidad de defunciones')
+ax1.set_xlabel('Año')
+ax1.set_xticks(anios_completos)
+ax1.set_xticklabels(anios_cortos)
+ax1.legend(title="Principales", bbox_to_anchor=(0.5, -0.15), loc='upper center', ncol=2)
+ax1.grid(True, linestyle=':', alpha=0.6)
+
+# subplot 2, otras categorias
+for categoria in resto_categorias:
+    subset = dpa[dpa['Descripción'] == categoria]
+    ax2.plot(subset['Año'], subset['Cantidad'], marker='.', linewidth=1.5, label=categoria)
+
+ax2.set_title('Defunciones por categoria secundarias', fontsize=14, fontweight='bold')
+ax2.set_ylabel('Cantidad de defunciones')
+ax2.set_xlabel('Año')
+ax2.set_xticks(anios_completos)
+ax2.set_xticklabels(anios_cortos)
+ax2.legend(title="Otras causas", bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=8)
+ax2.grid(True, linestyle=':', alpha=0.6)
+
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+plt.show()
 
 #%% GRAFICO iii
 
@@ -662,3 +791,4 @@ ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 ax.legend()
+
