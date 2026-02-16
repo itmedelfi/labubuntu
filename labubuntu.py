@@ -399,6 +399,14 @@ reporte_iii = dd.sql(consulta_iii).df()
 #%% REPORTE iv
 
 # iv)
+# Se calcula la tasa de mortalidad por provincia y grupo etario para el año 2022, normalizada cada 1000 habitantes
+# Primero se definen dos tablas temporales:
+# defunciones_agrupadas: agrupa el total de muertes por jurisdicción y edad (para el año 2022)
+# habitantes_agrupados: obtiene la población total a partir del censo correspondiente
+# Luego, se realiza un INNER JOIN entre ambas tablas utilizando una clave compuesta (Provincia ID y Grupo etario),
+# asegurando que cada total de muertes se divida por su población correspondiente
+# Por ultimo, se integra la tabla df_provincias para reemplazar los IDs por nombres legibles
+# El cálculo final (muertes * 1000 / población) permite comparar la mortalidad entre provincias con poblaciones de tamaños muy diferentes
 consulta_iv = """
                 WITH defunciones_agrupadas AS 
                     (SELECT "Provincia ID", "Grupo etario", 
@@ -796,4 +804,5 @@ ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 ax.legend()
+
 
