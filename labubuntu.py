@@ -494,35 +494,114 @@ plt.show()
 
 #%% GRAFICO iii
 
-tasa_mortalidad_2022 = """
+# Consulta para la tasa total
+consulta_tasa_total = """
+                WITH muertes_prov AS
+                    (SELECT "Provincia ID", SUM(Cantidad) AS muertes
+                     FROM df_defunciones
+                     WHERE año = 2022
+                     GROUP BY "Provincia ID"),
+
+                poblacion_prov AS
+                    (SELECT "Provincia ID", SUM(Cantidad) AS poblacion
+                     FROM df_habitantes
+                     WHERE "Año del censo" = 2022
+                     GROUP BY "Provincia ID")
+
                 SELECT
-                    CASE
-                        WHEN Provincia LIKE 'Tierra del Fuego%' THEN 'Tierra del Fuego'
-                        WHEN Provincia LIKE 'Ciudad Autónoma%' THEN 'CABA'
-                        WHEN Provincia = 'Caba' THEN 'CABA'
-                        ELSE Provincia
-                    END AS "Nombre de la provincia",
-                    SUM("Tasa de mortalidad") AS "Tasa total"
-                FROM reporte_iv
-                GROUP BY "Nombre de la provincia"
-                ORDER BY "Tasa total" ASC;
+                (m.muertes * 1000.0 / pbl.poblacion) AS tasa_mortalidad_total,
+                    CASE 
+                        WHEN p.Nombre LIKE 'Tierra del Fuego%' 
+                            THEN 'Tierra del Fuego'
+                        WHEN p.Nombre = 'Ciudad Autónoma de Buenos Aires'
+                            THEN 'CABA'
+                        ELSE p.Nombre
+                        END AS provincia
+                FROM muertes_prov AS m
+                JOIN poblacion_prov AS pbl
+                    ON m."Provincia ID" = pbl."Provincia ID"
+                JOIN df_provincias AS p
+                    ON m."Provincia ID" = p.ID
+                ORDER BY tasa_mortalidad_total ASC;
             """
 
-tasas = dd.sql(tasa_mortalidad_2022).df()
+# Consulta por edad
+consulta_edades = """
+                WITH muertes_prov_edad AS
+                    (SELECT "Provincia ID", "Grupo etario", SUM(Cantidad) AS muertes
+                    FROM df_defunciones
+                    WHERE año = 2022 AND "Grupo etario" IS NOT NULL
+                    GROUP BY "Provincia ID", "Grupo etario"),
+                    
+                poblacion_prov AS
+                    (SELECT "Provincia ID", SUM(Cantidad) AS poblacion
+                     FROM df_habitantes
+                     WHERE "Año del censo" = 2022
+                     GROUP BY "Provincia ID")
+                    
+                SELECT m."Grupo etario", (m.muertes * 1000.0 / pbl.poblacion) AS edades,
+                    CASE 
+                        WHEN p.Nombre LIKE 'Tierra del Fuego%'
+                            THEN 'Tierra del Fuego'
+                        WHEN p.Nombre = 'Ciudad Autónoma de Buenos Aires'
+                            THEN 'CABA'
+                        ELSE p.Nombre
+                        END AS provincia
+                FROM muertes_prov_edad AS m
+                JOIN poblacion_prov AS pbl
+                    ON m."Provincia ID" = pbl."Provincia ID"
+                JOIN df_provincias AS p
+                    ON m."Provincia ID" = p.ID
+            """
 
-fig, ax = plt.subplots() 
-x_labels = tasas["Nombre de la provincia"]
-y_valores = tasas["Tasa total"] 
-x = np.arange(len(x_labels))
+df_tasa_total = dd.sql(consulta_tasa_total).df()
+df_edades = dd.sql(consulta_edades).df()
 
-ax.bar(x, y_valores, color='steelblue', label='Tasa 2022')
+# Grafico con 2 subplots
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 8))
 
-ax.set_title('Tasa de mortalidad por provincia (Año 2022)')
-ax.set_xlabel('Provincias')
-ax.set_xticks(x)
-ax.set_xticklabels(x_labels, rotation=60, ha="right")
-ax.set_ylabel('Tasa de mortalidad') # Cada mil habitantes
+# Grafico 1
+# Convertimos a lista
+provincias = df_tasa_total["provincia"].tolist()
+tasas = df_tasa_total["tasa_mortalidad_total"].tolist()
 
-ax.legend()
+ax1.bar(provincias, tasas, color='steelblue', edgecolor='black', alpha=0.8)
+ax1.set_title('Mortalidad total por Provincia')
+ax1.set_ylabel('Muertes cada 1000 habitantes')
+ax1.set_xticklabels(provincias, rotation=60, ha='right')
 
+# Grafico 2
+# Definimos los grupos etarios y los ordenamos
+grupos_etarios = ['0-14', '15-34', '35-54', '55-74', '75+']
+piso = np.zeros(len(provincias))
+# Esto sirve para que empiecen todas las barras desde el "piso" y no se apilen una arriba de la otra
+
+# Iteramos por cada grupo etario
+for grupo in grupos_etarios:
+
+    valores_grupo = []
+    for p in provincias:
+        # Buscamos el valor en el DF para esa provincia y ese grupo
+        dato = df_edades[(df_edades['provincia'] == p) & (df_edades['Grupo etario'] == grupo)]
+        
+        if not dato.empty:
+            valores_grupo.append(dato['edades'].values[0])
+        else:
+            valores_grupo.append(0)
+    
+    # Convertimos la lista a un array con numpy para poder sumar mas facil
+    valores_array = np.array(valores_grupo)
+    
+    ax2.bar(provincias, valores_array, bottom=piso, label=grupo, edgecolor='white', linewidth=0.5)
+    
+    # Actualizamos el piso
+    piso += valores_array
+
+ax2.set_title('Mortalidad por Provincia', fontsize=14)
+ax2.set_ylabel('Mortalidad por edad')
+ax2.set_xticklabels(provincias, rotation=60, ha='right')
+ax2.legend(title="Grupo Etario", bbox_to_anchor=(1.05, 1), loc='upper left')
+ax2.grid(axis='y', linestyle='--', alpha=0.5)
+
+plt.tight_layout()
 plt.show()
