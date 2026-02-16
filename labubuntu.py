@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 #%% DATASETS
 
 # Carga de archivos
-carpeta = ''
+carpeta = r'C:\Users\Delfina\Desktop\EXACTAS\LABO_DATOS\tps\tp1'
 
 censo2010               = pd.read_excel(carpeta + "/censo2010.xlsX", skiprows=14)
 censo2022               = pd.read_excel(carpeta + "/censo2022.xlsX", skiprows=14)
@@ -296,7 +296,7 @@ unir_provincias_habitantes = """
                 h."Grupo etario", h.Cobertura
                 FROM df_provincias AS p
                 INNER JOIN df_habitantes AS h
-                ON p.ID == h."Provincia ID;"
+                ON p.ID == h."Provincia ID";
               """
 
 provincia_x_habitantes = dd.query(unir_provincias_habitantes).df()
@@ -323,7 +323,7 @@ consulta_i = """
                            AS "Habitantes sin cobertura en 2022"
                 FROM df_habitantes
                 GROUP BY Provincia, "Grupo etario"
-                ORDER BY Provincia, "Grupo etario;"
+                ORDER BY Provincia, "Grupo etario";
             """
 
 
@@ -349,7 +349,7 @@ consulta_ii = """
                     WHEN e."Financiamiento" LIKE 'Privad%' THEN 'Privado'
                     ELSE 'Estatal'
                     END
-                ORDER BY p."Nombre", "Financiamiento;"
+                ORDER BY p."Nombre", "Financiamiento";
             """
 
 
@@ -418,7 +418,7 @@ consulta_iv = """
                     AND h."Grupo etario" = d."Grupo etario"
                 INNER JOIN df_provincias p 
                     ON h."Provincia ID" = p.ID
-                ORDER BY p.Nombre, h."Grupo etario;"
+                ORDER BY p.Nombre, h."Grupo etario";
             """
 
 
@@ -638,7 +638,7 @@ consulta_tasa_total = """
                      GROUP BY "Provincia ID")
 
                 SELECT
-                (m.muertes * 1000.0 / pbl.poblacion) AS tasa_mortalidad_total,
+                (m.muertes * 1000.0 / pbl.poblacion) AS tasa_mortalidad_total, -- Muertes cada mil hab
                     CASE 
                         WHEN p.Nombre LIKE 'Tierra del Fuego%' 
                             THEN 'Tierra del Fuego'
@@ -656,19 +656,19 @@ consulta_tasa_total = """
 
 # Consulta por edad
 consulta_edades = """
-                WITH muertes_prov_edad AS
+                WITH muertes_prov_edad AS -- defuncioens en 2022 separadas x prov y grupo et
                     (SELECT "Provincia ID", "Grupo etario", SUM(Cantidad) AS muertes
                     FROM df_defunciones
                     WHERE año = 2022 AND "Grupo etario" IS NOT NULL
                     GROUP BY "Provincia ID", "Grupo etario"),
                     
                 poblacion_prov AS
-                    (SELECT "Provincia ID", SUM(Cantidad) AS poblacion
+                     (SELECT "Provincia ID", SUM(Cantidad) AS poblacion
                      FROM df_habitantes
                      WHERE "Año del censo" = 2022
                      GROUP BY "Provincia ID")
                     
-                SELECT m."Grupo etario", (m.muertes * 1000.0 / pbl.poblacion) AS edades,
+                SELECT m."Grupo etario", (m.muertes * 1000.0 / pbl.poblacion) AS tasa_mortalidad,
                     CASE 
                         WHEN p.Nombre LIKE 'Tierra del Fuego%'
                             THEN 'Tierra del Fuego'
@@ -683,8 +683,8 @@ consulta_edades = """
                     ON m."Provincia ID" = p.ID
             """
 
-df_tasa_total = dd.sql(consulta_tasa_total).df()
-df_edades = dd.sql(consulta_edades).df()
+df_tasa_total = dd.sql(consulta_tasa_total).df() # Tasa de mortalidad total
+df_edades = dd.sql(consulta_edades).df() # Tasa de mortalidad total separada por edades
 
 # Grafico con 2 subplots
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 8))
@@ -695,26 +695,27 @@ provincias = df_tasa_total["provincia"].tolist()
 tasas = df_tasa_total["tasa_mortalidad_total"].tolist()
 
 ax1.bar(provincias, tasas, color='steelblue', edgecolor='black', alpha=0.8)
-ax1.set_title('Mortalidad total por Provincia')
+ax1.set_title('Mortalidad total por Provincia', fontsize=14, fontweight='bold')
 ax1.set_ylabel('Muertes cada 1000 habitantes')
 ax1.set_xticklabels(provincias, rotation=60, ha='right')
 
 # Grafico 2
-# Definimos los grupos etarios y los ordenamos
+# Definimos los grupos etarios ordenados
 grupos_etarios = ['0-14', '15-34', '35-54', '55-74', '75+']
 piso = np.zeros(len(provincias))
-# Esto sirve para que empiecen todas las barras desde el "piso" y no se apilen una arriba de la otra
+# Esto sirve para que no se sobrepongan las barras por sobre la otra,
+# que cada una empiece por arriba del rango etario anterior
 
 # Iteramos por cada grupo etario
 for grupo in grupos_etarios:
 
     valores_grupo = []
     for p in provincias:
-        # Buscamos el valor en el DF para esa provincia y ese grupo
+        # Buscamos el valor en el df para esa provincia y ese grupo
         dato = df_edades[(df_edades['provincia'] == p) & (df_edades['Grupo etario'] == grupo)]
         
         if not dato.empty:
-            valores_grupo.append(dato['edades'].values[0])
+            valores_grupo.append(dato['tasa_mortalidad'].values[0])
         else:
             valores_grupo.append(0)
     
@@ -726,11 +727,9 @@ for grupo in grupos_etarios:
     # Actualizamos el piso
     piso += valores_array
 
-ax2.set_title('Mortalidad por Provincia', fontsize=14)
+ax2.set_title('Mortalidad total por provincia y grupo etario', fontsize=14, fontweight='bold')
 ax2.set_ylabel('Mortalidad por edad')
 ax2.set_xticklabels(provincias, rotation=60, ha='right')
-ax2.legend(title="Grupo Etario", bbox_to_anchor=(1.05, 1), loc='upper left')
-ax2.grid(axis='y', linestyle='--', alpha=0.5)
 
 plt.tight_layout()
 plt.show()
@@ -749,23 +748,23 @@ defunciones_por_ge_sexo = dd.query(consulta_g_iv1).df()
 
 #Separamos la columna "Sexo" en 2 columnas distintas ("Femenino" y "Masculino"), en cada celda de estas columnas se muestra la cantidad de Gente de ese Sexo del GE dedo por la columna de "Grupo etario"
 consulta_g_iv2 = """ 
-    SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,nb.cantidad AS "No binario",
-    FROM
-    (SELECT DISTINCT GE FROM defunciones_por_ge_sexo) AS ge
-    LEFT JOIN
-        (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'F') AS f
-    ON ge.GE = f.GE
-        OR (ge.GE IS NULL AND f.GE IS NULL)
-    LEFT JOIN
-        (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'M') m
-    ON ge.GE = m.GE
-        OR (ge.GE IS NULL AND m.GE IS NULL)
-    LEFT JOIN
-        (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo IS NULL) nb
-    ON ge.GE = nb.GE
-        OR (ge.GE IS NULL AND nb.GE IS NULL)
-    ORDER BY ge.GE
-    """
+                SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,nb.cantidad AS "No binario",
+                FROM
+                    (SELECT DISTINCT GE FROM defunciones_por_ge_sexo) AS ge
+                LEFT JOIN
+                    (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'F') AS f
+                        ON ge.GE = f.GE
+                        OR (ge.GE IS NULL AND f.GE IS NULL)
+                LEFT JOIN
+                    (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'M') m
+                        ON ge.GE = m.GE
+                        OR (ge.GE IS NULL AND m.GE IS NULL)
+                LEFT JOIN
+                    (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo IS NULL) nb
+                        ON ge.GE = nb.GE
+                        OR (ge.GE IS NULL AND nb.GE IS NULL)
+                ORDER BY ge.GE
+            """
 
 defunciones_ge_sexo = dd.query(consulta_g_iv2).df()
 
@@ -791,4 +790,3 @@ ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 ax.legend()
-
