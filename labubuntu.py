@@ -605,3 +605,60 @@ ax2.grid(axis='y', linestyle='--', alpha=0.5)
 
 plt.tight_layout()
 plt.show()
+
+#%% GRAFICO iv
+
+#Ordenamos la tabla para que las claves sean solo Sexo y Grupo Etario, el resto de claves las eliminamos y sumamos las cantidades
+consulta_g_iv1 = """
+                SELECT "Grupo etario" AS GE, Sexo, SUM(cantidad) AS Cantidad
+                FROM df_defunciones
+                GROUP BY Sexo, "Grupo etario"
+                ORDER BY "Grupo etario", Sexo
+            """;
+
+defunciones_por_ge_sexo = dd.query(consulta_g_iv1).df()
+
+#Separamos la columna "Sexo" en 2 columnas distintas ("Femenino" y "Masculino"), en cada celda de estas columnas se muestra la cantidad de Gente de ese Sexo del GE dedo por la columna de "Grupo etario"
+consulta_g_iv2 = """ 
+    SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,nb.cantidad AS "No binario",
+    FROM
+    (SELECT DISTINCT GE FROM defunciones_por_ge_sexo) AS ge
+    LEFT JOIN
+        (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'F') AS f
+    ON ge.GE = f.GE
+        OR (ge.GE IS NULL AND f.GE IS NULL)
+    LEFT JOIN
+        (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'M') m
+    ON ge.GE = m.GE
+        OR (ge.GE IS NULL AND m.GE IS NULL)
+    LEFT JOIN
+        (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo IS NULL) nb
+    ON ge.GE = nb.GE
+        OR (ge.GE IS NULL AND nb.GE IS NULL)
+    ORDER BY ge.GE
+    """
+
+defunciones_ge_sexo = dd.query(consulta_g_iv2).df()
+
+#Armamos el gráfico de barras
+fig, ax = plt.subplots() 
+
+labels = defunciones_ge_sexo['Grupo Etario'].fillna('Sin dato')
+
+x = np.arange(len(labels))
+f = defunciones_ge_sexo['Femenino']
+m = defunciones_ge_sexo['Masculino']
+nan = defunciones_ge_sexo['No binario']
+
+width = 0.25
+
+ax.bar(x - width, f, width=width, label='Mujeres') 
+ax.bar(x,          m, width=width, label='Hombres')
+ax.bar(x + width, nan, width=width, label='Sin Sexo Asignado')
+
+ax.set_title('Defunciones por Grupo Etario y Sexo') 
+ax.set_xlabel('Grupo Etario') 
+ax.set_xticks(x)
+ax.set_xticklabels(labels)
+ax.set_ylabel('Cantidad de defunciones (en millones)') 
+ax.legend()
