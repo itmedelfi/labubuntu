@@ -357,6 +357,12 @@ reporte_ii = dd.sql(consulta_ii).df()
 
 #%% REPORTE iii
 
+# Se crea una tabla temporal, frecuencia_defunciones y se utiliza ROW_NUMBER para enumerar las filas,
+# el cual asigna un numero unico a cada fila dentro de un grupo especifico
+# Dentro del ROW_NUMBER hay un OVER que se puede dividir en dos partes:
+# primero un PARTITION BY que hace que se reinicie el contador cada vez que se cambia de sexo o grupo etario
+# despues hay un ORDER BY que va ordenando, dentro de las particiones, las causas de muerte de mayor a menor
+# Esto se usa dos veces, una para las defunciones mas frecunetes y otra para las menos
 # iii)
 consulta_iii = """
                 WITH frecuencia_defunciones AS
@@ -790,3 +796,4 @@ ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 ax.legend()
+
