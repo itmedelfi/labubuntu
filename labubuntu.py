@@ -163,7 +163,7 @@ consultaSQL = """
                     GROUP BY c.categorias, d.grupo_edad, d.Sexo, d.anio, d.jurisdiccion_de_residencia_id;
             """
 
-df_defunciones = dd.sql(consultaSQL).df()
+df_defunciones = dd.query(consultaSQL).df()
 df_defunciones.to_csv("df_defunciones.csv", index = False)
 #hay sexos como None
 #tambien hay grupo_etarios como None
@@ -176,7 +176,7 @@ consultaSQL = """
                 ORDER BY id;
               """
             
-df_provincias = dd.sql(consultaSQL).df()
+df_provincias = dd.query(consultaSQL).df()
 df_provincias.to_csv("df_provincias.csv", index = False)
 
 #aca aun tenemos que ver que hacemos con los nan y los sin informacion
@@ -191,7 +191,7 @@ consultaSQL = """
                 FROM instituciones_de_salud;
               """
             
-df_departamentos = dd.sql(consultaSQL).df()
+df_departamentos = dd.query(consultaSQL).df()
 
 df_departamentos["Nombre"] = df_departamentos["Nombre"].str.title()
     
@@ -268,7 +268,7 @@ consultaSQL = """
 #Aca pase las columnas mujer y varon a una sola columna como sexo, si no, hay que cambiar el DER me parece, tambien use UNION ALL 
 #que creo que no lo vimos en clase
 #esta tabla funciona bajo el supuesto de que en df_censo_2010/2022 cambie el nombre de CABA, tierra del fuego y rio negro
-df_habitantes = dd.sql(consultaSQL).df()
+df_habitantes = dd.query(consultaSQL).df()
 df_habitantes.to_csv("df_habitantes.csv", index = False)
 
 #%% Tabla de establecimientos_medicos
@@ -284,7 +284,7 @@ consultaSQL = """
                 FROM instituciones_de_salud;
             """
 
-df_establecimientos_medicos = dd.sql(consultaSQL).df()
+df_establecimientos_medicos = dd.query(consultaSQL).df()
 df_establecimientos_medicos["Nombre"] = df_establecimientos_medicos["Nombre"].str.title()
 df_establecimientos_medicos.to_csv("df_establecimientos_medicos.csv", index = False)
 
@@ -292,7 +292,7 @@ df_establecimientos_medicos.to_csv("df_establecimientos_medicos.csv", index = Fa
 
 #la tabla provincia_x_habitantes es igual a la tabla habitantes solo que en vez del id de la provincia tiene el nombre
 unir_provincias_habitantes = """
-                SELECT p.Nombre AS "Nombre de la provincia", h.Sexo, h."Año del censo", h.Cantidad,
+                SELECT p.Nombre AS "Provincia", h.Sexo, h."Año del censo", h.Cantidad,
                 h."Grupo etario", h.Cobertura
                 FROM df_provincias AS p
                 INNER JOIN df_habitantes AS h
@@ -303,9 +303,16 @@ provincia_x_habitantes = dd.query(unir_provincias_habitantes).df()
 
 #%% REPORTE i
 
+""" Vamos a usar la tabla provincia_x_habitantes pues nos piden el nombre y no el ID de las provincias
+    Seleccionamos las columnas de la tabla que necesitamos
+    Luego armamos las que nos faltan:
+        Primero armamos las columnas del 2010:
+            donde separamos entre habitantes con o sin cobertura y vamos sumando los valores de la columna Cantidad según corresponda
+        Luego hacemos lo mismo con los datos del censo de 2022
+        """
 # i)
 consulta_i = """ 
-                SELECT "Provincia ID" AS Provincia, "Grupo etario", 
+                SELECT Provincia, "Grupo etario", 
                        -- Columnas para el año 2010
                        SUM(CASE WHEN "Año del censo" = 2010 AND (Cobertura = 'Privada' OR Cobertura = 'Pública') 
                            THEN cantidad ELSE 0 END) 
@@ -321,16 +328,21 @@ consulta_i = """
                        SUM(CASE WHEN "Año del censo" = 2022 AND Cobertura = 'No tiene cobertura social' 
                            THEN cantidad ELSE 0 END) 
                            AS "Habitantes sin cobertura en 2022"
-                FROM df_habitantes
+                FROM provincia_x_habitantes
                 GROUP BY Provincia, "Grupo etario"
                 ORDER BY Provincia, "Grupo etario";
             """
 
-
-reporte_i = dd.sql(consulta_i).df()
+reporte_i = dd.query(consulta_i).df()
 
 #%% REPORTE ii
 
+""" Vamos a usar las tablas df_departamentos, df_provincias y df_establecimientos_medicos
+    De df_provincia nos qudamos con los nombres de las provincias
+    De df_establecimientos_medicos con el tipo de Financiacion
+    Luego para cada provincia y tipo de financiacion, contamos cuantos establecimientos medicos hay que además tengan terapia intensiva
+    Podemos ver en que provincia esta cada establecimientos medico pues en df_establecimientos_medicos contamos con el id del departamento en el que se encuentra este, al unirlo con la tabla df_departamentos , para cada departamento tenemos el id de la provincia y luego lo unimos a la tabla df_provincias y listo
+    """
 # ii)
 consulta_ii = """
                 SELECT p."Nombre",
@@ -353,7 +365,7 @@ consulta_ii = """
             """
 
 
-reporte_ii = dd.sql(consulta_ii).df()
+reporte_ii = dd.query(consulta_ii).df()
 
 #%% REPORTE iii
 
@@ -394,7 +406,7 @@ consulta_iii = """
             """
 
 
-reporte_iii = dd.sql(consulta_iii).df()
+reporte_iii = dd.query(consulta_iii).df()
 
 #%% REPORTE iv
 
@@ -436,10 +448,13 @@ consulta_iv = """
             """
 
 
-reporte_iv = dd.sql(consulta_iv).df()
+reporte_iv = dd.query(consulta_iv).df()
 
 #%% REPORTE v
 
+""" Usamos la tabla df_defunciones, de la cual nos vamos a guardar la columna Descripcion
+    Para cada enfermedad, al valor de la columna Cantidad cuando el valor de la columna Año es 2022, le restamos el valor de Cantidad para el Año 2010.
+    Esta información se guarda en una columna nueva llamda Diferencia de defunciones"""
 # v)
 consulta_v = """
                 SELECT Descripción,
@@ -460,24 +475,24 @@ consulta_totales = """
                 SELECT 
                     "Año del censo",
                     CASE
-                        WHEN "Nombre de la provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                        WHEN "Provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
                             THEN 'Tierra del Fuego'
-                        WHEN "Nombre de la provincia" = 'Ciudad Autónoma de Buenos Aires'
+                        WHEN "Provincia" = 'Ciudad Autónoma de Buenos Aires'
                             THEN 'CABA'
-                        ELSE "Nombre de la provincia"
-                        END AS "Nombre de la provincia",
+                        ELSE "Provincia"
+                        END AS "Provincia",
                     SUM(Cantidad) AS "Total habitantes" 
                 FROM provincia_x_habitantes
                 GROUP BY 
                     "Año del censo",
                     CASE
-                        WHEN "Nombre de la provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                        WHEN "Provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
                             THEN 'Tierra del Fuego'
-                        WHEN "Nombre de la provincia" = 'Ciudad Autónoma de Buenos Aires'
+                        WHEN "Provincia" = 'Ciudad Autónoma de Buenos Aires'
                             THEN 'CABA'
-                        ELSE "Nombre de la provincia"
+                        ELSE "Provincia"
                         END
-                ORDER BY "Nombre de la provincia", "Año del censo";
+                ORDER BY "Provincia", "Año del censo";
             """
 
 totales = dd.query(consulta_totales).df()
@@ -497,7 +512,7 @@ ax.bar(x + width/2, A_2022, width=width, label='Año 2022')
 ax.set_title('Cantidad de habitantes por provincia')
 ax.set_xlabel('Provincias')
 ax.set_xticks(x)
-ax.set_xticklabels(df_2010["Nombre de la provincia"], rotation=60, ha="right")
+ax.set_xticklabels(df_2010["Provincia"], rotation=60, ha="right")
 ax.set_ylabel('Habitantes')
 
 ax.legend()
@@ -697,8 +712,8 @@ consulta_edades = """
                     ON m."Provincia ID" = p.ID
             """
 
-df_tasa_total = dd.sql(consulta_tasa_total).df() # Tasa de mortalidad total
-df_edades = dd.sql(consulta_edades).df() # Tasa de mortalidad total separada por edades
+df_tasa_total = dd.query(consulta_tasa_total).df() # Tasa de mortalidad total
+df_edades = dd.query(consulta_edades).df() # Tasa de mortalidad total separada por edades
 
 # Grafico con 2 subplots
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 8))
@@ -761,22 +776,23 @@ consulta_g_iv1 = """
 defunciones_por_ge_sexo = dd.query(consulta_g_iv1).df()
 
 #Separamos la columna "Sexo" en 2 columnas distintas ("Femenino" y "Masculino"), en cada celda de estas columnas se muestra la cantidad de Gente de ese Sexo del GE dedo por la columna de "Grupo etario"
+""" Usamos la tabla defunciones_por_ge_sexo
+    generamos una tabla que tiene cada grupo etario
+    armamos otra tabla f que tiene para cada grupo etario la cantidad de defunciones de sexo femenino
+    unimos la tabla a la que solo tiene grupos etarios, y a la nueva columna la llamamos Femenino
+    hacemos lo analogo para el sexo masculino
+    luego ordenamos por grupo etario
+    """
 consulta_g_iv2 = """ 
-                SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,nb.cantidad AS "No binario",
+                SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,
                 FROM
                     (SELECT DISTINCT GE FROM defunciones_por_ge_sexo) AS ge
-                LEFT JOIN
+                JOIN
                     (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'F') AS f
                         ON ge.GE = f.GE
-                        OR (ge.GE IS NULL AND f.GE IS NULL)
-                LEFT JOIN
+                JOIN
                     (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'M') m
                         ON ge.GE = m.GE
-                        OR (ge.GE IS NULL AND m.GE IS NULL)
-                LEFT JOIN
-                    (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo IS NULL) nb
-                        ON ge.GE = nb.GE
-                        OR (ge.GE IS NULL AND nb.GE IS NULL)
                 ORDER BY ge.GE
             """
 
@@ -785,24 +801,33 @@ defunciones_ge_sexo = dd.query(consulta_g_iv2).df()
 #Armamos el gráfico de barras
 fig, ax = plt.subplots() 
 
-labels = defunciones_ge_sexo['Grupo Etario'].fillna('Sin dato')
+# Guardamos las etiquetas del eje x (grupos etarios)
+labels = defunciones_ge_sexo['Grupo Etario']
 
+# Armamos un arreglo con las posiciones para saber donde estan las barras
+# hay una posición por grupo etario
 x = np.arange(len(labels))
+# Guardamos las cantidades de defunciones de cada sexo
 f = defunciones_ge_sexo['Femenino']
 m = defunciones_ge_sexo['Masculino']
-nan = defunciones_ge_sexo['No binario']
 
-width = 0.25
+width = 0.33
 
+# Dibujamos las barras para cada sexo desplazándolas horizontalmente para que no se superpongan dentro de cada grupo etario
 ax.bar(x - width, f, width=width, label='Mujeres') 
-ax.bar(x,          m, width=width, label='Hombres')
-ax.bar(x + width, nan, width=width, label='Sin Sexo Asignado')
+ax.bar(x + width, m, width=width, label='Hombres')
 
+#Agregamos el titulo 
 ax.set_title('Defunciones por Grupo Etario y Sexo') 
+# Nombramos el eje X
 ax.set_xlabel('Grupo Etario') 
+#indicamos las posiciones y agregamos las etiquetas (grupos etarios) del eje x
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
+# Nombramos el eje X
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
+#Mostramos la leyenda para distinguir cada sexo
 ax.legend()
+
 
 
