@@ -1,7 +1,8 @@
 import pandas as pd
 import duckdb as dd
 import numpy as np
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 #%% DATASETS
 
@@ -140,6 +141,12 @@ df_censo_2022 = pd.DataFrame(lista_final)
 
 #%% Tabla de defunciones
 
+# Se crea el dataframe df_defunciones con las defunciones agregadas por: Categoría de defunción, Año, provincia, Grupo etario 
+# y Sexo. Para ello, se realiza un INNER JOIN entre la tabla derivada del archivo "defunciones.csv"  y la tabla 
+# "categoriasDefunciones.csv", permitiendo agrupar los datos por todas las variables mencionadas y calcular la suma de 
+# defunciones para cada combinación.
+# Además, se filtran los casos en que no tengamos información conclusiva en las categorias de Grupo etario y Sexo.
+
 consultaSQL = """
                 SELECT 
                     c.categorias AS Descripción,
@@ -160,46 +167,61 @@ consultaSQL = """
                     FROM archivo_defunciones AS d
                     INNER JOIN categoriasDefunciones AS c
                     ON c.codigo_def = d.cie10_causa_id
+                    WHERE d.grupo_edad NOT LIKE '06.%' AND d.Sexo IN ('femenino','masculino')
                     GROUP BY c.categorias, d.grupo_edad, d.Sexo, d.anio, d.jurisdiccion_de_residencia_id;
             """
 
-df_defunciones = dd.query(consultaSQL).df()
+df_defunciones = dd.sql(consultaSQL).df()
 df_defunciones.to_csv("df_defunciones.csv", index = False)
-#hay sexos como None
-#tambien hay grupo_etarios como None
+
 
 #%% Tabla de provincias
+
+# Se crea el dataframe df_provincias con las provincias agregadas por: ID de la provincia y su Nombre correspondiente
+# con los datos generados por la tabla de "defunciones.csv", filtrando los registros repetidos y aquellos casos que sean NULL 
+# o no proporcionen información.
 
 consultaSQL = """
                 SELECT DISTINCT jurisdiccion_de_residencia_id AS ID, jurisdicion_residencia_nombre AS Nombre
                 FROM archivo_defunciones
+                WHERE jurisdicion_residencia_nombre IS NOT NULL AND jurisdicion_residencia_nombre <> 'Sin Información'
                 ORDER BY id;
               """
             
-df_provincias = dd.query(consultaSQL).df()
+df_provincias = dd.sql(consultaSQL).df()
 df_provincias.to_csv("df_provincias.csv", index = False)
 
-#aca aun tenemos que ver que hacemos con los nan y los sin informacion
-#ademas, cambie a que todos los nombres de provincias y departamentos tuvieran el nombre en minuscula para que haya continuidad
-#en todas las tablas (tambien lo cambie cuando se hace el df)
-#esta bien que todo sea 'provincia o provincia_id' cuando son jurisdicciones?
-
 #%% Tabla de departamentos
+
+# Se crea el dataframe df_departamentos con los departamentos agregados por: ID del departamento, su Nombre correspondiente
+# y el ID de la provincia a la que pertenecen, con los datos generados por la tabla de "instituciones_de_salud.xlsx".
+# Además, se accede la columna "Nombre" para capitalizar el nombre de los departamentos asegurando consistencia con el 
+# formato del dataframe de provincias.
 
 consultaSQL = """
                 SELECT DISTINCT departamento_id AS "Departamento ID", departamento_nombre AS Nombre, provincia_id AS "Provincia ID"
                 FROM instituciones_de_salud;
               """
             
-df_departamentos = dd.query(consultaSQL).df()
+df_departamentos = dd.sql(consultaSQL).df()
 
 df_departamentos["Nombre"] = df_departamentos["Nombre"].str.title()
     
 df_departamentos.to_csv("df_departamentos.csv", index = False)
-#COMUNA01 tiene dos ID's distintos pero vienen de la misma provincia
 
 
 #%% Tabla de habitantes 
+
+# Se crea el dataframe df_habitantes con los habitantes agregados por: Año del censo en el que fueron registrados, 
+# ID de la provincia en la que residen, condición de Cobertura Social, Grupo etario y su Sexo.
+# Para ello, se unen cuatro tablas mediante un UNION ALL, cada tabla tiene las mismas categorias ya mencionadas pero están 
+# separadas por el Sexo (para pasar de tener dos columnas 'Mujer', 'Varon', a tener una sola 'Sexo', como esta ilustrado en
+# el modelo relacional) y el Año del censo en el que aparecen, informacion proveniente de las tablas creadas por los archivos
+# "censo2010.xlsX" y "censo2022.xlsX"
+# La columna de cobertura social se clasifica en: 'Privada' para quienes tienen obra social o prepaga,
+# 'Pública' para quienes reciben programas estatales y  'No tiene cobertura social' para los demás casos.
+# Además, se realiza un INNER JOIN con `df_provincias` para asignar el ID de la provincia, comparando los nombres de la provincia 
+# en ambas tablas en minúscula y sin espacios.
 
 consultaSQL = """
                 SELECT 
@@ -265,13 +287,16 @@ consultaSQL = """
                 ON LOWER(TRIM(c.provincia)) = LOWER(TRIM(p.nombre));
             """
 
-#Aca pase las columnas mujer y varon a una sola columna como sexo, si no, hay que cambiar el DER me parece, tambien use UNION ALL 
-#que creo que no lo vimos en clase
-#esta tabla funciona bajo el supuesto de que en df_censo_2010/2022 cambie el nombre de CABA, tierra del fuego y rio negro
-df_habitantes = dd.query(consultaSQL).df()
+df_habitantes = dd.sql(consultaSQL).df()
 df_habitantes.to_csv("df_habitantes.csv", index = False)
 
 #%% Tabla de establecimientos_medicos
+
+# Se crea el dataframe df_establecimientos_medicos con los establecimientos agregados por: ID del establecimiento, 
+# su Nombre correspondiente, el ID del departamento al que pertenecen y su origen de financiamiento, con los datos
+# generados por la tabla de "instituciones_de_salud.xlsx".
+# Además, se accede la columna "Nombre" para capitalizar el nombre de los establecimientos asegurando consistencia con el 
+# formato del dataframe de provincias y de departamentos.
 
 consultaSQL = """
                 SELECT DISTINCT 
@@ -284,7 +309,7 @@ consultaSQL = """
                 FROM instituciones_de_salud;
             """
 
-df_establecimientos_medicos = dd.query(consultaSQL).df()
+df_establecimientos_medicos = dd.sql(consultaSQL).df()
 df_establecimientos_medicos["Nombre"] = df_establecimientos_medicos["Nombre"].str.title()
 df_establecimientos_medicos.to_csv("df_establecimientos_medicos.csv", index = False)
 
@@ -471,52 +496,66 @@ reporte_v = dd.query(consulta_v).df()
 
 #%% GRAFICO i
 
+#Se crea una tabla que agrupa los datos del dataframe provincia_x_habitantes, por el Nombre de la provincia a la que pertenecen,
+#y el año del censo en el que fueron registrados.
+
 consulta_totales = """
                 SELECT 
                     "Año del censo",
                     CASE
-                        WHEN "Provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                        WHEN "Nombre de la provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
                             THEN 'Tierra del Fuego'
-                        WHEN "Provincia" = 'Ciudad Autónoma de Buenos Aires'
+                        WHEN "Nombre de la provincia" = 'Ciudad Autónoma de Buenos Aires'
                             THEN 'CABA'
-                        ELSE "Provincia"
-                        END AS "Provincia",
+                        ELSE "Nombre de la provincia"
+                        END AS "Nombre de la provincia",
                     SUM(Cantidad) AS "Total habitantes" 
                 FROM provincia_x_habitantes
                 GROUP BY 
                     "Año del censo",
                     CASE
-                        WHEN "Provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                        WHEN "Nombre de la provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
                             THEN 'Tierra del Fuego'
-                        WHEN "Provincia" = 'Ciudad Autónoma de Buenos Aires'
+                        WHEN "Nombre de la provincia" = 'Ciudad Autónoma de Buenos Aires'
                             THEN 'CABA'
-                        ELSE "Provincia"
+                        ELSE "Nombre de la provincia"
                         END
-                ORDER BY "Provincia", "Año del censo";
+                ORDER BY "Nombre de la provincia", "Año del censo";
             """
 
 totales = dd.query(consulta_totales).df()
 
-fig, ax = plt.subplots() 
+#Gráfico con tamaño 12 x 9 pulgadas.
+fig, ax = plt.subplots(figsize=(12,9))
+
+#Se generan dos dataframe que contenga los mismos datos de totales, pero separadados en Año del censo (2010,2022).
 df_2010 = totales[totales["Año del censo"] == 2010]
 df_2022 = totales[totales["Año del censo"] == 2022]
+
+# Se define la posición de las barras en el eje x con y se extraen los valores de población total por Año.
 x = np.arange(len(df_2010))
 A_2010 = df_2010["Total habitantes"]
 A_2022 = df_2022["Total habitantes"]
 
+# Se define el ancho de las barras
 width = 0.4
 
-ax.bar(x - width/2, A_2010, width=width, label='Año 2010')
-ax.bar(x + width/2, A_2022, width=width, label='Año 2022')
+# Se crean barras agrupadas (una al lado de la otra) para cada provincia, permitiendo comparar visualmente la población 
+# en los años 2010 y 2022.
+ax.bar(x - width/2, A_2010, width=width, label='Año 2010', color = '#08519c')
+ax.bar(x + width/2, A_2022, width=width, label='Año 2022', color = '#9ecae1')
 
+# Se configuran títulos y etiquetas de los ejes
 ax.set_title('Cantidad de habitantes por provincia')
 ax.set_xlabel('Provincias')
-ax.set_xticks(x)
-ax.set_xticklabels(df_2010["Provincia"], rotation=60, ha="right")
 ax.set_ylabel('Habitantes')
 
-ax.legend()
+# Se agregan los nombres de las provincias al eje x.
+ax.set_xticks(x) 
+ax.set_xticklabels(df_2010["Nombre de la provincia"], rotation=35, ha="right")
 
+ax.legend()
+fig.savefig('Cantidad de habitantes por provincia')
 plt.show()
 
 #%% GRAFICO ii version 1
@@ -668,17 +707,11 @@ consulta_tasa_total = """
 
                 SELECT
                 (m.muertes * 1000.0 / pbl.poblacion) AS tasa_mortalidad_total, -- Muertes cada mil hab
-                    CASE 
-                        WHEN p.Nombre LIKE 'Tierra del Fuego%' 
-                            THEN 'Tierra del Fuego'
-                        WHEN p.Nombre = 'Ciudad Autónoma de Buenos Aires'
-                            THEN 'CABA'
-                        ELSE p.Nombre
-                        END AS provincia
+                p."Nombre" AS provincia
                 FROM muertes_prov AS m
                 JOIN poblacion_prov AS pbl
                     ON m."Provincia ID" = pbl."Provincia ID"
-                JOIN df_provincias AS p
+                JOIN df_provincias_copia AS p
                     ON m."Provincia ID" = p.ID
                 ORDER BY tasa_mortalidad_total ASC;
             """
@@ -698,17 +731,11 @@ consulta_edades = """
                      GROUP BY "Provincia ID")
                     
                 SELECT m."Grupo etario", (m.muertes * 1000.0 / pbl.poblacion) AS tasa_mortalidad,
-                    CASE 
-                        WHEN p.Nombre LIKE 'Tierra del Fuego%'
-                            THEN 'Tierra del Fuego'
-                        WHEN p.Nombre = 'Ciudad Autónoma de Buenos Aires'
-                            THEN 'CABA'
-                        ELSE p.Nombre
-                        END AS provincia
+                       p."Nombre" AS provincia
                 FROM muertes_prov_edad AS m
                 JOIN poblacion_prov AS pbl
                     ON m."Provincia ID" = pbl."Provincia ID"
-                JOIN df_provincias AS p
+                JOIN df_provincias_copia AS p
                     ON m."Provincia ID" = p.ID
             """
 
@@ -828,6 +855,7 @@ ax.set_xticklabels(labels)
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 #Mostramos la leyenda para distinguir cada sexo
 ax.legend()
+
 
 
 
