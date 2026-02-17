@@ -509,6 +509,8 @@ df_provincias_copia.loc[0,"Nombre"] = 'CABA'
 df_provincias_copia.loc[23,"Nombre"] = 'Tierra del Fuego'
 
 #%% GRAFICO i
+# Se genera un dataframe para sacar el total de habitantes por provincia y año de censo.
+# y se usa CASE WHEN para acortar los nombres de Tierra del Fuego y CABA así no se amontonan en el gráfico.
 
 consulta_totales = """
                 SELECT 
@@ -536,23 +538,30 @@ consulta_totales = """
 
 totales = dd.query(consulta_totales).df()
 
-fig, ax = plt.subplots() 
+fig, ax = plt.subplots(figsize=(12,9)) 
+
+# Se filtran los datos en dos dataframe para separar las barras del 2010 y 2022
 df_2010 = totales[totales["Año del censo"] == 2010]
 df_2022 = totales[totales["Año del censo"] == 2022]
+
+# Se define la posición de las barras en el eje x y se extraen los valores de población total
 x = np.arange(len(df_2010))
 A_2010 = df_2010["Total habitantes"]
 A_2022 = df_2022["Total habitantes"]
 
+# Se define el ancho de las barras, desplazadas para que queden una al lado de la otra
 width = 0.4
+ax.bar(x - width/2, A_2010, width=width, label='Año 2010', color = '#08519c')
+ax.bar(x + width/2, A_2022, width=width, label='Año 2022', color = '#9ecae1')
 
-ax.bar(x - width/2, A_2010, width=width, label='Año 2010')
-ax.bar(x + width/2, A_2022, width=width, label='Año 2022')
-
+# Agregamos títulos, etiquetas y rotamos los nombres de las provincias para que se lean bien
 ax.set_title('Cantidad de habitantes por provincia')
 ax.set_xlabel('Provincias')
-ax.set_xticks(x)
-ax.set_xticklabels(df_2010["Provincia"], rotation=60, ha="right")
 ax.set_ylabel('Habitantes')
+ax.set_xticks(x)
+
+#Se ajustan las provincias en eje x
+ax.set_xticklabels(df_2010["Provincia"], rotation=60, ha="right")
 
 ax.legend()
 
@@ -589,7 +598,7 @@ df_otras = dpa[~dpa['Descripción'].isin(diez_mayores_categorias)]
 otras_agrupadas = df_otras.groupby('Año')['Cantidad'].sum().reset_index()
 otras_agrupadas['Descripción'] = 'Otras causas'
 
-
+#Se crea una figura y un eje con tamaño 12x9 pulgadas
 fig, ax = plt.subplots()
 
 # Graficamos cada una de las 10 principales
@@ -857,23 +866,14 @@ ax.legend()
 
 #%% GRAFICO v
 
-#
-
+# Se genera el dataframe para contar cuántos centros de salud hay en cada provincia.
 consulta_g_v = """
                 WITH establecimientos_x_departamentos AS
                     (SELECT "Departamento ID", COUNT(*) AS "Total establecimientos"
                      FROM df_establecimientos_medicos
                      GROUP BY "Departamento ID")
-                SELECT 
-                    CASE
-                        WHEN p."Nombre" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
-                            THEN 'Tierra del Fuego'
-                        WHEN p."Nombre" = 'Ciudad Autónoma de Buenos Aires'
-                            THEN 'CABA'
-                        ELSE p."Nombre"
-                        END AS "Provincia",
-                    d."Nombre" AS "Departamento", e."Total establecimientos", p."ID"
-                FROM df_provincias AS p
+                SELECT p."Nombre" AS "Provincia, d."Nombre" AS "Departamento", e."Total establecimientos", p."ID"
+                FROM df_provincias_copia AS p
                 INNER JOIN df_departamentos AS d
                 ON d."Provincia ID" = p."ID"
                 INNER JOIN establecimientos_x_departamentos AS e
@@ -882,12 +882,12 @@ consulta_g_v = """
             """
 
 
-establecimientos_x_departamentos = dd.query(consulta_g_v).df()
+establecimientos_x_provincia = dd.query(consulta_g_v).df()
 
 
 fig, ax = plt.subplots(figsize=(12,8))
 
-establecimientos_x_departamentos.boxplot(by = ["Provincia"], column = ["Total establecimientos"],
+establecimientos_x_provincia.boxplot(by = ["Provincia"], column = ["Total establecimientos"],
                                          ax = ax, grid = False, showmeans = True)
 
 fig.suptitle('')
@@ -1032,6 +1032,7 @@ consulta_departamentos_id = """
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
          
+
 
 
 
