@@ -501,68 +501,53 @@ df_provincias_copia.loc[23,"Nombre"] = 'Tierra del Fuego'
 
 #%% GRAFICO i
 
-#Se crea una tabla que agrupa los datos del dataframe provincia_x_habitantes, por el Nombre de la provincia a la que pertenecen,
-#y el año del censo en el que fueron registrados.
-
 consulta_totales = """
                 SELECT 
                     "Año del censo",
                     CASE
-                        WHEN "Nombre de la provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                        WHEN "Provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
                             THEN 'Tierra del Fuego'
-                        WHEN "Nombre de la provincia" = 'Ciudad Autónoma de Buenos Aires'
+                        WHEN "Provincia" = 'Ciudad Autónoma de Buenos Aires'
                             THEN 'CABA'
-                        ELSE "Nombre de la provincia"
-                        END AS "Nombre de la provincia",
+                        ELSE "Provincia"
+                        END AS "Provincia",
                     SUM(Cantidad) AS "Total habitantes" 
                 FROM provincia_x_habitantes
                 GROUP BY 
                     "Año del censo",
                     CASE
-                        WHEN "Nombre de la provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                        WHEN "Provincia" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
                             THEN 'Tierra del Fuego'
-                        WHEN "Nombre de la provincia" = 'Ciudad Autónoma de Buenos Aires'
+                        WHEN "Provincia" = 'Ciudad Autónoma de Buenos Aires'
                             THEN 'CABA'
-                        ELSE "Nombre de la provincia"
+                        ELSE "Provincia"
                         END
-                ORDER BY "Nombre de la provincia", "Año del censo";
+                ORDER BY "Provincia", "Año del censo";
             """
 
 totales = dd.query(consulta_totales).df()
 
-#Gráfico con tamaño 12 x 9 pulgadas.
-fig, ax = plt.subplots(figsize=(12,9))
-
-#Se generan dos dataframe que contenga los mismos datos de totales, pero separadados en Año del censo (2010,2022).
+fig, ax = plt.subplots() 
 df_2010 = totales[totales["Año del censo"] == 2010]
 df_2022 = totales[totales["Año del censo"] == 2022]
-
-# Se define la posición de las barras en el eje x con y se extraen los valores de población total por Año.
 x = np.arange(len(df_2010))
 A_2010 = df_2010["Total habitantes"]
 A_2022 = df_2022["Total habitantes"]
 
-# Se define el ancho de las barras
 width = 0.4
 
-# Se crean barras agrupadas (una al lado de la otra) para cada provincia, permitiendo comparar visualmente la población 
-# en los años 2010 y 2022.
-ax.bar(x - width/2, A_2010, width=width, label='Año 2010', color = '#08519c')
-ax.bar(x + width/2, A_2022, width=width, label='Año 2022', color = '#9ecae1')
+ax.bar(x - width/2, A_2010, width=width, label='Año 2010')
+ax.bar(x + width/2, A_2022, width=width, label='Año 2022')
 
-# Se configuran títulos y etiquetas de los ejes
 ax.set_title('Cantidad de habitantes por provincia')
 ax.set_xlabel('Provincias')
+ax.set_xticks(x)
+ax.set_xticklabels(df_2010["Provincia"], rotation=60, ha="right")
 ax.set_ylabel('Habitantes')
 
-# Se agregan los nombres de las provincias al eje x.
-ax.set_xticks(x) 
-ax.set_xticklabels(df_2010["Nombre de la provincia"], rotation=35, ha="right")
-
 ax.legend()
-fig.savefig('Cantidad de habitantes por provincia')
-plt.show()
 
+plt.show()
 #%% GRAFICO ii version 1
 
 defunciones_por_anio = """
@@ -920,6 +905,7 @@ consulta_departamentos_id = """
                 CROSS JOIN id_distinto i;
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
+
 
 
 
