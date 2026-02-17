@@ -1,3 +1,35 @@
+"""
+Laboratorio de Datos - Verano 2026
+
+Integrantes:
+- Lanabere, Delfina Daniela (LU: 246/24)
+- Muhafra, Micaela Abril (LU: 1327/24)
+- Gomez Arreaza, Catherine De Jesus (LU: 980/24)
+
+Breve descripción del contenido:
+Este archivo contiene el flujo de trabajo completo de procesamiento de datos para el análisis
+de las diversas instituciones de salud y la mortalidad en Argentina. Incluyendo datos
+censales del 2010 y 2022. 
+
+Dicho flujo de trabajo se divide en:
+1. Limpieza: Procesamiento de archivos Excel (Censo 2010/2022) con lógica 
+   de estados para normalizar jurisdicciones, coberturas y rangos etarios.
+2. Modelado SQL: Transformación de datos sin procesar en tablas relacionales 
+   (Habitantes, Defunciones, Establecimientos) mediante consultas complejas y uniones.
+3. Reportes: Generación de 5 reportes que incluyen tasas de mortalidad 
+   normalizadas y análisis de frecuencias de causas de muerte.
+4. Visualización: Implementación de gráficos para mejor interpretación de los datos
+   y comparaciones.
+
+Datos relevantes:
+- Se normalizaron las jurisdicciones (ej. CABA y Tierra del Fuego) para asegurar 
+  la integridad referencial entre tablas.
+- El análisis de mortalidad se calculó con tasas cada 1.000 habitantes para 
+  permitir comparaciones interprovinciales justas.
+"""
+
+#%% LIBRERIAS
+
 import pandas as pd
 import duckdb as dd
 import numpy as np
@@ -1048,6 +1080,7 @@ consulta_departamentos_id = """
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
          
+
 
 
 
