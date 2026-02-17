@@ -195,11 +195,20 @@ df_provincias.to_csv("df_provincias.csv", index = False)
 
 # Se crea el dataframe df_departamentos con los departamentos agregados por: ID del departamento, su Nombre correspondiente
 # y el ID de la provincia a la que pertenecen, con los datos generados por la tabla de "instituciones_de_salud.xlsx".
+# Aplicamos un CASE WHEN para normalizar los IDs de aquellos departamentos que se llaman igual y están en la misma provincia 
+# pero tenían códigos distintos.
 # Además, se accede la columna "Nombre" para capitalizar el nombre de los departamentos asegurando consistencia con el 
 # formato del dataframe de provincias.
 
 consultaSQL = """
-                SELECT DISTINCT departamento_id AS "Departamento ID", departamento_nombre AS Nombre, provincia_id AS "Provincia ID"
+                SELECT DISTINCT 
+                    CASE 
+                        WHEN departamento_nombre = 'ZAPALA' AND provincia_id = '58'  THEN '112'
+                        WHEN departamento_nombre = 'QUILMES' AND provincia_id = '6' THEN '658'
+                        WHEN departamento_nombre = 'COMUNA 1' AND provincia_id = '2' THEN '1'
+                        ELSE departamento_id
+                        END AND "Departamento ID",
+                        departamento_nombre AS Nombre, provincia_id AS "Provincia ID"
                 FROM instituciones_de_salud;
               """
             
@@ -846,6 +855,50 @@ ax.set_ylabel('Cantidad de defunciones (en millones)')
 #Mostramos la leyenda para distinguir cada sexo
 ax.legend()
 
+#%% GRAFICO v
+
+#
+
+consulta_g_v = """
+                WITH establecimientos_x_departamentos AS
+                    (SELECT "Departamento ID", COUNT(*) AS "Total establecimientos"
+                     FROM df_establecimientos_medicos
+                     GROUP BY "Departamento ID")
+                SELECT 
+                    CASE
+                        WHEN p."Nombre" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                            THEN 'Tierra del Fuego'
+                        WHEN p."Nombre" = 'Ciudad Autónoma de Buenos Aires'
+                            THEN 'CABA'
+                        ELSE p."Nombre"
+                        END AS "Provincia",
+                    d."Nombre" AS "Departamento", e."Total establecimientos", p."ID"
+                FROM df_provincias AS p
+                INNER JOIN df_departamentos AS d
+                ON d."Provincia ID" = p."ID"
+                INNER JOIN establecimientos_x_departamentos AS e
+                ON e."Departamento ID" = d."Departamento ID"
+                ORDER BY "Provincia", "Departamento";
+            """
+
+
+establecimientos_x_departamentos = dd.query(consulta_g_v).df()
+
+
+fig, ax = plt.subplots(figsize=(12,8))
+
+establecimientos_x_departamentos.boxplot(by = ["Provincia"], column = ["Total establecimientos"],
+                                         ax = ax, grid = False, showmeans = True)
+
+fig.suptitle('')
+ax.set_title("Distribución de establecimientos de salud")
+ax.set_xlabel("Provincias")
+ax.set_xticklabels(df_provincias_copia["Nombre"], rotation=45, ha="right")
+ax.set_ylabel("Total establecimientos por departamento")
+fig.savefig('Distribución de establecimientos de salud.png')
+plt.show()
+
+
 #%%
 #Tablas auxiliares para ver la consistencia y completitud de las tablas 'archivo_defunciones' y 'instituciones_de_salud'
 
@@ -883,28 +936,30 @@ consulta_residencia_nombre = """
 df_residencia_nombre = dd.query(consulta_residencia_nombre).df()
 
 consulta_departamentos_id = """
-                WITH total AS (
-                    SELECT COUNT(*) AS total
-                    FROM instituciones_de_salud),
+                WITH departamentos_unicos AS (
+                    SELECT DISTINCT LOWER(TRIM(departamento_nombre)) AS nombre, provincia_id, 
+                        COUNT(DISTINCT departamento_id) as conteo_ids
+                    FROM instituciones_de_salud
+                    GROUP BY LOWER(TRIM(departamento_nombre)), provincia_id),
                 
-                id_distinto AS (
-                    SELECT COUNT(*) AS cant_departamentos
-                    FROM instituciones_de_salud t
-                    INNER JOIN (
-                        SELECT LOWER(TRIM(departamento_nombre)) AS nombre, provincia_id
-                        FROM instituciones_de_salud
-                        GROUP BY nombre, provincia_id
-                        HAVING COUNT(DISTINCT departamento_id) > 1) AS x
-                    ON LOWER(TRIM(t.departamento_nombre)) = x.nombre
-                    AND t.provincia_id = x.provincia_id)
-
-                SELECT
-                    100.0 * (t.total - i.cant_departamentos) / t.total AS porcentaje_no_duplicados,
-                    100.0 * i.cant_departamentos / t.total AS porcentaje_duplicados
-                FROM total t
-                CROSS JOIN id_distinto i;
+                total AS (
+                    SELECT COUNT (*) AS total_registrados
+                    FROM departamentos_unicos),
+                
+                duplicados AS (
+                    SELECT COUNT(*) AS cantidad 
+                    FROM departamentos_unicos 
+                    WHERE conteo_ids > 1)
+                
+                SELECT 
+                    100.0 * (t.total_registrados - d.cantidad) / t.total_registrados AS porcentaje_consistente,
+                    100.0 * d.cantidad / t.total_registrados AS porcentaje_inconsistente
+                    FROM total AS t
+                    CROSS JOIN duplicados AS d;
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
+         
+
 
 
 
