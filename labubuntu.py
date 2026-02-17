@@ -861,6 +861,65 @@ ax.set_ylabel('Cantidad de defunciones (en millones)')
 #Mostramos la leyenda para distinguir cada sexo
 ax.legend()
 
+#%%
+#Tablas auxiliares para ver la consistencia y completitud de las tablas 'archivo_defunciones' y 'instituciones_de_salud'
+
+consulta_sexo = """
+                SELECT
+                    100.0 * SUM(CASE WHEN Sexo IN ('femenino', 'masculino') THEN Cantidad ELSE 0 END) / SUM(Cantidad)
+                    AS 'Con informacion',
+                    100.0 * SUM(CASE WHEN Sexo NOT IN ('femenino','masculino') THEN Cantidad ELSE 0 END) / SUM(Cantidad)
+                    AS 'Sin informacion'
+                FROM archivo_defunciones;
+            """
+df_sexo = dd.query(consulta_sexo).df()
+
+
+consulta_grupo_edad = """
+                SELECT
+                    100.0 * SUM(CASE WHEN grupo_edad NOT LIKE '06.%' THEN Cantidad ELSE 0 END) / SUM(Cantidad)
+                    AS 'Con informacion',
+                    100.0 * SUM(CASE WHEN grupo_edad LIKE '06.%' THEN Cantidad ELSE 0 END) / SUM(Cantidad)
+                    AS 'Sin informacion'
+                FROM archivo_defunciones;
+            """
+df_grupo_edad = dd.query(consulta_grupo_edad).df()
+
+consulta_residencia_nombre = """
+                SELECT
+                    SUM(CASE WHEN jurisdicion_residencia_nombre IS NOT NULL AND jurisdicion_residencia_nombre <> 'Sin Información' 
+                             THEN Cantidad ELSE 0 END) * 100.0 / SUM(Cantidad)
+                    AS 'Con informacion',
+                    SUM(CASE WHEN jurisdicion_residencia_nombre IS NULL OR jurisdicion_residencia_nombre = 'Sin Información'
+                             THEN Cantidad ELSE 0 END) *100.0 / SUM(Cantidad)
+                    AS 'Sin informacion'
+                FROM archivo_defunciones;
+            """
+df_residencia_nombre = dd.query(consulta_residencia_nombre).df()
+
+consulta_departamentos_id = """
+                WITH total AS (
+                    SELECT COUNT(*) AS total
+                    FROM instituciones_de_salud),
+                
+                id_distinto AS (
+                    SELECT COUNT(*) AS cant_departamentos
+                    FROM instituciones_de_salud t
+                    INNER JOIN (
+                        SELECT LOWER(TRIM(departamento_nombre)) AS nombre, provincia_id
+                        FROM instituciones_de_salud
+                        GROUP BY nombre, provincia_id
+                        HAVING COUNT(DISTINCT departamento_id) > 1) AS x
+                    ON LOWER(TRIM(t.departamento_nombre)) = x.nombre
+                    AND t.provincia_id = x.provincia_id)
+
+                SELECT
+                    100.0 * (t.total - i.cant_departamentos) / t.total AS porcentaje_no_duplicados,
+                    100.0 * i.cant_departamentos / t.total AS porcentaje_duplicados
+                FROM total t
+                CROSS JOIN id_distinto i;
+            """
+df_departamentos_id = dd.query(consulta_departamentos_id).df()
 
 
 
