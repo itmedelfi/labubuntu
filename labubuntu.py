@@ -1088,10 +1088,21 @@ consulta_departamentos_id = """
                     CROSS JOIN duplicados AS d;
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
-         
 
+# Se genera una tabla que muestra cuáles son los departamentos que presentan inconsistencias con el ID .
+consulta_departamentos_cant = """
+                WITH departamentos_unicos AS (
+                    SELECT LOWER(TRIM(departamento_nombre)) AS nombre, provincia_id, 
+                        COUNT(DISTINCT departamento_id) as conteo_ids
+                    FROM instituciones_de_salud
+                    GROUP BY LOWER(TRIM(departamento_nombre)), provincia_id)
+                
+                SELECT nombre, conteo_ids
+                    FROM departamentos_unicos 
+                    WHERE conteo_ids > 1;
+            """
 
-
+df_departamentos_cant = dd.query(consulta_departamentos_cant).df()
 
 
 
