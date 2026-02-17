@@ -207,7 +207,7 @@ consultaSQL = """
                         WHEN departamento_nombre = 'QUILMES' AND provincia_id = '6' THEN 658
                         WHEN departamento_nombre = 'COMUNA 1' AND provincia_id = '2' THEN 1
                         ELSE departamento_id
-                        END AND "Departamento ID",
+                        END AS "Departamento ID",
                         departamento_nombre AS Nombre, provincia_id AS "Provincia ID"
                 FROM instituciones_de_salud;
               """
@@ -898,6 +898,79 @@ ax.set_ylabel("Total establecimientos por departamento")
 fig.savefig('Distribución de establecimientos de salud.png')
 plt.show()
 
+#%% GRAFICO vi
+
+consulta_g_vi = """
+                WITH defunciones_2022 AS
+                    (SELECT "Provincia ID", 
+                         SUM("Cantidad") AS "Defunciones"
+                    FROM df_defunciones
+                    WHERE "Año" = 2022
+                    GROUP BY "Provincia ID"),
+                    
+                poblacion_2022 AS
+                    (SELECT "Provincia ID", 
+                         SUM("Cantidad") AS "Poblacion"
+                    FROM df_habitantes
+                    WHERE "Año del censo" = 2022
+                    GROUP BY "Provincia ID"),
+                    
+                establecimientos_x_provincias AS
+                    (SELECT "ID", 
+                         SUM("Total establecimientos") AS "Establecimientos"
+                    FROM establecimientos_x_departamentos
+                    GROUP BY "ID")
+                    
+                SELECT 
+                    CASE 
+                        WHEN p."Nombre" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
+                            THEN 'Tierra del Fuego'
+                        WHEN p."Nombre" = 'Ciudad Autónoma de Buenos Aires'
+                            THEN 'CABA'
+                        ELSE p."Nombre"
+                        END AS "Provincia", 
+                    ep."Establecimientos",
+                    d."Defunciones" * 100000.0 / p2."Poblacion" AS "Defunciones_x_Provincia"
+                FROM defunciones_2022 AS d
+                INNER JOIN poblacion_2022 AS p2
+                ON d."Provincia ID" = p2."Provincia ID"
+                INNER JOIN df_provincias AS p
+                ON d."Provincia ID" = p."ID"
+                INNER JOIN establecimientos_x_provincias AS ep
+                ON p."ID" = ep."ID"
+                ORDER BY "Provincia";
+            """
+
+
+df_consulta_g_vi = dd.query(consulta_g_vi).df()
+
+
+fig, ax = plt.subplots()
+
+sns.scatterplot(
+    data=df_consulta_g_vi,
+    x="Establecimientos",
+    y="Defunciones_x_Provincia",
+    hue="Provincia",
+    palette='husl',
+    s=40,
+    ax=ax
+)
+
+ax.set_title('Establecimientos de salud por defunciones por provincia en 2022')
+ax.set_xlabel('Cantidad de establecimientos')
+ax.set_ylabel('Tasa de defunciones por provincia')
+
+ax.legend(
+    bbox_to_anchor=(1.05, 1),
+    loc='upper left',
+    fontsize=4
+)
+
+plt.tight_layout()
+fig.savefig('Establecimientos de salud por defunciones por provincia en 2022.png')
+plt.show()
+
 
 #%%
 #Tablas auxiliares para ver la consistencia y completitud de las tablas 'archivo_defunciones' y 'instituciones_de_salud'
@@ -959,6 +1032,7 @@ consulta_departamentos_id = """
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
          
+
 
 
 
