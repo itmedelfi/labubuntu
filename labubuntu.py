@@ -493,6 +493,11 @@ consulta_v = """
 
 
 reporte_v = dd.query(consulta_v).df()
+#%% Tabla igual a la de provincias, pero con ciertos nombres más cortos para mejorar legibilidad en los gráficos.
+
+df_provincias_copia = df_provincias.copy()
+df_provincias_copia.loc[0,"Nombre"] = 'CABA'
+df_provincias_copia.loc[23,"Nombre"] = 'Tierra del Fuego'
 
 #%% GRAFICO i
 
@@ -855,6 +860,7 @@ ax.set_xticklabels(labels)
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 #Mostramos la leyenda para distinguir cada sexo
 ax.legend()
+
 
 
 
