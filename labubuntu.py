@@ -1022,7 +1022,8 @@ plt.show()
 
 #%%
 #Tablas auxiliares para ver la consistencia y completitud de las tablas 'archivo_defunciones' y 'instituciones_de_salud'
-
+# Se genera una tabla que muestra el porcentaje de registros que poseen información en la columna "Sexo"
+# y el porcentaje de registros que no tienen.
 consulta_sexo = """
                 SELECT
                     100.0 * SUM(CASE WHEN Sexo IN ('femenino', 'masculino') THEN Cantidad ELSE 0 END) / SUM(Cantidad)
@@ -1033,7 +1034,8 @@ consulta_sexo = """
             """
 df_sexo = dd.query(consulta_sexo).df()
 
-
+# Se genera una tabla que muestra el porcentaje de registros que poseen información en la columna "grupo_edad"
+# y el porcentaje de registros que no tienen.
 consulta_grupo_edad = """
                 SELECT
                     100.0 * SUM(CASE WHEN grupo_edad NOT LIKE '06.%' THEN Cantidad ELSE 0 END) / SUM(Cantidad)
@@ -1044,6 +1046,8 @@ consulta_grupo_edad = """
             """
 df_grupo_edad = dd.query(consulta_grupo_edad).df()
 
+# Se genera una tabla que muestra el porcentaje de registros que poseen información en la columna "jurisdicion_residencia_nombre"
+# y el porcentaje de registros que no tienen (valores nulos o 'Sin Información').
 consulta_residencia_nombre = """
                 SELECT
                     SUM(CASE WHEN jurisdicion_residencia_nombre IS NOT NULL AND jurisdicion_residencia_nombre <> 'Sin Información' 
@@ -1056,6 +1060,11 @@ consulta_residencia_nombre = """
             """
 df_residencia_nombre = dd.query(consulta_residencia_nombre).df()
 
+# Se genera una tabla verifica la consistencia entre el nombre del departamento, su departamento_id y la provincia a la que
+# pertenecen dentro de la tabla instituciones_de_salud.
+# Se utiliza un LOWER(TRIM) para asegurar consistencia en la comparación.
+# Se cuentan el total de los registros agrupados por "nombre" y "provincia_id" y se cuenta cuantos id's distintos tiene, llamando a 
+# los registros que tienen mas de un id, como duplicados.
 consulta_departamentos_id = """
                 WITH departamentos_unicos AS (
                     SELECT DISTINCT LOWER(TRIM(departamento_nombre)) AS nombre, provincia_id, 
@@ -1080,6 +1089,7 @@ consulta_departamentos_id = """
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
          
+
 
 
 
