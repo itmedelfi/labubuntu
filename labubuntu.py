@@ -203,9 +203,9 @@ df_provincias.to_csv("df_provincias.csv", index = False)
 consultaSQL = """
                 SELECT DISTINCT 
                     CASE 
-                        WHEN departamento_nombre = 'ZAPALA' AND provincia_id = '58'  THEN '112'
-                        WHEN departamento_nombre = 'QUILMES' AND provincia_id = '6' THEN '658'
-                        WHEN departamento_nombre = 'COMUNA 1' AND provincia_id = '2' THEN '1'
+                        WHEN departamento_nombre = 'ZAPALA' AND provincia_id = '58'  THEN 112
+                        WHEN departamento_nombre = 'QUILMES' AND provincia_id = '6' THEN 658
+                        WHEN departamento_nombre = 'COMUNA 1' AND provincia_id = '2' THEN 1
                         ELSE departamento_id
                         END AND "Departamento ID",
                         departamento_nombre AS Nombre, provincia_id AS "Provincia ID"
@@ -959,6 +959,7 @@ consulta_departamentos_id = """
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
          
+
 
 
 
