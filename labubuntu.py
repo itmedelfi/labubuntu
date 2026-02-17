@@ -564,7 +564,7 @@ ax.set_xticks(x)
 ax.set_xticklabels(df_2010["Provincia"], rotation=60, ha="right")
 
 ax.legend()
-
+fig.savefig('Cantidad de habitantes por provincia.png')
 plt.show()
 #%% GRAFICO ii version 1
 
@@ -628,6 +628,7 @@ ax.set_xticklabels(anios_cortos)
 ax.legend(title="Categorías", bbox_to_anchor=(1.05, 1), loc='upper left')
 
 plt.tight_layout()
+fig.savefig('Defunciones por categoríavs1.png')
 plt.show()
 
 #%% GRAFICO ii version 2
@@ -695,6 +696,7 @@ ax2.legend(title="Otras causas", bbox_to_anchor=(1.05, 1), loc='upper left', fon
 ax2.grid(True, linestyle=':', alpha=0.6)
 
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+fig.savefig('Defunciones por categoríavs2.png')
 plt.show()
 
 #%% GRAFICO iii
@@ -796,6 +798,8 @@ ax2.set_ylabel('Mortalidad por edad')
 ax2.set_xticklabels(provincias, rotation=60, ha='right')
 
 plt.tight_layout()
+
+fig.savefig('Mortalidad total por provincia y grupo etario.png')
 plt.show()
 
 #%% GRAFICO iv
@@ -863,16 +867,20 @@ ax.set_xticklabels(labels)
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 #Mostramos la leyenda para distinguir cada sexo
 ax.legend()
+fig.savefig('Defunciones por Grupo Etario y Sexo.png')
+plt.show()
 
 #%% GRAFICO v
 
-# Se genera el dataframe para contar cuántos centros de salud hay en cada provincia.
-consulta_g_v = """
+# Se genera el dataframe para contar cuántos centros de salud hay en cada departamento.
+# Además, se une con la tabla de df_provincias_copia para tener el nombre de las provincias relacionado
+
+consulta_establecimientos_x_departamento = """
                 WITH establecimientos_x_departamentos AS
                     (SELECT "Departamento ID", COUNT(*) AS "Total establecimientos"
                      FROM df_establecimientos_medicos
                      GROUP BY "Departamento ID")
-                SELECT p."Nombre" AS "Provincia, d."Nombre" AS "Departamento", e."Total establecimientos", p."ID"
+                SELECT p."Nombre" AS "Provincia", d."Nombre" AS "Departamento", e."Total establecimientos", p."ID"
                 FROM df_provincias_copia AS p
                 INNER JOIN df_departamentos AS d
                 ON d."Provincia ID" = p."ID"
@@ -881,26 +889,36 @@ consulta_g_v = """
                 ORDER BY "Provincia", "Departamento";
             """
 
-
-establecimientos_x_provincia = dd.query(consulta_g_v).df()
+establecimientos_x_departamento = dd.query(consulta_establecimientos_x_departamento).df()
 
 
 fig, ax = plt.subplots(figsize=(12,8))
 
-establecimientos_x_provincia.boxplot(by = ["Provincia"], column = ["Total establecimientos"],
+# Se crea un boxplot para ver la distribución de establecimientos por provincia. 
+# El parámetro showmeans=True permite visualizar la media (promedio)
+establecimientos_x_departamento.boxplot(by = ["Provincia"], column = ["Total establecimientos"],
                                          ax = ax, grid = False, showmeans = True)
 
+# Se eliminan títulos automáticos generados por pandas
 fig.suptitle('')
+
+# Se agregan títulos y etiquetas
 ax.set_title("Distribución de establecimientos de salud")
 ax.set_xlabel("Provincias")
-ax.set_xticklabels(df_provincias_copia["Nombre"], rotation=45, ha="right")
 ax.set_ylabel("Total establecimientos por departamento")
+
+#Se ajustan las provincias en eje x
+ax.set_xticklabels(df_provincias_copia["Nombre"], rotation=45, ha="right")
+
 fig.savefig('Distribución de establecimientos de salud.png')
 plt.show()
 
 #%% GRAFICO vi
+# se genera un dataframe para unir defunciones, población y establecimientos.
+# El objetivo es calcular la tasa de mortalidad cada 100.000 habitantes por provincia para el año 2022, 
+#y compararla con la cantidad de establecimientos médicos que existen en esa provincia
 
-consulta_g_vi = """
+consulta_mortalidad_establecimientos = """
                 WITH defunciones_2022 AS
                     (SELECT "Provincia ID", 
                          SUM("Cantidad") AS "Defunciones"
@@ -918,23 +936,15 @@ consulta_g_vi = """
                 establecimientos_x_provincias AS
                     (SELECT "ID", 
                          SUM("Total establecimientos") AS "Establecimientos"
-                    FROM establecimientos_x_departamentos
+                    FROM establecimientos_x_departamento
                     GROUP BY "ID")
                     
-                SELECT 
-                    CASE 
-                        WHEN p."Nombre" = 'Tierra del Fuego, Antártida e Islas del Atlántico Sur'
-                            THEN 'Tierra del Fuego'
-                        WHEN p."Nombre" = 'Ciudad Autónoma de Buenos Aires'
-                            THEN 'CABA'
-                        ELSE p."Nombre"
-                        END AS "Provincia", 
-                    ep."Establecimientos",
+                SELECT p.Nombre AS "Provincia", ep."Establecimientos",
                     d."Defunciones" * 100000.0 / p2."Poblacion" AS "Defunciones_x_Provincia"
                 FROM defunciones_2022 AS d
                 INNER JOIN poblacion_2022 AS p2
                 ON d."Provincia ID" = p2."Provincia ID"
-                INNER JOIN df_provincias AS p
+                INNER JOIN df_provincias_copia AS p
                 ON d."Provincia ID" = p."ID"
                 INNER JOIN establecimientos_x_provincias AS ep
                 ON p."ID" = ep."ID"
@@ -942,13 +952,17 @@ consulta_g_vi = """
             """
 
 
-df_consulta_g_vi = dd.query(consulta_g_vi).df()
+df_consulta_mortalidad_establecimientos = dd.query(consulta_mortalidad_establecimientos).df()
 
 
 fig, ax = plt.subplots()
 
+# Gráfico de dispersión:
+# Eje X → cantidad de establecimientos
+# Eje Y → tasa de defunciones cada 100.000 habitantes
+# Cada punto representa una provincia
 sns.scatterplot(
-    data=df_consulta_g_vi,
+    data=df_consulta_mortalidad_establecimientos,
     x="Establecimientos",
     y="Defunciones_x_Provincia",
     hue="Provincia",
@@ -957,10 +971,12 @@ sns.scatterplot(
     ax=ax
 )
 
+# Título y etiquetas de los ejes
 ax.set_title('Establecimientos de salud por defunciones por provincia en 2022')
 ax.set_xlabel('Cantidad de establecimientos')
 ax.set_ylabel('Tasa de defunciones por provincia')
 
+# Se ubica la leyenda fuera del gráfico para evitar superposición
 ax.legend(
     bbox_to_anchor=(1.05, 1),
     loc='upper left',
@@ -1032,6 +1048,7 @@ consulta_departamentos_id = """
             """
 df_departamentos_id = dd.query(consulta_departamentos_id).df()
          
+
 
 
 
