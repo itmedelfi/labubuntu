@@ -476,101 +476,48 @@ consulta_iii = """
 
 reporte_iii = dd.query(consulta_iii).df()
 
-#%% GRAFICO iv
+#%% REPORTE iv
 
-#Ordenamos la tabla df_defunciones para que las claves sean solo Sexo y Grupo Etario, el resto de claves las eliminamos y sumamos las cantidades
-consulta_g_iv = """
-                SELECT "Grupo etario" AS GE, Sexo, SUM(cantidad) AS Cantidad
-                FROM df_defunciones
-                GROUP BY Sexo, "Grupo etario"
-                ORDER BY "Grupo etario", Sexo
-            """;        
-defunciones_por_ge_y_por_sexo = dd.query(consulta_g_iv).df()
+# iv)
+# Se calcula la tasa de mortalidad por provincia y grupo etario para el año 2022, normalizada cada 1000 habitantes
+# Primero se definen dos tablas temporales:
+# defunciones_agrupadas: agrupa el total de muertes por jurisdicción y edad (para el año 2022)
+# habitantes_agrupados: obtiene la población total a partir del censo correspondiente
+# Luego, se realiza un INNER JOIN entre ambas tablas utilizando una clave compuesta (Provincia ID y Grupo etario),
+# asegurando que cada total de muertes se divida por su población correspondiente
+# Por ultimo, se integra la tabla df_provincias para reemplazar los IDs por nombres legibles
+# El cálculo final (muertes * 1000 / población) permite comparar la mortalidad entre provincias con poblaciones de tamaños muy diferentes
 
-#   Separamos la columna "Sexo" en 2 columnas distintas ("Femenino" y "Masculino"), en cada celda de estas columnas se muestra la cantidad de Gente de ese Sexo del GE dedo por la columna de "Grupo etario"
-#   Usamos la tabla defunciones_por_ge_sexo
-#   generamos una tabla que tiene cada grupo etario
-#   armamos otra tabla f que tiene para cada grupo etario la cantidad de defunciones de sexo femenino
-#   unimos la tabla a la que solo tiene grupos etarios, y a la nueva columna la llamamos Femenino
-#   hacemos lo analogo para el sexo masculino
-#   luego ordenamos por grupo etario  
+consulta_iv = """
+                WITH defunciones_agrupadas AS 
+                    (SELECT "Provincia ID", "Grupo etario", 
+                            SUM(Cantidad) AS "Muertes totales"
+                     FROM df_defunciones
+                     WHERE año = 2022
+                     GROUP BY "Provincia ID", "Grupo etario"),
+       
+                habitantes_agrupados AS
+                    (SELECT "Provincia ID", "Grupo etario", 
+                            SUM(Cantidad) AS "Población total"
+                     FROM df_habitantes
+                     WHERE "Año del censo" = 2022
+                     GROUP BY "Provincia ID", "Grupo etario")
+        
+                SELECT p.Nombre AS Provincia, 
+                       h."Grupo etario", 
+                       (d."Muertes totales" * 1000.0 / h."Población total") 
+                           AS "Tasa de mortalidad"
+                FROM habitantes_agrupados h
+                INNER JOIN defunciones_agrupadas d 
+                    ON h."Provincia ID" = d."Provincia ID" 
+                    AND h."Grupo etario" = d."Grupo etario"
+                INNER JOIN df_provincias p 
+                    ON h."Provincia ID" = p.ID
+                ORDER BY p.Nombre, h."Grupo etario";
+            """
 
-consulta_g_iv2 = """
-    SELECT ge.GE AS 'Grupo etario', f.cantidad AS Femenino, m.cantidad AS Masculino,
-    FROM
-    (SELECT DISTINCT GE FROM defunciones_por_ge_y_por_sexo) AS ge
-    JOIN
-        (SELECT GE, cantidad FROM defunciones_por_ge_y_por_sexo WHERE sexo = 'F') AS f
-    ON ge.GE = f.GE
-    JOIN
-        (SELECT GE, cantidad FROM defunciones_por_ge_y_por_sexo WHERE sexo = 'M') m
-    ON ge.GE = m.GE
-    ORDER BY ge.GE
-    """
-defunciones_x_ge_sexo = dd.query(consulta_g_iv2).df()
 
-#borramos la tabla "defunciones_por_ge_y_por_sexo"  porque ya no la vamos a usar mas
-del defunciones_por_ge_y_por_sexo
-
-#Calculamos la cantidad de habitantes por grupo etario desde la tabla habitantes
-consulta_g_iv3 = """
-    SELECT "Grupo etario",
-        SUM(Cantidad) As 'Poblacion Total'
-        FROM df_habitantes
-        GROUP BY "Grupo etario"
-        ORDER BY "Grupo etario"
-        """
-
-total_hab_x_ge = dd.query(consulta_g_iv3).df()
-
-#Normalizamos la cantidad de defunciones por grupo etario cada 100 000 habitantes
-consulta_g_iv4 = """
-    SELECT d."Grupo etario",
-            (d.Femenino / h."Poblacion Total")*100000 AS 'Tasa Femenina',
-            (d.Masculino / h."Poblacion Total")*100000 AS 'Tasa Masculina'
-    FROM defunciones_x_ge_sexo AS d
-    JOIN
-        total_hab_x_ge AS h ON d."Grupo etario" = h."Grupo etario"
-    ORDER BY d."Grupo etario"
-    """
-defunciones_x_ge_sexo_normalizadas = dd.query(consulta_g_iv4).df()    
-
-#borramos las tablas "defunciones_x_ge_sexo" y "total_hab_x_ge" porque ya no las vamos a usar mas
-del defunciones_x_ge_sexo
-del total_hab_x_ge
-
-#Armamos el gráfico de barras
-fig, ax = plt.subplots()
-
-# Guardamos las etiquetas del eje x (grupos etarios)
-labels = defunciones_x_ge_sexo_normalizadas['Grupo etario']
-
-# Armamos un arreglo con las posiciones para saber donde estan las barras
-# hay una posición por grupo etario
-x = np.arange(len(labels))
-# Guardamos las cantidades de defunciones de cada sexo
-f = defunciones_x_ge_sexo_normalizadas['Tasa Femenina']
-m = defunciones_x_ge_sexo_normalizadas['Tasa Masculina']
-
-width = 0.25
-
-# Dibujamos las barras para cada sexo desplazándolas horizontalmente para que no se superpongan dentro de cada grupo etario
-ax.bar(x - width/2, f, width=width, label='Mujeres')
-ax.bar(x + width/2, m, width=width, label='Hombres')
-
-#Agregamos el titulo
-ax.set_title('Defunciones por Grupo Etario y Sexo normalizadas \n (cada 100000 habitantes del mismo grupo etario)')
-# Nombramos el eje X
-ax.set_xlabel('Grupo Etario')
-#indicamos las posiciones y agregamos las etiquetas (grupos etarios) del eje x
-ax.set_xticks(x)
-ax.set_xticklabels(labels)
-# Nombramos el eje Y
-ax.set_ylabel('Defunciones cada 100000 habitantes \n del mismo grupo etario')
-#Mostramos la leyenda para distinguir cada sexo
-ax.legend()
-fig.savefig('Defunciones por Grupo Etario y Sexo normalizadas.png')
-plt.show()
+reporte_iv = dd.query(consulta_iv).df()
 
 #%% REPORTE v
 
@@ -898,16 +845,13 @@ plt.show()
 
 #%% GRAFICO iv
 
-#%% GRAFICO iv
-
-#Ordenamos la tabla para que las claves sean solo Sexo y Grupo Etario, el resto de claves las eliminamos y sumamos las cantidades
-
+#Ordenamos la tabla df_defunciones para que las claves sean solo Sexo y Grupo Etario, el resto de claves las eliminamos y sumamos las cantidades
 consulta_g_iv = """
                 SELECT "Grupo etario" AS GE, Sexo, SUM(cantidad) AS Cantidad
                 FROM df_defunciones
                 GROUP BY Sexo, "Grupo etario"
                 ORDER BY "Grupo etario", Sexo
-            """;         
+            """;        
 defunciones_por_ge_y_por_sexo = dd.query(consulta_g_iv).df()
 
 #   Separamos la columna "Sexo" en 2 columnas distintas ("Femenino" y "Masculino"), en cada celda de estas columnas se muestra la cantidad de Gente de ese Sexo del GE dedo por la columna de "Grupo etario"
@@ -917,9 +861,8 @@ defunciones_por_ge_y_por_sexo = dd.query(consulta_g_iv).df()
 #   unimos la tabla a la que solo tiene grupos etarios, y a la nueva columna la llamamos Femenino
 #   hacemos lo analogo para el sexo masculino
 #   luego ordenamos por grupo etario  
-
-consulta_g_iv2 = """ 
-    SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,
+consulta_g_iv2 = """
+    SELECT ge.GE AS 'Grupo etario', f.cantidad AS Femenino, m.cantidad AS Masculino,
     FROM
     (SELECT DISTINCT GE FROM defunciones_por_ge_y_por_sexo) AS ge
     JOIN
@@ -932,37 +875,67 @@ consulta_g_iv2 = """
     """
 defunciones_x_ge_sexo = dd.query(consulta_g_iv2).df()
 
+#borramos la tabla "defunciones_por_ge_y_por_sexo"  porque ya no la vamos a usar mas
+del defunciones_por_ge_y_por_sexo
+
+#Calculamos la cantidad de habitantes por grupo etario desde la tabla habitantes
+consulta_g_iv3 = """
+    SELECT "Grupo etario",
+        SUM(Cantidad) As 'Poblacion Total'
+        FROM df_habitantes
+        GROUP BY "Grupo etario"
+        ORDER BY "Grupo etario"
+        """
+
+total_hab_x_ge = dd.query(consulta_g_iv3).df()
+
+#Normalizamos la cantidad de defunciones por grupo etario cada 100 000 habitantes
+consulta_g_iv4 = """
+    SELECT d."Grupo etario",
+            (d.Femenino / h."Poblacion Total")*100000 AS 'Tasa Femenina',
+            (d.Masculino / h."Poblacion Total")*100000 AS 'Tasa Masculina'
+    FROM defunciones_x_ge_sexo AS d
+    JOIN
+        total_hab_x_ge AS h ON d."Grupo etario" = h."Grupo etario"
+    ORDER BY d."Grupo etario"
+    """
+defunciones_x_ge_sexo_normalizadas = dd.query(consulta_g_iv4).df()    
+
+#borramos las tablas "defunciones_x_ge_sexo" y "total_hab_x_ge" porque ya no las vamos a usar mas
+del defunciones_x_ge_sexo
+del total_hab_x_ge
+
 #Armamos el gráfico de barras
-fig, ax = plt.subplots() 
+fig, ax = plt.subplots()
 
 # Guardamos las etiquetas del eje x (grupos etarios)
-labels = defunciones_x_ge_sexo['Grupo Etario']
+labels = defunciones_x_ge_sexo_normalizadas['Grupo etario']
 
 # Armamos un arreglo con las posiciones para saber donde estan las barras
 # hay una posición por grupo etario
 x = np.arange(len(labels))
 # Guardamos las cantidades de defunciones de cada sexo
-f = defunciones_x_ge_sexo['Femenino']
-m = defunciones_x_ge_sexo['Masculino']
+f = defunciones_x_ge_sexo_normalizadas['Tasa Femenina']
+m = defunciones_x_ge_sexo_normalizadas['Tasa Masculina']
 
 width = 0.25
 
 # Dibujamos las barras para cada sexo desplazándolas horizontalmente para que no se superpongan dentro de cada grupo etario
-ax.bar(x - width/2, f, width=width, label='Mujeres') 
+ax.bar(x - width/2, f, width=width, label='Mujeres')
 ax.bar(x + width/2, m, width=width, label='Hombres')
 
-#Agregamos el titulo 
-ax.set_title('Defunciones por Grupo Etario y Sexo') 
+#Agregamos el titulo
+ax.set_title('Defunciones por Grupo Etario y Sexo normalizadas \n (cada 100000 habitantes del mismo grupo etario)')
 # Nombramos el eje X
-ax.set_xlabel('Grupo Etario') 
+ax.set_xlabel('Grupo Etario')
 #indicamos las posiciones y agregamos las etiquetas (grupos etarios) del eje x
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 # Nombramos el eje Y
-ax.set_ylabel('Cantidad de defunciones (en millones)') 
+ax.set_ylabel('Defunciones cada 100000 habitantes \n del mismo grupo etario')
 #Mostramos la leyenda para distinguir cada sexo
 ax.legend()
-fig.savefig('Defunciones por Grupo Etario y Sexo.png')
+fig.savefig('Defunciones por Grupo Etario y Sexo normalizadas.png')
 plt.show()
 
 #%% GRAFICO v
