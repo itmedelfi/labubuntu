@@ -1,0 +1,103 @@
+INFORME LABO DE DATOS TP1 - labubuntu
+
+LIMPIEZA CENSOS:
+
+Al acceder a los archivos .xlsx de los censos 2010 y 2022, se halló un inconveniente de sencilla resolución; los archivos contienen una sección introductoria de 14 filas con parámetros de consulta que no forman parte del set de datos que nos es de utilidad, por lo tanto fue necesario un skiprows = 14 que salta hasta la primera aparición de "AREA".
+Dado que el nombre de la Provincia y el tipo de Cobertura de Salud actúan como separadores de sección y no como columnas, se desarrolló un algoritmo de iteración con variables de estado. Estas variables almacenan de forma temporal el contexto (provincia y cobertura actual) hasta encontrar una fila con datos numéricos de edad.
+Los rangos etarios por comodidad son los mismos rangos que se hayan en el archivo defunciones.csv, lo cual facilita luego las consultas asegurándonos que ambos datasets compartan esa categoría.
+Con respecto a la estructura de almacenamiento, para evitar posibles errores y asegurar la integridad de los datos, se optó por un diccionario de acumulación cuya clave es una tupla compuesta por (Provincia, Cobertura, Rango etario). Esto permite realizar un eficiente "conteo" de valores del sexo femenino y masculino para la luego conversión a un dataframe.
+
+REPORTE iii:
+
+Para el análisis de las causas de muerte, se buscó identificar los dos extremos de frecuencia de categoría de defuncion por grupo etario y sexo. Para lograr esto, se utilizó principalmente una tabla temporal (frecuencia_defunciones) que salía de df_defunciones, donde gracias a ROW_NUMBER se pudo particionar los datos por sexo y grupo etario, asignando simultáneamente dos rankings: uno descendente para las categorías más frecuentes y otro ascendente para las menos frecuentes. Se aplicó un filtro previo para excluir registros con valores NULL, asegurando que los resultados representen categorías definidas. Por último, para la presentación de los datos, se terminó de ordenar con una estructura CASE, donde los rangos etarios estuvieran en un orden lógico y no alfabético que es como lo haría SQL.
+
+REPORTE iv:
+
+Con respecto al cálculo de la tasa de mortalidad, se crearon dos estructuras temporales independientes: una para obtener el total de muertes y otra para obtener la población total a partir de los datos de los censos ya previamente procesados.
+La integración de ambos conjuntos de datos se realizó mediante un INNER JOIN basado en la clave compuesta de Provincia ID y Grupo etario. Como se pidió en la consigna, se normalizo cada mil habitantes la tasa de mortalidad, lo que permite realizar comparaciones equitativas entre provincias con diferentes cantidades de población.
+
+-------------------------------------------------------------------------------------------------------
+
+GRAFICO i:
+
+Para este análisis se optó por un gráfico de barras agrupadas, que permite comparar de forma directa lo que el gráfico busca reflejar; la asimétrica densidad de población en Argentina separada por jurisdicciones y el crecimiento ocurrido en el 2022 a comparación del año 2010.
+Es sumamente visible la concentración de población que presenta Buenos Aires a comparación del resto del país.
+Todas las jurisdicciones muestran un incremento en su población con respecto al 2010, mostrando una tendencia de crecimiento demográfico.
+Y los extremos se mantienen en posición, donde jurisdicciones como Tierra del Fuego y La Pampa se mantienen con los volúmenes más bajos, mientras que Buenos Aires y Córdoba siguen dominando.
+
+Interpretación del gráfico obtenido:
+El gráfico demuestra que el crecimiento poblacional no es uniforme.
+
+GRAFICO ii:
+
+Para el análisis de la mortalidad a lo largo del tiempo, se desarrollaron dos propuestas similares, pero visualmente distintas que buscan equilibrar la cantidad de información con la legibilidad del gráfico. Ámbas son graficos de 
+
+Versión 1:
+La primera aproximación consistió en la elaboración de un gráfico de líneas único donde se priorizaron las 10 categorías con mayor volumen de muertes totales. Se utilizó un agrupamiento por descripción y año, identificando el "top 10" mediante un orden descendente. El resto de las categorías de defunción se consolidaron en una única línea llamada "Otras causas".
+
+Versión 2:
+La segunda versión pasa a ser una estructura de dos subplots. Acá, en lugar de agrupar mas de 20 categorías en "otras causas", se decidió mostrarlas por separado. El grafico de la izquierda contiene las causas de mayor impacto, mientras que el segundo muestra todas las causas "secundarias" independientemente. Esta separación permite que cada gráfico tenga su propia escala en el eje Y, ajustándose automáticamente al rango de valores de su grupo.
+Un punto importante a resaltar en el diseño de esta versión fue cómo se trató a la categoría Covid-19. A pesar de no ser una causa histórica, se decidió forzar su inclusión en el primer gráfico por estas dos razones:
+Su pico en el 2021, alcanzando cantidades altas de cantidad de defunciones.
+Para preservar la escala en el grafico de la derecha, ya que si Covid-19 se hubiese quedado allí, su gran pico iba a complicar su compresión.
+
+Interpretación del gráfico obtenido:
+Ambas versiones del gráfico dos nos muestran cómo las enfermedades del aparato circulatorio y tumores lideran históricamente la estadística, mostrando un crecimiento estable y sostenido. Se observa un comportamiento particular con un pico abrupto en 2021. En este año, el Covid 19 igualó en magnitud a las causas principales, alterando la estructura habitual de defunciones.
+
+GRAFICO iii:
+
+Primero se crearon dos tablas temporales, una de muertes por provincia y otra de población total por provincia. Luego, se tomo una tasa de mortalidad total cada mil habitantes por provincia (mil porque tiene buena divisibilidad y es cómodo calcular porcentajes con ese numero) asegurando que sea la provincia utilizada dentro del calculo sea la correcta.
+
+Segundo se crean otras dos tablas temporales pero esta vez para el segundo grafico, donde se tuvo en cuenta el grupo etario. Se eligió grupo etario como variable ya que permite realizar un análisis sobre la distribución de la mortalidad donde, al separar por edades, podemos identificar si la tasa responde a un proceso natural de envejecimiento o si existen factores de riesgo que afectan a la población más joven.
+
+Interpretación del grafico obtenido:
+Este enfoque nos permite observar como provincias con poblaciones más envejecidas mostrarán una mayor contribucion en el grupo '75+' (como sucede con CABA), mientras que provincias con mayores índices de mortalidad infantil o accidentes en jóvenes mostrarán lo contrario (grupos '0-14' o '15-34').
+
+GRAFICO iv:
+
+Se agruparon previamente los datos por grupo etario y sexo, sumando la cantidad total de defunciones en cada combinación. Luego se reorganizó la tabla para tener, para cada grupo etario, dos columnas: una correspondiente al sexo femenino y otra al masculino. El gráfico resultante permite visualizar no solo la evolución de la mortalidad según la edad, sino también las diferencias relativas entre hombres y mujeres en cada grupo etario.
+
+Interpretación del grafico obtenido:
+La mortalidad está fuertemente concentrada en los grupos de mayor edad, presenta diferencias de género que varían según el respectivo rango etario y este gráfico complementa el análisis del Gráfico iii de tasas por provincia y grupo etario, ya que acá se observa la estructura general por edad y sexo.
+
+GRAFICO v:
+
+Para este análisis se optó por un boxplot por provincia, donde cada caja representa la distribución de la cantidad de establecimientos de salud por departamento dentro de cada jurisdicción.
+Este tipo de gráfico resulta adecuado porque no solo muestra un valor promedio, sino que permite visualizar la mediana la dispersión de los datos, los valores extremos y la media, marcada explícitamente en el gráfico.
+A diferencia de un gráfico de barras con totales agregados, esta visualización permite observar la heterogeneidad interna de cada provincia, es decir, cómo se distribuyen los recursos sanitarios entre sus departamentos.
+En primer lugar, se observa una gran desigualdad en la distribución de establecimientos dentro de muchas provincias. Algunas jurisdicciones presentan cajas muy amplias y numerosos valores atípicos, lo que indica que ciertos departamentos concentran una cantidad significativamente mayor de centros de salud respecto al resto.
+Provincias como Buenos Aires, Córdoba o Santa Fe muestran una dispersión considerable, lo cual es esperable dado que cuentan con departamentos muy poblados y urbanizados que concentran infraestructura sanitaria, mientras que otros departamentos más rurales presentan valores más bajos.
+Por otro lado, provincias con menor densidad poblacional o menor cantidad de departamentos tienden a mostrar distribuciones más compactas, lo que sugiere una menor variabilidad interna.
+
+Interpretación del grafico obtenido:
+El grafico evidencia que la infraestructura sanitaria en Argentina presenta desigualdad territorial entre provincias, con concentración y diferencias marcadas entre departamentos.
+
+GRAFICO vi:
+
+Para este análisis se eligió utilizar un gráfico de dispersión, donde cada punto representa una provincia. El eje X representa la cantidad total de establecimientos de salud mientras que el eje Y la tasa de defunciones cada 100.000 habitantes (año 2022).
+El objetivo es observar si existe algún tipo de relación entre la disponibilidad de establecimientos de salud y la mortalidad por provincia.
+Las provincias más grandes (ubicadas hacia la derecha del gráfico) tienden a tener muchas más instituciones, lo cual es esperable por su mayor población. Sin embargo, su tasa de defunciones no siempre es más baja.
+Esto indica que la infraestructura sanitaria crece junto con la población, pero no necesariamente reduce proporcionalmente la tasa de mortalidad.
+
+Interpretación del grafico obtenido:
+El grafico muestra que no existe una relación directa o lineal clara entre la cantidad de establecimientos de salud y la tasa de defunciones por provincia en 2022. Tener más instituciones de salud no implica necesariamente una menor tasa de mortalidad. Las diferencias observadas parecen estar influidas también por otros factores, como los rangos etarios, el tamaño de la población y condiciones socioeconómicas.
+En resumen, la cantidad de establecimientos por sí sola no explica las variaciones en la mortalidad provincial.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
