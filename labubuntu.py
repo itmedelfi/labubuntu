@@ -836,57 +836,56 @@ plt.show()
 
 #%% GRAFICO iv
 
+#%% GRAFICO iv
+
 #Ordenamos la tabla para que las claves sean solo Sexo y Grupo Etario, el resto de claves las eliminamos y sumamos las cantidades
-consulta_g_iv1 = """
+consulta_g_iv = """
                 SELECT "Grupo etario" AS GE, Sexo, SUM(cantidad) AS Cantidad
                 FROM df_defunciones
                 GROUP BY Sexo, "Grupo etario"
                 ORDER BY "Grupo etario", Sexo
-            """;
+            """;         
+defunciones_por_ge_y_por_sexo = dd.query(consulta_g_iv).df()
 
-defunciones_por_ge_sexo = dd.query(consulta_g_iv1).df()
-
-#Separamos la columna "Sexo" en 2 columnas distintas ("Femenino" y "Masculino"), en cada celda de estas columnas se muestra la cantidad de Gente de ese Sexo del GE dedo por la columna de "Grupo etario"
-""" Usamos la tabla defunciones_por_ge_sexo
-    generamos una tabla que tiene cada grupo etario
-    armamos otra tabla f que tiene para cada grupo etario la cantidad de defunciones de sexo femenino
-    unimos la tabla a la que solo tiene grupos etarios, y a la nueva columna la llamamos Femenino
-    hacemos lo analogo para el sexo masculino
-    luego ordenamos por grupo etario
-    """
+#   Separamos la columna "Sexo" en 2 columnas distintas ("Femenino" y "Masculino"), en cada celda de estas columnas se muestra la cantidad de Gente de ese Sexo del GE dedo por la columna de "Grupo etario"
+#   Usamos la tabla defunciones_por_ge_sexo
+#   generamos una tabla que tiene cada grupo etario
+#   armamos otra tabla f que tiene para cada grupo etario la cantidad de defunciones de sexo femenino
+#   unimos la tabla a la que solo tiene grupos etarios, y a la nueva columna la llamamos Femenino
+#   hacemos lo analogo para el sexo masculino
+#   luego ordenamos por grupo etario  
 consulta_g_iv2 = """ 
-                SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,
-                FROM
-                    (SELECT DISTINCT GE FROM defunciones_por_ge_sexo) AS ge
-                JOIN
-                    (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'F') AS f
-                        ON ge.GE = f.GE
-                JOIN
-                    (SELECT GE, cantidad FROM defunciones_por_ge_sexo WHERE sexo = 'M') m
-                        ON ge.GE = m.GE
-                ORDER BY ge.GE
-            """
-
-defunciones_ge_sexo = dd.query(consulta_g_iv2).df()
+    SELECT ge.GE AS 'Grupo Etario', f.cantidad AS Femenino, m.cantidad AS Masculino,
+    FROM
+    (SELECT DISTINCT GE FROM defunciones_por_ge_y_por_sexo) AS ge
+    JOIN
+        (SELECT GE, cantidad FROM defunciones_por_ge_y_por_sexo WHERE sexo = 'F') AS f
+    ON ge.GE = f.GE
+    JOIN
+        (SELECT GE, cantidad FROM defunciones_por_ge_y_por_sexo WHERE sexo = 'M') m
+    ON ge.GE = m.GE
+    ORDER BY ge.GE
+    """
+defunciones_x_ge_sexo = dd.query(consulta_g_iv2).df()
 
 #Armamos el gráfico de barras
 fig, ax = plt.subplots() 
 
 # Guardamos las etiquetas del eje x (grupos etarios)
-labels = defunciones_ge_sexo['Grupo Etario']
+labels = defunciones_x_ge_sexo['Grupo Etario']
 
 # Armamos un arreglo con las posiciones para saber donde estan las barras
 # hay una posición por grupo etario
 x = np.arange(len(labels))
 # Guardamos las cantidades de defunciones de cada sexo
-f = defunciones_ge_sexo['Femenino']
-m = defunciones_ge_sexo['Masculino']
+f = defunciones_x_ge_sexo['Femenino']
+m = defunciones_x_ge_sexo['Masculino']
 
-width = 0.33
+width = 0.25
 
 # Dibujamos las barras para cada sexo desplazándolas horizontalmente para que no se superpongan dentro de cada grupo etario
-ax.bar(x - width, f, width=width, label='Mujeres') 
-ax.bar(x + width, m, width=width, label='Hombres')
+ax.bar(x - width/2, f, width=width, label='Mujeres') 
+ax.bar(x + width/2, m, width=width, label='Hombres')
 
 #Agregamos el titulo 
 ax.set_title('Defunciones por Grupo Etario y Sexo') 
@@ -895,7 +894,7 @@ ax.set_xlabel('Grupo Etario')
 #indicamos las posiciones y agregamos las etiquetas (grupos etarios) del eje x
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
-# Nombramos el eje X
+# Nombramos el eje Y
 ax.set_ylabel('Cantidad de defunciones (en millones)') 
 #Mostramos la leyenda para distinguir cada sexo
 ax.legend()
@@ -1103,6 +1102,7 @@ consulta_departamentos_cant = """
             """
 
 df_departamentos_cant = dd.query(consulta_departamentos_cant).df()
+
 
 
 
